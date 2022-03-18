@@ -9,17 +9,20 @@
     <h1>Hello money-World</h1>
     <script>
 
-      
-    showmessage()
-function showmessage() {
-    console.log("Сообщение");
-
-}
-
+let howMuchShiha
 function getYacht () {
-    let howMuchShiha = prompt('Сколько стоит кальян', '100zl');
-}
-howMuchShiha();
+    howMuchShiha = prompt('Сколько стоит 1 раз покурить кальян в злотых', '100');
+};
+getYacht();
+
+  let howMuchShihaOfOneYear = 365/4*howMuchShiha;
+  let yachtNo1Cost = 7000
+  let precentOfShihaToYahts = howMuchShihaOfOneYear/yachtNo1Cost*100
+
+  alert ("Я посчитал что ты куришь кальян в среднем 1 раз в 4 дня");
+  
+  alert (`Значит в год ты скуриваешь ${(precentOfShihaToYahts).toFixed(0)} процентов от яхты которая сейчас в Гданьске `);
+  prompt("А вот и ссылочка на неё ", "https://www.olx.pl/d/oferta/jacht-zaglowy-balastowy-CID767-IDN7haH.html#877a0e3fc8;promoted");
     </script>
   </body>
 </html>
