@@ -1,4 +1,3 @@
-
 // console.log('Hello world!');
 // /*
 // Стиль lowerCamelCase
@@ -146,8 +145,6 @@
 // let message = "Hello Pawel!!";
 // if (2 < 1) console.log(message)
 
-
-
 // else {console.log('not complite')}
 
 // ВОПРОСЫ К АРСЕНИЮ
@@ -240,16 +237,13 @@
 // let name = admin
 // aler
 
-
-
 // const sayHello = document.querySelectorAll("[data-say-hi]");
 // const answer = sayHello.getAttribute;
 // console.log(answer)
 
-
 // const elemOne = document.querySelector('[data-say-hi]');
 // const attr = elemOne.getAttribute('data-say-hi');
-// console.log(attr);  
+// console.log(attr);
 
 // const answer2 = document.querySelector("ul")
 // const answer3 = answer2.lastElementChild
@@ -260,7 +254,7 @@
 
 // const bbb = document.querySelectorAll('li')
 // for (const elem of bbb) {
-//     const elemContent = elem.textContent 
+//     const elemContent = elem.textContent
 //     if (elemContent === "321") {
 //         console.log(elemContent)
 //     }
@@ -278,7 +272,6 @@
 //     "beforeend",
 //     "<li>123</li>",
 
-
 //     Дан массив целых чисел.
 
 // Возвращает массив, где первый элемент — это количество положительных чисел, а второй элемент — сумма отрицательных чисел. 0 не является ни положительным, ни отрицательным.
@@ -289,23 +282,23 @@
 // Для ввода [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15] вы должны вернуть [10, -65].
 // )
 
-
-
-
-
-
 const mainForm = document.forms.main;
-const fname = mainForm.fname
-const lname = mainForm.lname
-const deliverySelect = mainForm.delivery
-const checkBox = mainForm.rules
+const fname = mainForm.fname;
+const lname = mainForm.lname;
+const deliverySelect = mainForm.delivery;
+const checkBox = mainForm.rules;
+const btn = mainForm.btn;
+const contact = mainForm.contact;
 
-mainForm.addEventListener('submit',function(event) {
-    console.log("Имя: ",fname.value); 
-    console.log("Фамилия: ",lname.value) ;
-    console.log("Будет забирать из: ",deliverySelect.value);
-    console.log("Справилами быстро прочитан и быстро ознакомлен", checkBox.checked);
-})
+mainForm.addEventListener("submit", function (event) {
+  if (checkBox.checked === false) {
+    alert('Поставь галочку а то не получишь 1 000 000 000');
+    btn.disabled = false;
+  } else {
+    console.log("Имя: ", fname.value);
+    console.log("Фамилия: ", lname.value);
+    console.log("Способ связи", contact.value );
+    console.log("Пункт", deliverySelect.value);
 
-
-
+}
+});

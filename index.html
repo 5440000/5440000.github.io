@@ -21,31 +21,69 @@
 
      -->
 
+    <section class="form-buy">
+      <div>
+        <h1 class="title">
+          Заказать сертификат на 1 000 000 000$ для себя и друзей
+        </h1>
+        <h2 class="subtitle">Интернет магазин Lucky-Man</h2>
 
-     <section class="form-buy">
-         <div>
-             <h1 class = title>Заказать сертификат на 1 000 000 000$ для себя и друзей</h1>
-             <h2 class = subtitle>Интернет магазин Lucky-Man</h2>
-             
-            <div>
-                <form name="main" action="#">
-                        <label for="fname">Имя</label>
-                        <input value="Арсений" type="text" id="fname" name="fname"><br><br>
-                        <label for="lname">Фамилия</label>
-                        <input value="вПрогеГений" type="text" id="lname" name="lname"><br><br>
-                        <select name="delivery" class = delivery-type >
-                            <option value="Минск" selected >самовывоз из Минска</option>
-                            <option value="Гданьск">самовывоз из Гданьска</option>
-                        </select>
-                        <input type="checkbox" id="scales" name="rules"
-                        checked>
-                        <label for="rules">Я согласен с условиями предоставления данных</label>
-                        <input type="submit" value="Submit">
-                </form>
-            </div>
-         </div>
+        <div>
+          <form name="main" action="#">
+            <label for="fname">Имя</label>
+            <input
+              value=""
+              type="text"
+              id="fname"
+              name="fname"
+            /><br /><br />
+            <label for="lname">Фамилия</label>
+            <input
+              value=""
+              type="text"
+              id="lname"
+              name="lname"
+            /><br /><br />
+            <h3>Выбери способ связи</h3>
+            <input
+              type="radio"
+              id="contactChoice1"
+              name="contact"
+              value="email"
+            />
+            <label for="contactChoice1">Email</label>
 
-     </section>
+            <input
+              type="radio"
+              id="contactChoice2"
+              name="contact"
+              value="phone"
+            />
+            <label for="contactChoice2">Phone</label>
+
+            <input
+              type="radio"
+              id="contactChoice3"
+              name="contact"
+              value="mail"
+            />
+            <label for="contactChoice3">Mail</label>
+            <h4>откуда забирать</h4>
+            <select name="delivery" class="delivery-type">
+              <option value="Cамовывоз из Минска">самовывоз из Минска</option>
+              <option value="Cамовывоз из Гданьска">Cамовывоз из Гданьска</option>
+            </select>
+            <h5>Согласие</h5>
+            <input type="checkbox" id="scales" name="rules" />
+            <label for="rules"
+              >Я согласен с условиями предоставления данных</label
+            >
+            <h6>А теперь нажми кнопку</h6>
+            <input  type="submit" value="Submit" name="btn" />
+          </form>
+        </div>
+      </div>
+    </section>
     <script src="./script.js"></script>
     <script>
       //     let userName =prompt("Как тебя зовут ?",);
@@ -159,44 +197,41 @@
       //   alert( i ); // простое число
       // }
 
-//       let i = 1;
-//       while (i < 7) console.log(i++);
+      //       let i = 1;
+      //       while (i < 7) console.log(i++);
 
-//       for (i = 1; i < 7; i++) console.log(i);
+      //       for (i = 1; i < 7; i++) console.log(i);
 
-//       i = 1;
-//       do {
-//         console.log(i);
-//         i++;
-//       } while (i < 7);
+      //       i = 1;
+      //       do {
+      //         console.log(i);
+      //         i++;
+      //       } while (i < 7);
 
-//       num = 0;
-//       while (num < 3) {
-//         console.log(`число ${num}`);
-//         num++;
-//       }
+      //       num = 0;
+      //       while (num < 3) {
+      //         console.log(`число ${num}`);
+      //         num++;
+      //       }
 
-    
-//     firstFor: for (num = 0; num < 2; num++) {
-        
-//         for (let size = 0; size < 3; size++) {
-//             console.log(size);
-//             if(size ==1) break firstFor;
-//         }
-//     }
+      //     firstFor: for (num = 0; num < 2; num++) {
 
+      //         for (let size = 0; size < 3; size++) {
+      //             console.log(size);
+      //             if(size ==1) break firstFor;
+      //         }
+      //     }
 
+      //     showmessage()
+      // function showmessage() {
+      //     console.log("Сообщение");
 
-//     showmessage()
-// function showmessage() {
-//     console.log("Сообщение");
+      // }
 
-// }
-
-// function getYacht () {
-//     let howMuchShiha = prompt('Сколько стоит кальян', '100zl');
-// }
-// howMuchShiha();
+      // function getYacht () {
+      //     let howMuchShiha = prompt('Сколько стоит кальян', '100zl');
+      // }
+      // howMuchShiha();
     </script>
   </body>
 </html>
