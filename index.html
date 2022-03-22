@@ -6,23 +6,197 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Hello money-World</h1>
+    <!-- <h1></h1>
+    <div data-say-hi="yes">Привет!</div>
+
+    <ul>
+        <li>123</li>
+        <li>321</li>
+    </ul>
+
+
+    <div class="like"></div>
+    <div class="subscribe"></div>
+    <div class="like subscribe"></div>
+
+     -->
+
+
+     <section class="form-buy">
+         <div>
+             <h1 class = title>Заказать сертификат на 1 000 000 000$ для себя и друзей</h1>
+             <h2 class = subtitle>Интернет магазин Lucky-Man</h2>
+             
+            <div>
+                <form name="main" action="#">
+                        <label for="fname">Имя</label>
+                        <input value="Арсений" type="text" id="fname" name="fname"><br><br>
+                        <label for="lname">Фамилия</label>
+                        <input value="вПрогеГений" type="text" id="lname" name="lname"><br><br>
+                        <select name="delivery" class = delivery-type >
+                            <option value="Минск" selected >самовывоз из Минска</option>
+                            <option value="Гданьск">самовывоз из Гданьска</option>
+                        </select>
+                        <input type="checkbox" id="scales" name="rules"
+                        checked>
+                        <label for="rules">Я согласен с условиями предоставления данных</label>
+                        <input type="submit" value="Submit">
+                </form>
+            </div>
+         </div>
+
+     </section>
+    <script src="./js/script.js"></script>
     <script>
+      //     let userName =prompt("Как тебя зовут ?",);
+      //     alert(userName);
 
-let howMuchShiha
-function getYacht () {
-    howMuchShiha = prompt('Сколько стоит 1 раз покурить кальян в злотых', '100');
-};
-getYacht();
+      //     let year = prompt('В каком году мы поедем в путешествие на мотоцикле?');
 
-  let howMuchShihaOfOneYear = 365/4*howMuchShiha;
-  let yachtNo1Cost = 7000
-  let precentOfShihaToYahts = howMuchShihaOfOneYear/yachtNo1Cost*100
+      //     if (year < 2023) {
+      //         alert("Наверное я еще не успею получить права");
+      //     } else if (year >2023 ) {
+      //         alert("Я думаю что раньше");
+      //     } else {
+      //         alert('Верняк! Да ты прям ванга! Так тому и быть ))');
+      // }
 
-  alert ("Я посчитал что ты куришь кальян в среднем 1 раз в 4 дня");
-  
-  alert (`Значит в год ты скуриваешь ${(precentOfShihaToYahts).toFixed(0)} процентов от яхты которая сейчас в Гданьске `);
-  prompt("А вот и ссылочка на неё ", "https://www.olx.pl/d/oferta/jacht-zaglowy-balastowy-CID767-IDN7haH.html#877a0e3fc8;promoted");
+      //   let login = prompt("Введите логин");
+
+      //   if (login === null) {
+      //     alert("отмена");
+      //   } else if (login !== "admin") {
+      //     alert("я вас не знаю");
+      //   } else {
+      //     let password = prompt("Введите пароль");
+      //     console.log(password);
+      //     {
+      //       if (password === "123123123") {
+      //         alert("Hello admin");
+      //       } else if (password !== "123123123" && password !== null) {
+      //         alert("Неверный пароль");
+      //       } else if (password === null) {
+      //         alert("Отмена");
+      //       }
+      //     }
+      //   }
+
+      //   0 1
+      //                             Арений!!!! Показывал пример работы
+      //   const a = 4;
+      //   const b = 5;
+
+      //   const c = a + b;
+
+      //   const summ = function () {
+      //     alert("hello");
+      //   };
+
+      //   summ();
+      //   summ();
+      //   const array = [
+      //     [1, 2, 3],
+      //     [4, 5, 6],
+      //   ];
+
+      //   const button = document.getElementById("my_button")
+      //   button.addEventListener("click", function(){
+      //     const input = document.getElementById("my_input")
+      //     const inputValue = input.value
+
+      //     fetch("https://my-api.com/names", {
+      //         method: "POST",
+      //         data: {
+      //             inputValue
+      //         }
+      //     })
+      //   })
+
+      //   console.log(array[0][0])
+
+      // for (let i = 0; i<5; i++) alert(i);
+      // for (let i = 0; i<5; ++i) console.log(i);
+      // ________________________________________________________
+      //     for (let i = 2; i < 11; i++) {
+      //         if(i % 2 == 0) {
+
+      //         alert(i);
+      //         }
+      //     }
+
+      // let i = 0;
+      // while (i < 3) {
+      //     alert(`number ${i}!`)
+      //     i++;
+      // }
+
+      // let num;
+
+      // do {
+      //     num = prompt("Введите число большее чем 100")
+      // } while (num <=100 && num);
+
+      // let n = 10;
+      // nextPrime:
+      // for (let i = 2; i <= n; i++) {
+
+      //     for (let j = 2; j < i; j++ ) {
+      //         if (i % j == 0) continue nextPrime;
+      //     }
+
+      //     console.log(i);
+      // }
+
+      // n = 10;
+
+      // nextPrime:
+      // for (let i = 2; i <= n; i++) { // Для всех i...
+
+      //   for (let j = 2; j < i; j++) { // проверить, делится ли число..
+      //     if (i % j == 0) continue nextPrime; // не подходит, берём следующее
+      //   }
+
+      //   alert( i ); // простое число
+      // }
+
+//       let i = 1;
+//       while (i < 7) console.log(i++);
+
+//       for (i = 1; i < 7; i++) console.log(i);
+
+//       i = 1;
+//       do {
+//         console.log(i);
+//         i++;
+//       } while (i < 7);
+
+//       num = 0;
+//       while (num < 3) {
+//         console.log(`число ${num}`);
+//         num++;
+//       }
+
+    
+//     firstFor: for (num = 0; num < 2; num++) {
+        
+//         for (let size = 0; size < 3; size++) {
+//             console.log(size);
+//             if(size ==1) break firstFor;
+//         }
+//     }
+
+
+
+//     showmessage()
+// function showmessage() {
+//     console.log("Сообщение");
+
+// }
+
+// function getYacht () {
+//     let howMuchShiha = prompt('Сколько стоит кальян', '100zl');
+// }
+// howMuchShiha();
     </script>
   </body>
 </html>
