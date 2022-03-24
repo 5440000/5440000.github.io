@@ -323,6 +323,7 @@ function sendDataUser() {
       calary: form.calary.value + " " + form.moneyType.value,
     });
     console.log(arr);
+    form.reset();
   }
 }
 
