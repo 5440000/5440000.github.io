@@ -282,87 +282,85 @@
 // Для ввода [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15] вы должны вернуть [10, -65].
 // )
 
-// 1Первоя задание
-// const mainForm = document.forms.main;
-// const fname = mainForm.fname;
-// const lname = mainForm.lname;
-// const deliverySelect = mainForm.delivery;
-// const checkBox = mainForm.rules;
-// const btn = mainForm.btn;
-// const contact = mainForm.contact;
+const mainForm = document.forms.main;
+const fname = mainForm.fname;
+const lname = mainForm.lname;
+const deliverySelect = mainForm.delivery;
+const checkBox = mainForm.rules;
+const btn = mainForm.btn;
+const contact = mainForm.contact;
 
-// mainForm.addEventListener("submit", function (event) {
-//   if (checkBox.checked === false) {
-//     alert("Поставь галочку а то не получишь 1 000 000 000");
-//     btn.disabled = false;
-//   } else {
-//     console.log("Имя: ", fname.value);
-//     console.log("Фамилия: ", lname.value);
-//     console.log("Способ связи", contact.value);
-//     console.log("Пункт", deliverySelect.value);
-//   }
-// });
-
-const form = document.forms.form;
-const fname = form.name;
-const age = form.age;
-const colary = form.colary;
-const submit = form.btn;
-const moneyType = form.moneyType;
-const button = document.getElementById("button");
-const arr = []
-
-
-function sendDataUser() {
-  if (!fname.value||!colary.value||!age.value) {
-    submit.disabled = false;
-    console.log("поле не заполнено");
+mainForm.addEventListener("submit", function (event) {
+  if (checkBox.checked === false) {
+    alert("Поставь галочку а то не получишь 1 000 000 000");
+    btn.disabled = false;
   } else {
-      arr.push({
-  name: form.name.value,
-  age: form.age.value,
-  colary: (form.colary.value) + " " + (form.moneyType.value) ,
-   })
-   console.log(arr)
+    console.log("Имя: ", fname.value);
+    console.log("Фамилия: ", lname.value);
+    console.log("Способ связи", contact.value);
+    console.log("Пункт", deliverySelect.value);
   }
-};
+});
 
-button.onclick = sendDataUser;
+let a = [1, 2, 3, 4, 5, -11, -12, -14 - 100];
+// let c = a.filter(function(i,) {
+//     return  (i>0);
+// })
+
+// console.log(c)s
+
+// let c = a.reduce((sum,i) {
+//     return sum + i} 0)
+                                                Задача номер 2
+const users = [
+  {
+    name: "Pasha",
+    age: 34,
+    salary: 100000,
+    currency: "£",
+  },
+  { name: "Ars", age: 40, salary: 1000000, currency: "BTC" },
+];
+
+const obj = users[0];
+console.log(users.keys);
+
+const wrapper = document.createElement("div");
+
+const main = document.getElementById("forExample");
+
+for (let i = 0; i < users.length; i++) {
+  const row = document.createElement("div");
+  row.className = 'row'
+  const name = document.createElement("div");
+  name.append(users[i].name);
+  const age = document.createElement("div");
+  age.append(users[i].age);
+  const salary = document.createElement("div");
+  salary.append(`${users[i].salary} ${users[i].currency}`);
+  row.append(name);
+  row.append(age);
+  row.append(salary);
+  wrapper.append(row);
+}
+main.append(wrapper)
 
 
-// Задача номер 2
-// const users = [
-//   {
-//     name: "Pasha",
-//     age: 34,
-//     сalary: 100000,
-//     currency: "£",
-//   },
-//   { name: "Ars", age: 40, сalary: 1000000, currency: "BTC" },
-// ];
+// console.log(users.length)
+// console.log(users[0])
+// const forExample = document.getElementById('forExample');
+// var newArr = Array.from(users)
+// newArr.toString
+// console.log(newArr)
 
-// const obj = users[0];
-// console.log(users.keys);
-// const wrapper = document.createElement("div");
-// wrapper.className = "wrapper";
-
-// const main = document.getElementById("forExample");
-
-// for (let i = 0; i < users.length; i++) {
-//   const row = document.createElement("div");
-//   row.className = "row";
-//   const name = document.createElement("div");
-//   name.append(users[i].name);
-//   const age = document.createElement("div");
-//   age.append(users[i].age);
-//   const salary = document.createElement("div");
-//   salary.append(`${users[i].salary} ${users[i].currency}`);
-//   row.append(name);
-//   row.append(age);
-//   row.append(salary);
-//   wrapper.append(row);
+// for (let i = 0; i <= users.length - 1; i++) {
+//     users[i].toString;
+// 	console.log(users[i]);
+//     console.log(typeof(users[1]))
 // }
-// main.append(wrapper);
-// const body = document.body
-// const landingPage = Object.assign(document.createElement("section"), { className: "landing-page" });
-// body.append(landingPage);
+
+// forExample.insertAdjacentHTML('afterend', '<div id="ctwo">two</div>');
+
+//     Pasha | 34 | 100000 £
+// Ars | 40 | 1000000 BTC
+// users.map(({id, age, group}) => `\n${id} ${age} ${group}`).join('')

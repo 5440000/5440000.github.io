@@ -1,0 +1,21 @@
+.wrapper {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.row {
+    
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+div {
+    padding: 20px;
+    font-size: 20px;
+    border: groove 2px grey;
+}
