@@ -310,25 +310,23 @@ const colary = form.colary;
 const submit = form.btn;
 const moneyType = form.moneyType;
 const button = document.getElementById("button");
-const arr = []
-
+const arr = [];
 
 function sendDataUser() {
-  if (!fname.value||!colary.value||!age.value) {
+  if (!fname.value || !colary.value || !age.value) {
     submit.disabled = false;
     console.log("поле не заполнено");
   } else {
-      arr.push({
-  name: form.name.value,
-  age: form.age.value,
-  colary: (form.colary.value) + " " + (form.moneyType.value) ,
-   })
-   console.log(arr)
+    arr.push({
+      name: form.name.value,
+      age: form.age.value,
+      colary: form.colary.value + " " + form.moneyType.value,
+    });
+    console.log(arr);
   }
-};
+}
 
 button.onclick = sendDataUser;
-
 
 // Задача номер 2
 // const users = [
