@@ -306,21 +306,21 @@
 const form = document.forms.form;
 const fname = form.name;
 const age = form.age;
-const colary = form.colary;
+const calary = form.calary;
 const submit = form.btn;
 const moneyType = form.moneyType;
 const button = document.getElementById("button");
 const arr = [];
 
 function sendDataUser() {
-  if (!fname.value || !colary.value || !age.value) {
+  if (!fname.value || !calary.value || !age.value) {
     submit.disabled = false;
     console.log("поле не заполнено");
   } else {
     arr.push({
       name: form.name.value,
       age: form.age.value,
-      colary: form.colary.value + " " + form.moneyType.value,
+      calary: form.calary.value + " " + form.moneyType.value,
     });
     console.log(arr);
   }
