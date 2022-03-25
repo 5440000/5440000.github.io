@@ -311,12 +311,15 @@ const submit = form.btn;
 const moneyType = form.moneyType;
 const button = document.getElementById("button");
 const arr = [];
+const regName = /[0-9]/
 
 function sendDataUser() {
-  if (!fname.value || !calary.value || !age.value) {
+  if (!fname.value || !calary.value || !age.value || !regName.test(form.age.value)||!regName.test(form.calary.value)) {
     submit.disabled = false;
-    console.log("поле не заполнено");
-  } else {
+    console.log("поле не заполнено или заполнено не правильно");
+  }
+  //  else if (!regName,test(age||calary)) {}
+   else {
     arr.push({
       name: form.name.value,
       age: form.age.value,
