@@ -302,35 +302,35 @@
 //     console.log("Пункт", deliverySelect.value);
 //   }
 // });
+//                                             Задание номер 3
+// const form = document.forms.form;
+// const fname = form.name;
+// const age = form.age;
+// const calary = form.calary;
+// const submit = form.btn;
+// const moneyType = form.moneyType;
+// const button = document.getElementById("button");
+// const arr = [];
+// const regName = /[0-9]/
 
-const form = document.forms.form;
-const fname = form.name;
-const age = form.age;
-const calary = form.calary;
-const submit = form.btn;
-const moneyType = form.moneyType;
-const button = document.getElementById("button");
-const arr = [];
-const regName = /[0-9]/
+// function sendDataUser() {
+//   if (!fname.value || !calary.value || !age.value || !regName.test(form.age.value)||!regName.test(form.calary.value)) {
+//     submit.disabled = false;
+//     console.log("поле не заполнено или заполнено не правильно");
+//   }
+//   //  else if (!regName,test(age||calary)) {}
+//    else {
+//     arr.push({
+//       name: form.name.value,
+//       age: form.age.value,
+//       calary: form.calary.value + " " + form.moneyType.value,
+//     });
+//     console.log(arr);
+//     form.reset();
+//   }
+// }
 
-function sendDataUser() {
-  if (!fname.value || !calary.value || !age.value || !regName.test(form.age.value)||!regName.test(form.calary.value)) {
-    submit.disabled = false;
-    console.log("поле не заполнено или заполнено не правильно");
-  }
-  //  else if (!regName,test(age||calary)) {}
-   else {
-    arr.push({
-      name: form.name.value,
-      age: form.age.value,
-      calary: form.calary.value + " " + form.moneyType.value,
-    });
-    console.log(arr);
-    form.reset();
-  }
-}
-
-button.onclick = sendDataUser;
+// button.onclick = sendDataUser;
 
 // Задача номер 2
 // const users = [
@@ -368,3 +368,23 @@ button.onclick = sendDataUser;
 // const body = document.body
 // const landingPage = Object.assign(document.createElement("section"), { className: "landing-page" });
 // body.append(landingPage);
+
+const circle = document.getElementById("circle");
+const fButton = document.getElementById("button");
+document.getElementById("button").disabled = false
+
+
+let varButton = false;
+fButton.onclick = function () {
+  if (varButton) {
+    circle.style.width = "300px";
+    circle.style.height = "300px";
+    varButton = false;
+  } else {
+    circle.style.width = "150px";
+    circle.style.height = "150px";
+    varButton = true;
+
+  }
+};
+console.log(circle.style.width)
