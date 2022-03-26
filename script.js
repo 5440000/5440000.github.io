@@ -370,21 +370,23 @@
 // body.append(landingPage);
 
 const circle = document.getElementById("circle");
-const fButton = document.getElementById("button");
-document.getElementById("button").disabled = false
+const fButton = document.getElementById("button"); //кнопка
+const startButton = (document.getElementById("button").disabled = false);
+let varButton = true
+function myFunc() {
+  document.getElementById("button").disabled = false;
+}
 
-
-let varButton = false;
 fButton.onclick = function () {
   if (varButton) {
-    circle.style.width = "300px";
-    circle.style.height = "300px";
+    circle.classList.add("big");
     varButton = false;
+    fButton.disabled = true; 
+    window.setTimeout(myFunc, 3000);
   } else {
-    circle.style.width = "150px";
-    circle.style.height = "150px";
+    circle.classList.remove("big");
     varButton = true;
-
+    fButton.disabled = true; 
+    window.setTimeout(myFunc, 3000);
   }
 };
-console.log(circle.style.width)

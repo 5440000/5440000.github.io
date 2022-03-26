@@ -25,7 +25,7 @@ div {
 
 
 .wrapper {
-    margin-top: 50px;
+    margin-top: 150px;
     display: block;
     display: flex;
     flex-direction: column;
@@ -41,11 +41,10 @@ div {
     transition-property: height 300px;
     transition-property: width 300px;    
     transition-duration: 3s;
-    display: block;
 
 }
 #button {
-    margin-top: 30px;
+    margin-top: 100px;
     border-radius: 30px;
     width: 300px;
     height: 100px;
@@ -53,10 +52,8 @@ div {
     font-size: 33px;
     color: aliceblue;
     border-color: white;
-    display: block;
  }
 
-
- .disabled {
- 
- }
+.big {
+    transform: scale(2);
+}
