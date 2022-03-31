@@ -15,7 +15,7 @@ body {
   border: 5px solid white;
 }
 
-.wrapper__list {
+#wrapper__list {
   height: 1085px;
   overflow-y: scroll;
   flex: 0 0 713px;
