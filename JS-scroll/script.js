@@ -16,22 +16,45 @@ const arrCars = [
     alt: "not VW",
   },
 ];
+
+
 const divForImage = document.getElementById("wrapper__list"); //список
 
 function getImages(arrCars) {
-  for (i = 0; i < arrCars.length; i++) {
+  for (let i = 0; i < arrCars.length; i++) {
     let div = document.createElement("div");
     div.className = "wrapper__list__item ";
-    let img = document.createElement("img");
     divForImage.appendChild(div);
-    div.appendChild(img);
+    let img = document.createElement("img");
     img.src = arrCars[i].src;
     img.alt = arrCars[i].alt;
+    img.className = "mini__img"
+    div.appendChild(img);
   }
 }
+
+const allCars = document.getElementsByClassName("mini__img");
+
+function ShowAllCars(allCars) {
+
+  for (let i = 0; i < allCars.length; i++) {
+    console.log(allCars[i])
+  }
+};
+
+ShowAllCars(allCars);
+
+
+// getelements by class name
+// положить в константу 
+// и пробежаться циклом фор по константе по картинкам 
+// законсолить каждый итый элеммент
+
 getImages(arrCars);
 document.addEventListener("click", function (e) {
   const srcOfImage = e.target.src;
   const elementBigImage = document.getElementById("big-image");
   elementBigImage.src = srcOfImage;
 });
+
+
