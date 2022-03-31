@@ -17,7 +17,6 @@ const arrCars = [
   },
 ];
 
-
 const divForImage = document.getElementById("wrapper__list"); //список
 
 function getImages(arrCars) {
@@ -28,33 +27,21 @@ function getImages(arrCars) {
     let img = document.createElement("img");
     img.src = arrCars[i].src;
     img.alt = arrCars[i].alt;
-    img.className = "mini__img"
+    img.className = "mini__img";
     div.appendChild(img);
   }
 }
-
-const allCars = document.getElementsByClassName("mini__img");
-
-function ShowAllCars(allCars) {
-
-  for (let i = 0; i < allCars.length; i++) {
-    console.log(allCars[i])
-  }
-};
-
-ShowAllCars(allCars);
-
-
-// getelements by class name
-// положить в константу 
-// и пробежаться циклом фор по константе по картинкам 
-// законсолить каждый итый элеммент
-
 getImages(arrCars);
-document.addEventListener("click", function (e) {
-  const srcOfImage = e.target.src;
+
+const arrOfImages = document.getElementsByClassName("mini__img");
+
+function ShowAllCars(arrOfImages) {
   const elementBigImage = document.getElementById("big-image");
-  elementBigImage.src = srcOfImage;
-});
-
-
+  for (let i = 0; i < arrOfImages.length; i++) {
+    arrOfImages[i].addEventListener("click", function (e) {
+      const srcOfImage = e.target.src;
+      elementBigImage.src = srcOfImage;
+    });
+  }
+}
+ShowAllCars(arrOfImages);
