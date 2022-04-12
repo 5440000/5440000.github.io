@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+    <!-- <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    /> -->
+  </head>
+  <body>
+    <div class="header">
+      <header class="header__container">
+        <div class="header__logo">
+          <img src="./img/Logo.png" alt="" />
+        </div>
+        <div class="search">
+          <form class="form" action="#">
+            <input
+              class="form__ínput-area input__search"
+              type="text"
+              name=""
+              value="Search"
+            />
+            <button class="form__button" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </form>
+        </div>
+        <div class="nav">
+          <div class="list-button">
+            <div class="list-button__item-wrapper">
+              <div class="list-button__profile list-button__item">
+                <i class="fas fa-user"></i>
+              </div>
+              <span class="list-button__subtitle">Profile</span>
+            </div>
+            <div class="list-button__item-wrapper">
+              <div class="list-button__wallet list-button__item">
+                <i class="fas fa-wallet"></i>
+              </div>
+              <span class="list-button__subtitle">Wallet</span>
+            </div>
+            <div class="list-button__item-wrapper" id="button-cart">
+              <div class="list-button__cart list-button__item">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+
+              <span class="list-button__subtitle">Cart</span>
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+    <section class="main">
+      <div class="main__container">
+        <div class="side-bar">
+          <div class="brands div-sidebar">
+            <div class="side-bar-title">Brands</div>
+            <div class="brands__check-box">
+              <div>
+                <input
+                  type="checkbox"
+                  id="coding"
+                  name="interest"
+                  value="coding"
+                />
+                <label for="coding">Invicta</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="music"
+                  name="interest"
+                  value="music"
+                />
+                <label for="music">Fossil</label>
+              </div>
+              <div>
+                <input type="checkbox" id="art" name="interest" value="art" />
+                <label for="art">Bulova</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="sports"
+                  name="interest"
+                  value="sports"
+                />
+                <label for="sports">Michael Kors</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="cooking"
+                  name="interest"
+                  value="cooking"
+                />
+                <label for="cooking">GOLDEN HOUR</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="other"
+                  name="interest"
+                  value="other"
+                />
+                <label for="other">Casio</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="price div-sidebar">
+            <div class="side-bar-title">Price</div>
+            <form class="price__form" action="">
+              <input class="price__input" type="text" name="" value="" />
+              <input class="price__input" type="text" name="" value="" />
+
+              <button id="price__button" class="price__button" type="submit">
+                Go
+              </button>
+            </form>
+          </div>
+          <div class="colors div-sidebar">
+            <div class="colors__title side-bar-title">Watch Band Color</div>
+            <div class="wrapper-colors">
+              <div class="wrapper-colors__black color"></div>
+              <div class="wrapper-colors__grey color"></div>
+              <div class="wrapper-colors__white color"></div>
+              <div class="wrapper-colors__brown color"></div>
+              <div class="wrapper-colors__kashmir color"></div>
+              <div class="wrapper-colors__red color"></div>
+              <div class="wrapper-colors__pink color"></div>
+              <div class="wrapper-colors__orange color"></div>
+              <div class="wrapper-colors__yellow color"></div>
+              <div class="wrapper-colors__green color"></div>
+              <div class="wrapper-colors__blue color"></div>
+              <div class="wrapper-colors__purple color"></div>
+            </div>
+          </div>
+          <div class="Style div-sidebar">
+            <div class="side-bar-title">Watch Style</div>
+            <div>
+              <input
+                type="checkbox"
+                id="coding"
+                name="interest"
+                value="coding"
+              />
+              <label for="coding">Casual</label>
+            </div>
+            <div>
+              <input type="checkbox" id="music" name="interest" value="music" />
+              <label for="music">Dress</label>
+            </div>
+            <div>
+              <input type="checkbox" id="art" name="interest" value="art" />
+              <label for="art">Fashion</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="sports"
+                name="interest"
+                value="sports"
+              />
+              <label for="sports">Luxury</label>
+            </div>
+            <div>
+              <input
+                type="checkbox"
+                id="cooking"
+                name="interest"
+                value="cooking"
+              />
+              <label for="cooking">Sport</label>
+            </div>
+          </div>
+        </div>
+        <div id="shop">
+          <!-- <div class="banner"></div> -->
+          <div class="shop__separator separator">
+            <div class="separator__title">Best Selling</div>
+          </div>
+          <div id="list_goods">
+              <!-- <div class="shop__list-items shop__list-items--for-3items">
+                <div class="item">
+                  <div class="item__image item__image--seiko"></div>
+                  <div class="item__discription-container">
+                    <div class="item__name item-size">SEIKO</div>
+                    <div class="item__raiting item-size">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <div class="item__price item-size">$1070</div>
+                    <div class="item__button item-size">
+                      <button class="item__buttion">
+                        <i class="far fa-plus-square"></i>Add to card
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div class="item__image item__image--orient"></div>
+                  <div class="item__discription-container">
+                    <div class="item__name item-size">ORIENT</div>
+                    <div class="item__raiting item-size">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <div class="item__price item-size">$160</div>
+                    <div class="item__button item-size">
+                      <button class="item__buttion">
+                        <i class="far fa-plus-square"></i>Add to card
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="item">
+                  <div id ="aaa" class="item__image item__image--rolex"></div>
+                  <div class="item__discription-container">
+                    <div class="item__name item-size">ROLEX</div>
+                    <div class="item__raiting item-size">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                    </div>
+                    <div class="item__price item-size">$1700</div>
+                    <div class="item__button item-size">
+                      <button id="start" class="item__buttion">
+                        <i class="far fa-plus-square"></i>Add to card
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            <!-- </div>
+            <div class="little-banner"></div> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="./bases.js"></script>
+    <script src="./modal.js"></script>
+    <script src="./index.js"></script>
+    <script src="./cart.js"></script>
+    <!-- <script src="./script.js"></script> -->
+  </body>
+</html>

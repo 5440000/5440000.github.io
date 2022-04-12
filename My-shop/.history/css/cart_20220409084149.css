@@ -1,0 +1,124 @@
+
+
+.modal-cart__overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .5);
+    position: fixed;
+ }
+.modal-cart__window {
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center; */
+    width: 500px;
+    border-radius: 5px;
+    background: #fff;
+    margin: 100px auto;
+ }
+.modal-cart__header {padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(199, 191, 191);
+
+
+ }
+ .moda-cart__title{ 
+    font-size: 15px;
+    padding: 10px 0px;
+    padding-left: 0px;
+
+}
+.modal-cart__close { 
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.modal-cart__footer {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: end;
+    border-top: 1px solid rgb(199, 191, 191);
+ }
+
+ .modal-body {
+     display: flex;
+     margin: 10px;
+ }
+
+
+ .modal-body-img {
+    height: 217px;
+    width: 211px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-left: 10px;
+ }
+
+ .modal-cart-content {
+     display: flex;
+     flex-direction: column;
+     margin-left: 10px;
+ }
+
+ .price {
+     white-space: nowrap;
+ }
+
+
+ .modal-cart .modal-overlay,
+ .modal-cart .modal-window {
+     opacity: 1;
+     z-index: 1000;
+ }
+
+ .modal-cart__overlay, .modal-cart__window {
+    opacity: 0;
+    z-index: -1000;
+
+ }
+
+.modal-btn {
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    margin: 0 10px;
+    color: #fff;
+
+
+
+}
+
+.modal-btn-add-in-cart { 
+    background-color: rgb(74, 172, 55);
+    color: #fff;
+}
+.modal-btn-close {
+    background-color: rgb(192, 58, 40);
+ }
+ 
+
+ /* <div class="modal-cart__overlay" data-close="true">
+        <div class="modal-cart__window">
+            <div class="modal-cart__header">
+                <div class="moda-cart__title">Корзина покупок</div>
+                <div class="modal-cart__close">&times;</div>
+            </div>
+            <div class="modal-cart__content">
+                <div class="modal-cart__img" data-close="true">${img}</div>
+                <div class="modal-cart__good-info">
+                    <div class="modal-cart__good-name">Марка ${name }</div>
+                    <div class="modal-cart__price">Стоимость товара ${price } ${currancy}</div>
+                    <div class="modal-cart__made-in">Производитель ${madein}</div>
+                </div>
+            </div>
+            <div class="footer">
+                <button class="modal-cart__bu" data-close="true">Вернуться к товарам</button>
+                <button class="modal-cart__buttion-buy">Оформить покупку</button>
+            </div>
+            
+        </div>
+</div> */
