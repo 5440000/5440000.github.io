@@ -1,17 +1,54 @@
 const urlJson = "https://5440000.github.io/items.json";
 
 const loadingContent = async function getData() {
-  // const response = await fetchWithTimeout('/games', {
-  //     timeout: 6000
-  //   });
-
   const aaa = await fetch(urlJson);
   const json = await aaa.json();
-
   createAllItems(json);
 };
 
+const loadingFilteredContent = async function getData(year) {
+  const content = document.getElementById("content");
+  content.innerHTML = " ";
+  const aaa = await fetch(urlJson);
+  const json = await aaa.json();
+  json.forEach((element) => {
+    if (element.year === year) {
+      createItem(element);
+    } 
+  });
+};
+
 // year, url, articleTitle, text, writerName, company
+const allArticle = document.getElementById("all-article");
+btnYear2017.addEventListener("click", () => {
+    loadingContent();
+});
+
+const btnYear2022 = document.getElementById("year2022");
+btnYear2022.addEventListener("click", () => {
+    loadingFilteredContent(2022);
+});
+const btnYear2021 = document.getElementById("year2021");
+btnYear2021.addEventListener("click", () => {
+    loadingFilteredContent(2021);
+});
+const btnYear2020 = document.getElementById("year2020");
+btnYear2020.addEventListener("click", () => {
+    loadingFilteredContent(2020);
+});
+const btnYear2019 = document.getElementById("year2019");
+btnYear2019.addEventListener("click", () => {
+    loadingFilteredContent(2019);
+});
+const btnYear2018 = document.getElementById("year2018");
+btnYear2018.addEventListener("click", () => {
+  loadingContent2022(2018);
+});
+const btnYear2017 = document.getElementById("year2017");
+btnYear2017.addEventListener("click", () => {
+    loadingFilteredContent(2017);
+});
+
 const createItem = (obj) => {
   const content = document.querySelector(".content");
   const div = document.createElement("div");

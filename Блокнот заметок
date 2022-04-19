@@ -1,0 +1,21 @@
+Поправить header сделать фиксед и полосу на всю ширину
+поправить ссылки с годами убрать синий цвет
+
+добавить Catch к фетч
+
+
+Можно ли как то обьявить имя переменной с использованием значения другой переменной
+
+const createFilterButtion = (year) => {
+  const id = `year${year}`;
+  
+  const btnYear = document.getElementById(id);
+  btnYear.addEventListener("click",loadingFilterContent(year));
+  
+};
+createFilterButtion(2017);
+createFilterButtion(2018);
+createFilterButtion(2019);
+createFilterButtion(2020);
+createFilterButtion(2021);
+createFilterButtion(2022);
