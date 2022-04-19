@@ -1,116 +1,170 @@
+@font-face {
+  font-family: "Segoe UI Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: url(/fonts/Segoe\ UI.woff) format("woff");
+}
+
+@font-face {
+  font-family: "Segoe UI Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url(./fonts/Segoe\ UI\ Bold.woff) format("woff");
+}
+
 body {
-	font-family: Georgia, 'Times New Roman', Times, serif;
-	color: rgb(240, 240, 240)
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  min-width: 360px;
+  font-size: 14px;
+  color: #000000;
+  max-width: 1200px;
+  margin: auto;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-.wrapper {
-	display: flex;
-	text-align: center;
-	justify-content: center;
-	flex-direction: row;
+a {
+  color: #00000029;
 }
 
+header {
+  box-shadow: 0px 3px 6px #00000015;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+.active {
+  border-bottom: 2px solid black;
+}
+
+.container {
+  margin: auto;
+}
+.w-184 {
+  height: 154px;
+}
+
+.main-head__title {
+  text-align: center;
+  font: normal normal 300 40px/48px Segoe UI;
+  letter-spacing: 0px;
+  color: grey;
+  opacity: 1;
+}
+
+.black {
+  font-family: "Segoe UI Bold";
+  color: #000000;
+}
+
+.w-40 {
+  height: 40px;
+}
+
+.main-head__subtitle {
+  font-family: "Segoe UI Bold Italic";
+  /* UI Properties */
+  text-align: center;
+  font: normal normal 300 28px/34px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+
+/* //форма поиска */
+.search {
+  border: 2px solid rgb(0, 0, 0);
+  font-size: 20px;
+  padding: 0;
+}
+[type="search"] {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.fas.fa-search {
+  color: rgb(0, 0, 0);
+}
+
+.active-article a {
+  color: black;
+}
+
+.item__image {
+  margin: auto;
+}
+
+.item {
+  box-shadow: 0px 3px 6px #00000029;
+  opacity: 1;
+  margin-top: 20px;
+}
+
+.item__wrapper {
+  padding-left: 0;
+}
+
+/* content */
+.content {
+}
 .row {
-	padding: 20px;
-	display: flex;
-	text-align: center;
-	justify-content: center;
-	flex-direction: row;
 }
-
-div {
-	padding: 20px;
-	font-size: 20px;
+.item {
 }
-
-.main-wrapper {
-	background-color: rgb(57, 191, 225);
-	border-radius: 30px;
-	border: 7px solid rgb(226, 228, 228);
-	margin-top: 50px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
+.col-3 {
 }
-
-h1 {
-	text-transform: uppercase;
-	font-family: Georgia, 'Times New Roman', Times, serif;
-	color: rgb(240, 240, 240)
+.item__wrapper {
 }
-
-#button {
-	background-color: #fff;
-	width: 200px;
-	height: 50px;
-	margin-top: 30px;
-	border-color: #fff;
-	border-radius:30px;
-	color: rgb(57, 191, 225);
-	text-transform: uppercase;
-	font-size: 23px;
-
+.item__image {
 }
-
-#button:hover {
-
-	background-color: rgb(226, 228, 228);
-	border: 7px solid rgb(57, 191, 225);
-
+.col-9 {
 }
-
-select {
-	border-radius:20px;
-	width: 35PX;
-	height: 25px;
-	border: 1px solid rgb(226, 228, 228);
+.description {
+  padding: 27px;
+  padding-top: 20px;
+  padding-bottom: 0;
 }
-input {
-	border-radius:20px;
-	width: 100PX;
-	height: 25px;
-	border: 1px solid rgb(226, 228, 228);
+.description__article-title {
+  text-align: left;
+  font: normal normal normal 20px/27px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  margin-bottom: 5px;
 }
-.input-wrapper
-/* задание 3
-
-
-
-
-
-.wrapper {
-    margin-top: 150px;
-    display: block;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
+.description__text {
+  text-align: left;
+  font: normal normal 300 16px/21px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 0.6;
+  margin-bottom: 5px;
+  /* обрезание строки  */
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-
-#circle {
-    border-radius: 50%;
-    background-color: rgb(233, 221, 113) ;
-    height: 150px;
-    width: 150px;
-    transition-property: height 300px;
-    transition-property: width 300px;    
-    transition-duration: 3s;
-
+.description__writer-name {
+  text-align: left;
+  font: normal normal normal 16px/21px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+  margin-bottom: 5px;
 }
-#button {
-    margin-top: 100px;
-    border-radius: 30px;
-    width: 300px;
-    height: 100px;
-    background-color: rgb(64, 187, 187);
-    font-size: 33px;
-    color: aliceblue;
-    border-color: white;
- }
-
-.big {
-    transform: scale(2);
+.description__company {
+  text-align: left;
+  font: normal normal 300 16px/21px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 0.6;
+  margin-bottom: 5px;
 }

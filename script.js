@@ -1,32 +1,47 @@
-const form = document.forms.form;
-const button = document.getElementById("button");
-const arr = []
+const urlJson = "https://5440000.github.io/items.json";
 
-function getUserData() {
-	if (!form.name.value || !form.salary.value || !form.age.value) {
-		console.log("поле не заполнено или заполнено не правильно");
-	}
-	else {
+const loadingContent = async function getData() {
+  // const response = await fetchWithTimeout('/games', {
+  //     timeout: 6000
+  //   });
 
-		let name = document.createElement('div');
-		name.append(form.name.value)
-		let age = document.createElement('div');
-		age.append(form.age.value)
-		let salary = document.createElement('div');
-		salary.append(form.salary.value)
+  const aaa = await fetch(urlJson);
+  const json = await aaa.json();
 
-		const userData = document.createElement("div")
-		userData.append(name)
-		userData.append(age)
-		userData.append(salary)
-		return userData
-	}
-}
+  createAllItems(json);
+};
 
-const showtUserData = () => {
-	const userDataWrap = document.getElementById("user-data")
-	const userData = getUserData()
-	userDataWrap.append(userData)
-}
+// year, url, articleTitle, text, writerName, company
+const createItem = (obj) => {
+  const content = document.querySelector(".content");
+  const div = document.createElement("div");
+  div.classList.add("item");
+  div.classList.add("row");
 
-button.onclick = showtUserData
+  div.insertAdjacentHTML(
+    "afterbegin",
+    `        
+    <div class="col-3 item__wrapper">
+        <img
+        class="item__image ${obj.year}"
+        src="${obj.url}"
+        alt=""
+        />
+    </div>
+    <div class="col-9 description flex-column">
+        <div class="row description__article-title">${obj.articleTitle}</div>
+        <div class="row description__text">${obj.text}
+        </div>
+        <div class="row description__writer-name">${obj.writerName}</div>
+        <div class="row description__company">${obj.company}</div>
+    </div>`
+  );
+  content.append(div);
+};
+
+const createAllItems = (arrItems) => {
+  arrItems.forEach((element) => {
+    createItem(element);
+  });
+};
+setTimeout(() => loadingContent(), 2000);

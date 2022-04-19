@@ -1,274 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Hello, world!</title>
   </head>
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">SAMPLE_LOGO_TEXT</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">ABOUT STREAM </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">EVENTS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">PRESS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fas fa-search"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="far fa-user"></i></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
   <body>
+    <div class="w-184"></div>
 
-
-    <!-- <h1></h1>
-    <div data-say-hi="yes">Привет!</div>
-
-    <ul>
-        <li>123</li>
-        <li>321</li>
-    </ul>
-
-
-    <div class="like"></div>
-    <div class="subscribe"></div>
-    <div class="like subscribe"></div>
-
-     -->
-
-    <!-- <section class="form-buy">
-      <div>
-        <h1 class="title">
-          Заказать сертификат на 1 000 000 000$ для себя и друзей
+    <div class="main-head">
+      <div class="row justify-content-center">
+        <h1 class="col-8 main-head__title">
+          <span class="black">Press</span> & Social Media
         </h1>
-        <h2 class="subtitle">Интернет магазин Lucky-Man</h2>
-
-        <div>
-          <form name="main" action="#">
-            <label for="fname">Имя</label>
-            <input
-              value=""
-              type="text"
-              id="fname"
-              name="fname"
-            /><br /><br />
-            <label for="lname">Фамилия</label>
-            <input
-              value=""
-              type="text"
-              id="lname"
-              name="lname"
-            /><br /><br />
-            <h3>Выбери способ связи</h3>
-            <input
-              type="radio"
-              id="contactChoice1"
-              name="contact"
-              value="email"
-            />
-            <label for="contactChoice1">Email</label>
-
-            <input
-              type="radio"
-              id="contactChoice2"
-              name="contact"
-              value="phone"
-            />
-            <label for="contactChoice2">Phone</label>
-
-            <input
-              type="radio"
-              id="contactChoice3"
-              name="contact"
-              value="mail"
-            />
-            <label for="contactChoice3">Mail</label>
-            <h4>откуда забирать</h4>
-            <select name="delivery" class="delivery-type">
-              <option value="Cамовывоз из Минска">самовывоз из Минска</option>
-              <option value="Cамовывоз из Гданьска">Cамовывоз из Гданьска</option>
-            </select>
-            <h5>Согласие</h5>
-            <input type="checkbox" id="scales" name="rules" />
-            <label for="rules"
-              >Я согласен с условиями предоставления данных</label
-            >
-            <h6>А теперь нажми кнопку</h6>
-            <input  type="submit" value="Submit" name="btn" />
-          </form>
+      </div>
+      <div class="w-40"></div>
+      <div class="row justify-content-center">
+        <div class="col-8 main-head__subtitle">
+          Condimentum mattis pellentesque id nibh tortor id aliquet. Est
+          ultricies integer quis auctor elit sed vulputate mi.
         </div>
       </div>
-    </section> -->
-    <section>
-      <div class="main-wrapper">
-        <h1>Форма </h1>
-        <div class="input-wrapper">
-          <form name="form" action="#">
-            <label for="name">Имя</label>
-            <input name="name" type="text" value="" />
-            <label for="age">Возраст</label>
-            <input name="age" pattern="^[ 0-9]+$" type="text" value="" />
-            <label for="salary">Calary</label>
-            <input name="salary" type="text" value="" />
-            <select name="moneyType" >
-              <option value="$">$</option>
-              <option value="BitCoin">BitCoin</option>
-            </select>
-            <input type="button" value="Отправить" name="btn" id="button" />
-          </form>
+      <div class="w-40"></div>
+      <div class="row justify-content-center">
+        <form class="col-5 search justify-content-between">
+          <input class="col-11" placeholder="Search..." type="search" />
+          <i class="fas fa-search"></i>
+        </form>
+      </div>
+      <div class="w-40"></div>
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <div class="row justify-content-center">
+            <div class="col-2 active-article"><a href="#">All articles</a></div>
+            <div class="col-1"><a href="#">2022</a></div>
+            <div class="col-1"><a href="#">2021</a></div>
+            <div class="col-1"><a href="#">2020</a></div>
+            <div class="col-1"><a href="#">2019</a></div>
+            <div class="col-1"><a href="#">2018</a></div>
+            <div class="col-1"><a href="#">2017</a></div>
+          </div>
         </div>
-				<div id="user-data"></div>
       </div>
-    </section>
-    <!-- <section id="forExample"></section>
-    <section id="anime">
-      <div class="wrapper">
-        <div id="circle"></div>
-      <button  id="button" onclick="click" style="display: block;">Нажми меня </button>  
-      </div>
-     
+    </div>
+    <div class="w-40"></div>
+    <div class="content">
+      <!-- <div class="row item">
+        <div class="col-3 item__wrapper">
+          <img
+            class="item__image"
+            src="https://via.placeholder.com/1600x900"
+            alt=""
+          />
+        </div>
+        <div class="col-9 description flex-column">
+          <div class="row description__article-title">Article title</div>
+          <div class="row description__text">
+            Eget mauris pharetra et ultrices neque ornare aenean euismod
+            elementum. Scelerisque purus semper eget duis at tellus Purus in
+            mollis nunc sed id morbi blandit cursus semper.
+          </div>
+          <div class="row description__writer-name">Writer Name</div>
+          <div class="row description__company">Company</div>
+        </div>
+      </div> -->
+    </div>
 
-    </section> -->
-
-
-
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
     <script src="./script.js"></script>
-    <script>
-     
-      //     let userName =prompt("Как тебя зовут ?",);
-      //     alert(userName);
-
-      //     let year = prompt('В каком году мы поедем в путешествие на мотоцикле?');
-
-      //     if (year < 2023) {
-      //         alert("Наверное я еще не успею получить права");
-      //     } else if (year >2023 ) {
-      //         alert("Я думаю что раньше");
-      //     } else {
-      //         alert('Верняк! Да ты прям ванга! Так тому и быть ))');
-      // }
-
-      //   let login = prompt("Введите логин");
-
-      //   if (login === null) {
-      //     alert("отмена");
-      //   } else if (login !== "admin") {
-      //     alert("я вас не знаю");
-      //   } else {
-      //     let password = prompt("Введите пароль");
-      //     console.log(password);
-      //     {
-      //       if (password === "123123123") {
-      //         alert("Hello admin");
-      //       } else if (password !== "123123123" && password !== null) {
-      //         alert("Неверный пароль");
-      //       } else if (password === null) {
-      //         alert("Отмена");
-      //       }
-      //     }
-      //   }
-
-      //   0 1
-      //                             Арений!!!! Показывал пример работы
-      //   const a = 4;
-      //   const b = 5;
-
-      //   const c = a + b;
-
-      //   const summ = function () {
-      //     alert("hello");
-      //   };
-
-      //   summ();
-      //   summ();
-      //   const array = [
-      //     [1, 2, 3],
-      //     [4, 5, 6],
-      //   ];
-
-      //   const button = document.getElementById("my_button")
-      //   button.addEventListener("click", function(){
-      //     const input = document.getElementById("my_input")
-      //     const inputValue = input.value
-
-      //     fetch("https://my-api.com/names", {
-      //         method: "POST",
-      //         data: {
-      //             inputValue
-      //         }
-      //     })
-      //   })
-
-      //   console.log(array[0][0])
-
-      // for (let i = 0; i<5; i++) alert(i);
-      // for (let i = 0; i<5; ++i) console.log(i);
-      // ________________________________________________________
-      //     for (let i = 2; i < 11; i++) {
-      //         if(i % 2 == 0) {
-
-      //         alert(i);
-      //         }
-      //     }
-
-      // let i = 0;
-      // while (i < 3) {
-      //     alert(`number ${i}!`)
-      //     i++;
-      // }
-
-      // let num;
-
-      // do {
-      //     num = prompt("Введите число большее чем 100")
-      // } while (num <=100 && num);
-
-      // let n = 10;
-      // nextPrime:
-      // for (let i = 2; i <= n; i++) {
-
-      //     for (let j = 2; j < i; j++ ) {
-      //         if (i % j == 0) continue nextPrime;
-      //     }
-
-      //     console.log(i);
-      // }
-
-      // n = 10;
-
-      // nextPrime:
-      // for (let i = 2; i <= n; i++) { // Для всех i...
-
-      //   for (let j = 2; j < i; j++) { // проверить, делится ли число..
-      //     if (i % j == 0) continue nextPrime; // не подходит, берём следующее
-      //   }
-
-      //   alert( i ); // простое число
-      // }
-
-      //       let i = 1;
-      //       while (i < 7) console.log(i++);
-
-      //       for (i = 1; i < 7; i++) console.log(i);
-
-      //       i = 1;
-      //       do {
-      //         console.log(i);
-      //         i++;
-      //       } while (i < 7);
-
-      //       num = 0;
-      //       while (num < 3) {
-      //         console.log(`число ${num}`);
-      //         num++;
-      //       }
-
-      //     firstFor: for (num = 0; num < 2; num++) {
-
-      //         for (let size = 0; size < 3; size++) {
-      //             console.log(size);
-      //             if(size ==1) break firstFor;
-      //         }
-      //     }
-
-      //     showmessage()
-      // function showmessage() {
-      //     console.log("Сообщение");
-
-      // }
-
-      // function getYacht () {
-      //     let howMuchShiha = prompt('Сколько стоит кальян', '100zl');
-      // }
-      // howMuchShiha();
-    </script>
   </body>
 </html>

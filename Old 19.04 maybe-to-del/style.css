@@ -1,0 +1,116 @@
+body {
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color: rgb(240, 240, 240)
+}
+
+}
+
+.wrapper {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	flex-direction: row;
+}
+
+.row {
+	padding: 20px;
+	display: flex;
+	text-align: center;
+	justify-content: center;
+	flex-direction: row;
+}
+
+div {
+	padding: 20px;
+	font-size: 20px;
+}
+
+.main-wrapper {
+	background-color: rgb(57, 191, 225);
+	border-radius: 30px;
+	border: 7px solid rgb(226, 228, 228);
+	margin-top: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+h1 {
+	text-transform: uppercase;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color: rgb(240, 240, 240)
+}
+
+#button {
+	background-color: #fff;
+	width: 200px;
+	height: 50px;
+	margin-top: 30px;
+	border-color: #fff;
+	border-radius:30px;
+	color: rgb(57, 191, 225);
+	text-transform: uppercase;
+	font-size: 23px;
+
+}
+
+#button:hover {
+
+	background-color: rgb(226, 228, 228);
+	border: 7px solid rgb(57, 191, 225);
+
+}
+
+select {
+	border-radius:20px;
+	width: 35PX;
+	height: 25px;
+	border: 1px solid rgb(226, 228, 228);
+}
+input {
+	border-radius:20px;
+	width: 100PX;
+	height: 25px;
+	border: 1px solid rgb(226, 228, 228);
+}
+.input-wrapper
+/* задание 3
+
+
+
+
+
+.wrapper {
+    margin-top: 150px;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+#circle {
+    border-radius: 50%;
+    background-color: rgb(233, 221, 113) ;
+    height: 150px;
+    width: 150px;
+    transition-property: height 300px;
+    transition-property: width 300px;    
+    transition-duration: 3s;
+
+}
+#button {
+    margin-top: 100px;
+    border-radius: 30px;
+    width: 300px;
+    height: 100px;
+    background-color: rgb(64, 187, 187);
+    font-size: 33px;
+    color: aliceblue;
+    border-color: white;
+ }
+
+.big {
+    transform: scale(2);
+}

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+
+    <!-- <h1></h1>
+    <div data-say-hi="yes">Привет!</div>
+
+    <ul>
+        <li>123</li>
+        <li>321</li>
+    </ul>
+
+
+    <div class="like"></div>
+    <div class="subscribe"></div>
+    <div class="like subscribe"></div>
+
+     -->
+
+    <!-- <section class="form-buy">
+      <div>
+        <h1 class="title">
+          Заказать сертификат на 1 000 000 000$ для себя и друзей
+        </h1>
+        <h2 class="subtitle">Интернет магазин Lucky-Man</h2>
+
+        <div>
+          <form name="main" action="#">
+            <label for="fname">Имя</label>
+            <input
+              value=""
+              type="text"
+              id="fname"
+              name="fname"
+            /><br /><br />
+            <label for="lname">Фамилия</label>
+            <input
+              value=""
+              type="text"
+              id="lname"
+              name="lname"
+            /><br /><br />
+            <h3>Выбери способ связи</h3>
+            <input
+              type="radio"
+              id="contactChoice1"
+              name="contact"
+              value="email"
+            />
+            <label for="contactChoice1">Email</label>
+
+            <input
+              type="radio"
+              id="contactChoice2"
+              name="contact"
+              value="phone"
+            />
+            <label for="contactChoice2">Phone</label>
+
+            <input
+              type="radio"
+              id="contactChoice3"
+              name="contact"
+              value="mail"
+            />
+            <label for="contactChoice3">Mail</label>
+            <h4>откуда забирать</h4>
+            <select name="delivery" class="delivery-type">
+              <option value="Cамовывоз из Минска">самовывоз из Минска</option>
+              <option value="Cамовывоз из Гданьска">Cамовывоз из Гданьска</option>
+            </select>
+            <h5>Согласие</h5>
+            <input type="checkbox" id="scales" name="rules" />
+            <label for="rules"
+              >Я согласен с условиями предоставления данных</label
+            >
+            <h6>А теперь нажми кнопку</h6>
+            <input  type="submit" value="Submit" name="btn" />
+          </form>
+        </div>
+      </div>
+    </section> -->
+    <section>
+      <div class="main-wrapper">
+        <h1>Форма </h1>
+        <div class="input-wrapper">
+          <form name="form" action="#">
+            <label for="name">Имя</label>
+            <input name="name" type="text" value="" />
+            <label for="age">Возраст</label>
+            <input name="age" pattern="^[ 0-9]+$" type="text" value="" />
+            <label for="salary">Calary</label>
+            <input name="salary" type="text" value="" />
+            <select name="moneyType" >
+              <option value="$">$</option>
+              <option value="BitCoin">BitCoin</option>
+            </select>
+            <input type="button" value="Отправить" name="btn" id="button" />
+          </form>
+        </div>
+				<div id="user-data"></div>
+      </div>
+    </section>
+    <!-- <section id="forExample"></section>
+    <section id="anime">
+      <div class="wrapper">
+        <div id="circle"></div>
+      <button  id="button" onclick="click" style="display: block;">Нажми меня </button>  
+      </div>
+     
+
+    </section> -->
+
+
+
+    <script src="./script.js"></script>
+    <script>
+     
+      //     let userName =prompt("Как тебя зовут ?",);
+      //     alert(userName);
+
+      //     let year = prompt('В каком году мы поедем в путешествие на мотоцикле?');
+
+      //     if (year < 2023) {
+      //         alert("Наверное я еще не успею получить права");
+      //     } else if (year >2023 ) {
+      //         alert("Я думаю что раньше");
+      //     } else {
+      //         alert('Верняк! Да ты прям ванга! Так тому и быть ))');
+      // }
+
+      //   let login = prompt("Введите логин");
+
+      //   if (login === null) {
+      //     alert("отмена");
+      //   } else if (login !== "admin") {
+      //     alert("я вас не знаю");
+      //   } else {
+      //     let password = prompt("Введите пароль");
+      //     console.log(password);
+      //     {
+      //       if (password === "123123123") {
+      //         alert("Hello admin");
+      //       } else if (password !== "123123123" && password !== null) {
+      //         alert("Неверный пароль");
+      //       } else if (password === null) {
+      //         alert("Отмена");
+      //       }
+      //     }
+      //   }
+
+      //   0 1
+      //                             Арений!!!! Показывал пример работы
+      //   const a = 4;
+      //   const b = 5;
+
+      //   const c = a + b;
+
+      //   const summ = function () {
+      //     alert("hello");
+      //   };
+
+      //   summ();
+      //   summ();
+      //   const array = [
+      //     [1, 2, 3],
+      //     [4, 5, 6],
+      //   ];
+
+      //   const button = document.getElementById("my_button")
+      //   button.addEventListener("click", function(){
+      //     const input = document.getElementById("my_input")
+      //     const inputValue = input.value
+
+      //     fetch("https://my-api.com/names", {
+      //         method: "POST",
+      //         data: {
+      //             inputValue
+      //         }
+      //     })
+      //   })
+
+      //   console.log(array[0][0])
+
+      // for (let i = 0; i<5; i++) alert(i);
+      // for (let i = 0; i<5; ++i) console.log(i);
+      // ________________________________________________________
+      //     for (let i = 2; i < 11; i++) {
+      //         if(i % 2 == 0) {
+
+      //         alert(i);
+      //         }
+      //     }
+
+      // let i = 0;
+      // while (i < 3) {
+      //     alert(`number ${i}!`)
+      //     i++;
+      // }
+
+      // let num;
+
+      // do {
+      //     num = prompt("Введите число большее чем 100")
+      // } while (num <=100 && num);
+
+      // let n = 10;
+      // nextPrime:
+      // for (let i = 2; i <= n; i++) {
+
+      //     for (let j = 2; j < i; j++ ) {
+      //         if (i % j == 0) continue nextPrime;
+      //     }
+
+      //     console.log(i);
+      // }
+
+      // n = 10;
+
+      // nextPrime:
+      // for (let i = 2; i <= n; i++) { // Для всех i...
+
+      //   for (let j = 2; j < i; j++) { // проверить, делится ли число..
+      //     if (i % j == 0) continue nextPrime; // не подходит, берём следующее
+      //   }
+
+      //   alert( i ); // простое число
+      // }
+
+      //       let i = 1;
+      //       while (i < 7) console.log(i++);
+
+      //       for (i = 1; i < 7; i++) console.log(i);
+
+      //       i = 1;
+      //       do {
+      //         console.log(i);
+      //         i++;
+      //       } while (i < 7);
+
+      //       num = 0;
+      //       while (num < 3) {
+      //         console.log(`число ${num}`);
+      //         num++;
+      //       }
+
+      //     firstFor: for (num = 0; num < 2; num++) {
+
+      //         for (let size = 0; size < 3; size++) {
+      //             console.log(size);
+      //             if(size ==1) break firstFor;
+      //         }
+      //     }
+
+      //     showmessage()
+      // function showmessage() {
+      //     console.log("Сообщение");
+
+      // }
+
+      // function getYacht () {
+      //     let howMuchShiha = prompt('Сколько стоит кальян', '100zl');
+      // }
+      // howMuchShiha();
+    </script>
+  </body>
+</html>
