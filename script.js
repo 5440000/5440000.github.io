@@ -19,8 +19,8 @@ const loadingFilteredContent = async function getData(year) {
 };
 
 // year, url, articleTitle, text, writerName, company
-const allArticle = document.getElementById("all-article");
-btnYear2017.addEventListener("click", () => {
+const btnAllArticle = document.getElementById("all-article");
+btnAllArticle.addEventListener("click", () => {
     loadingContent();
 });
 
@@ -42,7 +42,7 @@ btnYear2019.addEventListener("click", () => {
 });
 const btnYear2018 = document.getElementById("year2018");
 btnYear2018.addEventListener("click", () => {
-  loadingContent2022(2018);
+    loadingFilteredContent(2018);
 });
 const btnYear2017 = document.getElementById("year2017");
 btnYear2017.addEventListener("click", () => {
