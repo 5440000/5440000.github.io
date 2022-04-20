@@ -6,52 +6,37 @@ const loadingContent = async function getData() {
   createAllItems(json);
 };
 
-
 const loadingFilteredContent = async function getData(year) {
   const content = document.getElementById("content");
   content.innerHTML = " ";
   const aaa = await fetch(urlJson);
   const json = await aaa.json();
   json.forEach((element) => {
-    if (element.year === (+year)) {
+    if (element.year === +year) {
       createItem(element);
-    }  
+    }
   });
 };
 
-
-const goBtnGo = (btn)=>
-btn.addEventListener("click", () => {
-    history.pushState({id:`${btn.id}`}, "",`?year=${btn.id}`)
-    const a = btn.id
+const goBtnGo = (btn) =>
+  btn.addEventListener("click", (event) => {
+    event.preventDefault();
+    history.pushState({ id: `${btn.id}` }, "", `?year=${btn.id}`);
+    const a = btn.id;
     loadingFilteredContent(a);
-});
+  });
 
+const arrAncorsOfYear = () => {
+  const allAncors = document.querySelectorAll("a");
+  allAncors.forEach((element) => {
+    if (element.dataset.id == "filter") {
+      const ancorFilterYear = document.getElementById(`${element.id}`);
+      goBtnGo(ancorFilterYear);
+    }
+  });
+};
 
-const btnAllArticle = document.getElementById("all-article");
-btnAllArticle.addEventListener("click", () => {
-    history.pushState({id:`${btnAllArticle.id}`}, "",`?year=AllYear`)
-    loadingContent();
-});
-
-
-const btnYear2022 = document.getElementById("2022");
-goBtnGo(btnYear2022)
-
-const btnYear2021 = document.getElementById("2021");
-goBtnGo(btnYear2021)
-
-const btnYear2020 = document.getElementById("2020");
-goBtnGo(btnYear2020)
-
-const btnYear2019 = document.getElementById("2019");
-goBtnGo(btnYear2019)
-
-const btnYear2018 = document.getElementById("2018");
-goBtnGo(btnYear2018)
-
-const btnYear2017 = document.getElementById("2017");
-goBtnGo(btnYear2017)
+arrAncorsOfYear();
 
 const createItem = (obj) => {
   const content = document.querySelector(".content");
@@ -84,4 +69,13 @@ const createAllItems = (arrItems) => {
     createItem(element);
   });
 };
+
+const searchForm = document.getElementById("mySearch");
+searchForm.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    history.pushState({ id: 123 }, "", `?keyword=${searchForm.value}`);
+  }
+});
+
 setTimeout(() => loadingContent(), 2000);

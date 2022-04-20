@@ -75,7 +75,7 @@
       <div class="w-40"></div>
       <div class="row justify-content-center">
         <form class="col-lg-5 col-md-7 col-sm-8 col-7 search justify-content-between">
-          <input class="col-sm-11 col-10" placeholder="Search..." type="search" />
+          <input id="mySearch" class="col-sm-11 col-10" placeholder="Search..." type="search" />
           <i class="fas fa-search"></i>
         </form>
       </div>
@@ -83,13 +83,13 @@
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7 col-sm-8 col-10 ">
           <div class="row justify-content-between">
-            <div class="col-2 pl-0 active-article"><a id="all-article" href="/" onclick="event.preventDefault()" >All articles</a></div>
-            <div class="col-1"><a id="2022" href="/" onclick="event.preventDefault()">2022</a></div>
-            <div class="col-1"><a id="2021" href="/" onclick="event.preventDefault()">2021</a></div>
-            <div class="col-1"><a id="2020" href="/" onclick="event.preventDefault()">2020</a></div>
-            <div class="col-1"><a id="2019" href="/" onclick="event.preventDefault()">2019</a></div>
-            <div class="col-1"><a id="2018" href="/" onclick="event.preventDefault()">2018</a></div>
-            <div class="col-1"><a id="2017" href="/" onclick="event.preventDefault()">2017</a></div>
+            <div class="col-2 pl-0 active-article"><a data-id="filter" id="allArticle" href="/" >All articles</a></div>
+            <div class="col-1"><a data-id="filter" id="2022"href="/" >2022</a></div>
+            <div class="col-1"><a data-id="filter" id="2021" href="/" >2021</a></div>
+            <div class="col-1"><a data-id="filter" id="2020" href="/" >2020</a></div>
+            <div class="col-1"><a data-id="filter" id="2019" href="/" >2019</a></div>
+            <div class="col-1"><a data-id="filter" id="2018" href="/" >2018</a></div>
+            <div class="col-1"><a data-id="filter" id="2017" href="/" >2017</a></div>
           </div>
         </div>
       </div>
