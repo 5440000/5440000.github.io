@@ -6,48 +6,52 @@ const loadingContent = async function getData() {
   createAllItems(json);
 };
 
+
 const loadingFilteredContent = async function getData(year) {
   const content = document.getElementById("content");
   content.innerHTML = " ";
   const aaa = await fetch(urlJson);
   const json = await aaa.json();
   json.forEach((element) => {
-    if (element.year === year) {
+    if (element.year === (+year)) {
       createItem(element);
-    } 
+    }  
   });
 };
 
-// year, url, articleTitle, text, writerName, company
+
+const goBtnGo = (btn)=>
+btn.addEventListener("click", () => {
+    history.pushState({id:`${btn.id}`}, "",`?year=${btn.id}`)
+    const a = btn.id
+    loadingFilteredContent(a);
+});
+
+
 const btnAllArticle = document.getElementById("all-article");
 btnAllArticle.addEventListener("click", () => {
+    history.pushState({id:`${btnAllArticle.id}`}, "",`?year=AllYear`)
     loadingContent();
 });
 
-const btnYear2022 = document.getElementById("year2022");
-btnYear2022.addEventListener("click", () => {
-    loadingFilteredContent(2022);
-});
-const btnYear2021 = document.getElementById("year2021");
-btnYear2021.addEventListener("click", () => {
-    loadingFilteredContent(2021);
-});
-const btnYear2020 = document.getElementById("year2020");
-btnYear2020.addEventListener("click", () => {
-    loadingFilteredContent(2020);
-});
-const btnYear2019 = document.getElementById("year2019");
-btnYear2019.addEventListener("click", () => {
-    loadingFilteredContent(2019);
-});
-const btnYear2018 = document.getElementById("year2018");
-btnYear2018.addEventListener("click", () => {
-    loadingFilteredContent(2018);
-});
-const btnYear2017 = document.getElementById("year2017");
-btnYear2017.addEventListener("click", () => {
-    loadingFilteredContent(2017);
-});
+
+const btnYear2022 = document.getElementById("2022");
+goBtnGo(btnYear2022)
+
+const btnYear2021 = document.getElementById("2021");
+goBtnGo(btnYear2021)
+
+const btnYear2020 = document.getElementById("2020");
+goBtnGo(btnYear2020)
+
+const btnYear2019 = document.getElementById("2019");
+goBtnGo(btnYear2019)
+
+const btnYear2018 = document.getElementById("2018");
+goBtnGo(btnYear2018)
+
+const btnYear2017 = document.getElementById("2017");
+goBtnGo(btnYear2017)
 
 const createItem = (obj) => {
   const content = document.querySelector(".content");
