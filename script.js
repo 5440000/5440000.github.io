@@ -76,7 +76,7 @@ const createFilters = () => {
 createFilters();
 
 const createUrlParametersSearch = () => {
-  document.getElementById("mySearch");
+  const searchForm = document.getElementById("mySearch");
   searchForm.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
