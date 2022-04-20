@@ -107,9 +107,6 @@ header {
   margin-top: 20px;
 }
 
-.item__wrapper {
-  padding-left: 0;
-}
 
 /* content */
 .content {
@@ -167,4 +164,9 @@ header {
   color: #000000;
   opacity: 0.6;
   margin-bottom: 5px;
+}
+
+.row{
+    margin-left: 0;
+    margin-right: 0;
 }

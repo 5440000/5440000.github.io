@@ -58,23 +58,22 @@ const createItem = (obj) => {
   const div = document.createElement("div");
   div.classList.add("item");
   div.classList.add("row");
-
   div.insertAdjacentHTML(
     "afterbegin",
     `        
-    <div class="col-3 item__wrapper">
+    <div class="col-xl-3 col-lg-4 col-md-5 col-sm  item__wrapper align-self-center ">
         <img
         class="item__image ${obj.year}"
         src="${obj.url}"
         alt=""
         />
     </div>
-    <div class="col-9 description flex-column">
-        <div class="row description__article-title">${obj.articleTitle}</div>
-        <div class="row description__text">${obj.text}
+    <div class="col-xl-9 col-lg-8 col-md-7 col-sm description flex-column justify-content-center">
+        <div class="col description__article-title">${obj.articleTitle}</div>
+        <div class="col description__text">${obj.text}
         </div>
-        <div class="row description__writer-name">${obj.writerName}</div>
-        <div class="row description__company">${obj.company}</div>
+        <div class="col description__writer-name">${obj.writerName}</div>
+        <div class="col description__company">${obj.company}</div>
     </div>`
   );
   content.append(div);
