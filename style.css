@@ -107,22 +107,7 @@ header {
   margin-top: 20px;
 }
 
-
 /* content */
-.content {
-}
-.row {
-}
-.item {
-}
-.col-3 {
-}
-.item__wrapper {
-}
-.item__image {
-}
-.col-9 {
-}
 .description {
   padding: 27px;
   padding-top: 20px;
@@ -166,14 +151,24 @@ header {
   margin-bottom: 5px;
 }
 
-.row{
-    margin-left: 0;
-    margin-right: 0;
+.row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #all-article {
-white-space: nowrap;}
+  white-space: nowrap;
+}
 
 .pl-0 {
-    padding-left: 0;
+  padding-left: 0;
+}
+
+a:hover {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.navbar-toggler-icon {
+    display: none;
 }
