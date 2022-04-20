@@ -170,3 +170,10 @@ header {
     margin-left: 0;
     margin-right: 0;
 }
+
+#all-article {
+white-space: nowrap;}
+
+.pl-0 {
+    padding-left: 0;
+}
