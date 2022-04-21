@@ -40,10 +40,6 @@ header {
   z-index: 1;
 }
 
-.active {
-  border-bottom: 2px solid black;
-}
-
 .container {
   margin: auto;
 }
@@ -165,10 +161,26 @@ header {
 }
 
 a:hover {
-    color: #000000;
-    text-decoration: underline;
+  color: #000000;
+  text-decoration: underline;
 }
 
 .navbar-toggler-icon {
-    display: none;
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+
+.pagination-button {
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  color: #6d6d6d;
+}
+
+.active {
+  text-decoration: underline;
+  color: #000000;
 }
