@@ -31,8 +31,8 @@ const createAllItems = (arrItems) => {
     createItem(element);
   });
 };
+
 const createPagination = (json) => {
-    
   const numberOfItemOnPage = 6;
   const arrAllItemsInHtml = [...content.querySelectorAll(".item")];
   if (arrAllItemsInHtml.length >= numberOfItemOnPage) {
@@ -51,16 +51,17 @@ const createPagination = (json) => {
     const content = document.getElementById("for-buttons");
     const btn = document.createElement("div");
     btn.innerHTML = `${i}`;
-    btn.classList.add("col-1","pagination-button");
+    btn.classList.add("col-1", "pagination-button");
     content.append(btn);
     console.log(i);
-    btn.addEventListener("click", () => {    
-        const pagButtons = content.querySelectorAll(".pagination-button");
-    pagButtons.forEach(element => {element.classList.remove("active")})
-
-    btn.classList.add("active")
-        
+    btn.addEventListener("click", () => {
+      const pagButtons = content.querySelectorAll(".pagination-button");
+      pagButtons.forEach((element) => {
+        element.classList.remove("active");
+      });
+      btn.classList.add("active");
       HideAllItems();
+
       const showPagination = (i) => {
         const number = i;
         const startIndex = number * numberOfItemOnPage - numberOfItemOnPage;
@@ -74,14 +75,12 @@ const createPagination = (json) => {
             for (let i = lastIndex; i > arrAllItemsInHtml.length - 1; --i) {
               lastIndex = lastIndex - 1;
             }
-
             for (let index = startIndex; index <= lastIndex; index++) {
               arrAllItemsInHtml[index].classList.remove("hide");
             }
           }
         }
       };
-
       showPagination(i);
     });
   };
@@ -89,12 +88,13 @@ const createPagination = (json) => {
   const howMuchButtons = Math.ceil(
     arrAllItemsInHtml.length / numberOfItemOnPage
   );
-  const divWithPaginationButtons = document.getElementById("for-buttons")
-  divWithPaginationButtons.innerHTML=""
+  const divWithPaginationButtons = document.getElementById("for-buttons");
+  divWithPaginationButtons.innerHTML = "";
   for (let i = 1; i <= howMuchButtons; i++) {
     createBtn(i);
   }
 };
+
 const loadingContent = async function getData() {
   const aaa = await fetch(urlJson);
   const json = await aaa.json();
@@ -146,7 +146,11 @@ const createUrlParametersSearch = () => {
   searchForm.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      history.pushState({ id: 123 }, "", `?keyword=${searchForm.value}`);
+      history.pushState(
+        { id: `${searchForm.value}` },
+        "",
+        `?keyword=${searchForm.value}`
+      );
     }
   });
 };
