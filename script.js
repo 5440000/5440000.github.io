@@ -3,12 +3,11 @@ const urlJson = "https://5440000.github.io/items.json";
 const createItem = (obj) => {
   const content = document.querySelector(".content");
   const div = document.createElement("div");
-  div.classList.add("item");
-  div.classList.add("row");
+  div.classList.add("item", "no-padding", "row");
   div.insertAdjacentHTML(
     "afterbegin",
     `        
-      <div class="col-xl-3 col-lg-4 col-md-5 col-sm  item__wrapper align-self-center ">
+      <div class="no-padding col-xl-3 col-lg-4 col-md-5 col-sm  item__wrapper align-self-center ">
           <img
           class="item__image ${obj.year}"
           src="${obj.url}"
@@ -16,11 +15,11 @@ const createItem = (obj) => {
           />
       </div>
       <div class="col-xl-9 col-lg-8 col-md-7 col-sm description flex-column justify-content-center">
-          <div class="col description__article-title">${obj.articleTitle}</div>
-          <div class="col description__text">${obj.text}
+          <div class="col no-padding description__article-title">${obj.articleTitle}</div>
+          <div class="col no-padding description__text">${obj.text}
           </div>
-          <div class="col description__writer-name">${obj.writerName}</div>
-          <div class="col description__company">${obj.company}</div>
+          <div class="col no-padding description__writer-name">${obj.writerName}</div>
+          <div class="col no-padding description__company">${obj.company}</div>
       </div>`
   );
   content.append(div);
@@ -156,3 +155,19 @@ const createUrlParametersSearch = () => {
 };
 
 createUrlParametersSearch();
+
+const creatActiveStyleNavButton = () => {
+  const arrNavButtons = document.querySelectorAll(".nav-li");
+  console.log("🚀 ~ file: script.js ~ line 161 ~ creatActiveStyleNavButton ~ arrNavButtons", arrNavButtons)
+  arrNavButtons.forEach((currentItem) => {
+    console.log("🚀 ~ file: script.js ~ line 163 ~ arrNavButtons.forEach ~ currentItem", currentItem)
+    currentItem.addEventListener("click", () => {
+      arrNavButtons.forEach((e) => {
+        e.classList.remove("nav-active");
+      });
+      currentItem.classList.add("nav-active");
+    });
+  });
+};
+
+creatActiveStyleNavButton();

@@ -1,24 +1,26 @@
 @font-face {
-  font-family: "Segoe UI Regular";
-  font-style: normal;
-  font-weight: normal;
+  font-family: "My-r";
   src: url(/fonts/Segoe\ UI.woff) format("woff");
 }
 
 @font-face {
-  font-family: "Segoe UI Bold";
-  font-style: normal;
-  font-weight: normal;
-  src: url(./fonts/Segoe\ UI\ Bold.woff) format("woff");
+  font-family: "My-b";
+  src: url(/fonts/Segoe\ UI\ Bold.woff) format("woff");
 }
 
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  min-width: 360px;
-  font-size: 14px;
-  color: #000000;
+@font-face {
+  font-family: "My-l"; /* Гарнитура шрифта */
+  src: url(fonts/segoeuil.ttf); /* Для остальных браузеров */
+}
+
+.padding-15 {
+  padding: 15px;
+}
+
+.container {
   max-width: 1200px;
   margin: auto;
+  min-width: 360px;
 }
 
 img {
@@ -40,9 +42,6 @@ header {
   z-index: 1;
 }
 
-.container {
-  margin: auto;
-}
 .w-184 {
   height: 154px;
 }
@@ -94,7 +93,9 @@ header {
 }
 
 .item__image {
-  margin: auto;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  object-fit: cover;
 }
 
 .item {
@@ -104,10 +105,12 @@ header {
 }
 
 /* content */
+.content {
+  padding-left: 0;
+  padding-right: 0;
+}
 .description {
-  padding: 27px;
-  padding-top: 20px;
-  padding-bottom: 0;
+  padding: 20px;
 }
 .description__article-title {
   text-align: left;
@@ -119,10 +122,6 @@ header {
 }
 .description__text {
   text-align: left;
-  font: normal normal 300 16px/21px Segoe UI;
-  letter-spacing: 0px;
-  color: #000000;
-  opacity: 0.6;
   margin-bottom: 5px;
   /* обрезание строки  */
   -webkit-line-clamp: 2;
@@ -162,7 +161,7 @@ header {
 
 a:hover {
   color: #000000;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .navbar-toggler-icon {
@@ -181,6 +180,66 @@ a:hover {
 }
 
 .active {
-  text-decoration: underline;
   color: #000000;
+}
+
+.footer {
+  background-color: black;
+  height: 80px;
+  width: 100%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  z-index: 1000;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  font-family: My-r;
+  letter-spacing: 0px;
+  color: #707070;
+}
+
+.nav-li {
+  font-family: My-l;
+  font-size: 16px;
+  color: #000000;
+  padding: 0;
+}
+
+.nav-active {
+  font-family: My-b;
+  border-bottom: 3px solid #000000;
+  font-weight: bold;
+  
+}
+
+.nav-item {
+}
+
+.navbar-nav a{
+padding: 22px 0 ;
+}
+
+#search-svg{
+    width: 16px;
+    height: 16px;
+}
+
+#profile-svg {
+    width: 24px;
+
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+#allArticle {
+    white-space: nowrap;
 }

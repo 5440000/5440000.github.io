@@ -1,103 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <title>Hello, world!</title>
-  </head>
-  <header>
-    <div class="container" >
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">SAMPLE_LOGO_TEXT</a>
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">ABOUT STREAM </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">EVENTS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">PRESS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fas fa-search"></i></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="far fa-user"></i></a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+        <title>Hello, world!</title>
+</head>
+<header>
+    <div class="container ">
+        <nav class="navbar navbar-expand padding-15 row justify-content-between">
+            <a class="navbar-brand d-none d-md-block" href="#">SAMPLE_LOGO_HERE</a>
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            
+                <div class="collapse navbar-collapse col-xl-6 col-lg-7 col-md-8 col-sm-12" id="navbarSupportedContent">
+                    <ul class="navbar-nav col-12 justify-content-between">
+                        <li class="">
+                            <a class="nav-li" href="#">ABOUT STREAM </a>
+                        </li>
+                        <li class="">
+                            <a class="nav-li" href="#">EVENTS</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-li" href="#">FAQ</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-li nav-active" href="#">PRESS</a>
+                        </li>
+                        <li class="">
+                            <a class="nav-li" href="#">
+                                <img id="search-svg" src="./img/search-solid.svg" alt="">
+                            </a>
+                        </li>
+                        <li class="">
+                            <a class="nav-li" href="#">
+                                <img id="profile-svg" src="./img/user-regular.svg" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </nav>
     </div>
-  </header>
+</header>
 
-  <body>
+<body>
+<div class="container">    
     <div class="w-184"></div>
 
     <div class="main-head">
-      <div class="row justify-content-center">
-        <h1 class="col-lg-8 col-8  main-head__title">
-          <span class="black">Press</span> & Social Media
-        </h1>
-      </div>
-      <div class="w-40"></div>
-      <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-9 col-sm-11 col-12 main-head__subtitle">
-          Condimentum mattis pellentesque id nibh tortor id aliquet. Est
-          ultricies integer quis auctor elit sed vulputate mi.
+        <div class="row justify-content-center">
+            <h1 class="col-lg-8 col-8  main-head__title">
+                <span class="black">Press</span> & Social Media
+            </h1>
         </div>
-      </div>
-      <div class="w-40"></div>
-      <div class="row justify-content-center">
-        <form class="col-lg-5 col-md-7 col-sm-8 col-7 search justify-content-between">
-          <input id="mySearch" class="col-sm-11 col-10" placeholder="Search..." type="search" />
-          <i class="fas fa-search"></i>
-        </form>
-      </div>
-      <div class="w-40"></div>
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-7 col-sm-8 col-10 ">
-          <div class="row justify-content-between">
-            <div class="col-2 pl-0 active-article"><a data-id="filter" id="allArticle" href="/" >All articles</a></div>
-            <div class="col-1"><a data-id="filter" id="2022"href="/" >2022</a></div>
-            <div class="col-1"><a data-id="filter" id="2021" href="/" >2021</a></div>
-            <div class="col-1"><a data-id="filter" id="2020" href="/" >2020</a></div>
-            <div class="col-1"><a data-id="filter" id="2019" href="/" >2019</a></div>
-            <div class="col-1"><a data-id="filter" id="2018" href="/" >2018</a></div>
-            <div class="col-1"><a data-id="filter" id="2017" href="/" >2017</a></div>
-          </div>
+        <div class="w-40"></div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-9 col-sm-11 col-12 main-head__subtitle">
+                Condimentum mattis pellentesque id nibh tortor id aliquet. Est
+                ultricies integer quis auctor elit sed vulputate mi.
+            </div>
         </div>
-      </div>
+        <div class="w-40"></div>
+        <div class="row justify-content-center">
+            <form class="col-lg-5 col-md-7 col-sm-8 col-7 search justify-content-between">
+                <input id="mySearch" class="col-sm-11 col-10" placeholder="Search..." type="search" />
+                <i class="fas fa-search"></i>
+            </form>
+        </div>
+        <div class="w-40"></div>
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7 col-sm-8 col-10 ">
+                <div class="row justify-content-between">
+                    <div class="col-2 pl-0 active-article"><a data-id="filter" id="allArticle" href="/">All articles</a>
+                    </div>
+                    <div class="col-1"><a data-id="filter" id="2022" href="/">2022</a></div>
+                    <div class="col-1"><a data-id="filter" id="2021" href="/">2021</a></div>
+                    <div class="col-1"><a data-id="filter" id="2020" href="/">2020</a></div>
+                    <div class="col-1"><a data-id="filter" id="2019" href="/">2019</a></div>
+                    <div class="col-1"><a data-id="filter" id="2018" href="/">2018</a></div>
+                    <div class="col-1"><a data-id="filter" id="2017" href="/">2017</a></div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="w-40"></div>
     <div class="row justify-content-center">
-        <div id="content" class="col-xl-11 col-lg-11 col-md-11 content " >
-        <!-- <div class="row item">
+        <div id="content" class="col-xl-12 col-lg-12 col-md-12 content">
+            <!-- <div class="row item">
             <div class="col-3 item__wrapper">
             <img
                 class="item__image"
@@ -123,8 +119,28 @@
 
 
         <div class="w-40"></div>
-        </div>
-    <script src="./script.js"></script>
+    </div>
     <div class="w-40"></div>
-  </body>
+</div>    
+
+<div class="footer"> 
+    <div class="footer__content">
+        <img src="/img/search-solid (1).svg" alt="">
+
+    </div>           
+</div>
+<script src="./script.js"></script>
+
+<div class="row">
+    <a href="">
+   
+    </a>
+    </div>
+</div>
+
+<div>
+
+</div>
+</body>
+
 </html>
