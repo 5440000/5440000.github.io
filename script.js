@@ -7,7 +7,7 @@ const createItem = (obj) => {
   div.insertAdjacentHTML(
     "afterbegin",
     `        
-      <div class="no-padding col-xl-3 col-lg-4 col-md-5 col-sm  item__wrapper align-self-center ">
+      <div class="item-overlay no-padding col-xl-3 col-lg-4 col-md-5 col-sm  item__wrapper align-self-center ">
           <img
           class="item__image ${obj.year}"
           src="${obj.url}"
@@ -32,7 +32,7 @@ const createAllItems = (arrItems) => {
 };
 
 const createPagination = (json) => {
-  const numberOfItemOnPage = 6;
+  const numberOfItemOnPage = 6; 
   const arrAllItemsInHtml = [...content.querySelectorAll(".item")];
   if (arrAllItemsInHtml.length >= numberOfItemOnPage) {
     for (let i = numberOfItemOnPage; i < arrAllItemsInHtml.length; i++) {
@@ -52,7 +52,6 @@ const createPagination = (json) => {
     btn.innerHTML = `${i}`;
     btn.classList.add("col-1", "pagination-button");
     content.append(btn);
-    console.log(i);
     btn.addEventListener("click", () => {
       const pagButtons = content.querySelectorAll(".pagination-button");
       pagButtons.forEach((element) => {
@@ -80,6 +79,9 @@ const createPagination = (json) => {
           }
         }
       };
+
+
+      
       showPagination(i);
     });
   };
@@ -158,9 +160,15 @@ createUrlParametersSearch();
 
 const creatActiveStyleNavButton = () => {
   const arrNavButtons = document.querySelectorAll(".nav-li");
-  console.log("🚀 ~ file: script.js ~ line 161 ~ creatActiveStyleNavButton ~ arrNavButtons", arrNavButtons)
+  console.log(
+    "🚀 ~ file: script.js ~ line 161 ~ creatActiveStyleNavButton ~ arrNavButtons",
+    arrNavButtons
+  );
   arrNavButtons.forEach((currentItem) => {
-    console.log("🚀 ~ file: script.js ~ line 163 ~ arrNavButtons.forEach ~ currentItem", currentItem)
+    console.log(
+      "🚀 ~ file: script.js ~ line 163 ~ arrNavButtons.forEach ~ currentItem",
+      currentItem
+    );
     currentItem.addEventListener("click", () => {
       arrNavButtons.forEach((e) => {
         e.classList.remove("nav-active");
@@ -171,3 +179,4 @@ const creatActiveStyleNavButton = () => {
 };
 
 creatActiveStyleNavButton();
+

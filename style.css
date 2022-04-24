@@ -5,12 +5,12 @@
 
 @font-face {
   font-family: "My-b";
-  src: url(/fonts/Segoe\ UI\ Bold.woff) format("woff");
+  src: url(fonts/Segoe_UI_Bold.woff) format("woff");
 }
 
 @font-face {
-  font-family: "My-l"; /* Гарнитура шрифта */
-  src: url(fonts/segoeuil.ttf); /* Для остальных браузеров */
+  font-family: "My-l";
+  src: url(fonts/segoeuil.ttf);
 }
 
 .padding-15 {
@@ -28,10 +28,6 @@ img {
   height: auto;
 }
 
-a {
-  color: #00000029;
-}
-
 header {
   box-shadow: 0px 3px 6px #00000015;
   width: 100%;
@@ -42,35 +38,34 @@ header {
   z-index: 1;
 }
 
-.w-184 {
+.h-154 {
   height: 154px;
 }
 
 .main-head__title {
   text-align: center;
-  font: normal normal 300 40px/48px Segoe UI;
+  font-size: 40px;
+  font-family: My-l;
   letter-spacing: 0px;
-  color: grey;
-  opacity: 1;
+  color: rgb(0, 0, 0);
 }
 
 .black {
-  font-family: "Segoe UI Bold";
+  font-family: "My-b";
   color: #000000;
 }
 
-.w-40 {
+.h-40 {
   height: 40px;
 }
 
 .main-head__subtitle {
-  font-family: "Segoe UI Bold Italic";
+  font-family: "My-l";
   /* UI Properties */
   text-align: center;
-  font: normal normal 300 28px/34px Segoe UI;
+  font-size: 28px;
   letter-spacing: 0px;
   color: #000000;
-  opacity: 1;
 }
 
 /* //форма поиска */
@@ -114,15 +109,17 @@ header {
 }
 .description__article-title {
   text-align: left;
-  font: normal normal normal 20px/27px Segoe UI;
+  font-family: My-r;
+  font-size: 20px;
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
-  margin-bottom: 5px;
 }
 .description__text {
+  font-family: My-l;
+  font-size: 16px;
+
   text-align: left;
-  margin-bottom: 5px;
   /* обрезание строки  */
   -webkit-line-clamp: 2;
   display: -webkit-box;
@@ -131,19 +128,19 @@ header {
 }
 .description__writer-name {
   text-align: left;
-  font: normal normal normal 16px/21px Segoe UI;
+  font-family: My-r;
+  font-size: 16px;
   letter-spacing: 0px;
   color: #000000;
   opacity: 1;
-  margin-bottom: 5px;
 }
 .description__company {
   text-align: left;
-  font: normal normal 300 16px/21px Segoe UI;
+  font-family: My-l;
+  font: size 16px;
   letter-spacing: 0px;
   color: #000000;
   opacity: 0.6;
-  margin-bottom: 5px;
 }
 
 .row {
@@ -176,7 +173,12 @@ a:hover {
   text-align: center;
   align-items: center;
   cursor: pointer;
-  color: #6d6d6d;
+  font-family: My-b;
+  font-size: 16px;
+  color: #000000;
+  text-transform: uppercase;
+  opacity: 0.6;
+  padding: 0 25px;
 }
 
 .active {
@@ -216,30 +218,92 @@ a:hover {
   font-family: My-b;
   border-bottom: 3px solid #000000;
   font-weight: bold;
-  
 }
 
-.nav-item {
+.navbar-nav a {
+  padding: 23px 0;
 }
 
-.navbar-nav a{
-padding: 22px 0 ;
-}
-
-#search-svg{
-    width: 16px;
-    height: 16px;
+#search-svg {
+  width: 16px;
+  height: 16px;
 }
 
 #profile-svg {
-    width: 24px;
-
+  width: 24px;
 }
 
 a:visited {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+#mySearch {
+  height: 60px;
+  font-size: 24px;
+  font-family: My-r;
+  color: #000000;
+}
+
+.padding-20 {
+  padding: 0 20px;
+}
+
+.search__icon {
+  position: absolute;
+  width: 16px;
+  right: 22px;
+  top: 37.5%;
+}
+
+.years-container {
+  align-items: center;
+}
+
+.years-container a:hover {
+  text-decoration: underline;
+}
+
+.year {
+  color: #000000;
+  font-family: My-l;
+  text-transform: uppercase;
+  opacity: 0.6;
 }
 
 #allArticle {
-    white-space: nowrap;
+  white-space: nowrap;
+  font-family: My-r;
+  font-size: 20px;
+}
+
+.item-overlay {
+  padding: 26 20 20 20;
+}
+
+.footer__content {
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 1200px;
+  margin: auto;
+  width: 100%;
+  align-items: center;
+}
+
+.footer-link {
+  color: white;
+  font-family: My-b;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.img-svg {
+  width: 40px;
+}
+
+#linkedin {
+  width: 33px;
+}
+
+#for-buttons {
+  margin: auto;
 }
