@@ -256,7 +256,7 @@ a:visited {
 
 .years-container a:hover {
   text-decoration: underline;
-opacity: 1;
+  opacity: 1;
 }
 
 .year {
@@ -300,25 +300,18 @@ opacity: 1;
   width: 26px;
 }
 
-#first{  text-align: right;
-padding-left: 0;
-white-space: nowrap;
-
-
+#first {
+  text-align: right;
+  padding-left: 0;
+  white-space: nowrap;
 }
- #last {
+#last {
   white-space: nowrap;
   padding-right: 0;
 }
-
 
 .active-pagination {
   color: #000000;
   text-decoration: underline;
   opacity: 1;
-}
-
-
-.pag-buttons {
-
 }

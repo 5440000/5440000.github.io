@@ -139,9 +139,9 @@ const createPagination = (json) => {
       });
     };
 
-    divForFirstButton.innerHTML = " "
+    divForFirstButton.innerHTML = " ";
     divForFirstButton.append(firstButton);
-    firstButton.classList.add("pagination-button","no-padding");
+    firstButton.classList.add("pagination-button", "no-padding");
     firstButton.textContent = "< First";
     firstButton.addEventListener("click", (event) => {
       const a = event.target;
@@ -150,16 +150,15 @@ const createPagination = (json) => {
       console.log(a);
       refreshActiveStatus(a);
     });
-    divForLastButton.innerHTML = " "
+    divForLastButton.innerHTML = " ";
     divForLastButton.append(lastButton);
-    lastButton.classList.add("pagination-button","no-padding");
+    lastButton.classList.add("pagination-button", "no-padding");
     lastButton.textContent = "Last >";
     lastButton.addEventListener("click", (event) => {
       const a = event.target;
 
       HideAllItems();
       showLast();
-      console.log(a);
       refreshActiveStatus(a);
     });
   };
