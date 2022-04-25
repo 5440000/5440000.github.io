@@ -141,7 +141,7 @@ const createPagination = (json) => {
 
     divForFirstButton.innerHTML = " "
     divForFirstButton.append(firstButton);
-    firstButton.classList.add("pagination-button");
+    firstButton.classList.add("pagination-button","no-padding");
     firstButton.textContent = "< First";
     firstButton.addEventListener("click", (event) => {
       const a = event.target;
@@ -152,7 +152,7 @@ const createPagination = (json) => {
     });
     divForLastButton.innerHTML = " "
     divForLastButton.append(lastButton);
-    lastButton.classList.add("pagination-button");
+    lastButton.classList.add("pagination-button","no-padding");
     lastButton.textContent = "Last >";
     lastButton.addEventListener("click", (event) => {
       const a = event.target;
