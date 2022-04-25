@@ -64,6 +64,7 @@ const createPagination = (json) => {
         const allActiveButton = [
           ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
         ];
+
         allActiveButton.forEach((element) => {
           element.classList.remove("active-pagination");
         });
@@ -159,6 +160,7 @@ const createPagination = (json) => {
 
       HideAllItems();
       showLast();
+      console.log(a);
       refreshActiveStatus(a);
     });
   };
