@@ -50,6 +50,7 @@ const createPagination = (json) => {
     const content = document.getElementById("for-buttons");
     const btn = document.createElement("div");
     btn.innerHTML = `${i}`;
+
     btn.classList.add("col-1", "pagination-button");
     if (i === 1) {
       btn.classList.add("active-pagination");
@@ -58,6 +59,15 @@ const createPagination = (json) => {
     btn.addEventListener("click", () => {
       const pagButtons = content.querySelectorAll(".pagination-button");
       pagButtons.forEach((element) => {
+            // ********
+    const divWithPaginationButtons =
+    document.getElementById("pag-buttons");
+    const allActiveButton =
+      [...divWithPaginationButtons.querySelectorAll(".active-pagination")];
+    allActiveButton.forEach((element) => {
+      element.classList.remove("active-pagination");
+    });
+// ********************
         element.classList.remove("active-pagination");
       });
       btn.classList.add("active-pagination");
@@ -106,11 +116,11 @@ const createPagination = (json) => {
     const arrAllItemsInHtml = [...content.querySelectorAll(".item")];
 
     const refreshActiveStatus = (e) => {
+      
       const divWithPaginationButtons =
-      document.getElementById("pagination-buttion");
-      console.log("🚀 ~ file: script.js ~ line 110 ~ refreshActiveStatus ~ divWithPaginationButtons", divWithPaginationButtons)
+      document.getElementById("pag-buttons");
       const allActiveButton =
-        divWithPaginationButtons.querySelectorAll("active-pagination");
+        [...divWithPaginationButtons.querySelectorAll(".active-pagination")];
       allActiveButton.forEach((element) => {
         element.classList.remove("active-pagination");
       });
@@ -149,8 +159,9 @@ const createPagination = (json) => {
       const a = event.target;
 
       HideAllItems();
-      showLast();
-      // refreshActiveStatus(a)
+      showFirst();
+      console.log(a);
+      refreshActiveStatus(a);
     });
   };
   createPaginationButtonsFirstAndLast();
