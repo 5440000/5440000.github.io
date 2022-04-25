@@ -59,15 +59,15 @@ const createPagination = (json) => {
     btn.addEventListener("click", () => {
       const pagButtons = content.querySelectorAll(".pagination-button");
       pagButtons.forEach((element) => {
-            // ********
-    const divWithPaginationButtons =
-    document.getElementById("pag-buttons");
-    const allActiveButton =
-      [...divWithPaginationButtons.querySelectorAll(".active-pagination")];
-    allActiveButton.forEach((element) => {
-      element.classList.remove("active-pagination");
-    });
-// ********************
+        // ********
+        const divWithPaginationButtons = document.getElementById("pag-buttons");
+        const allActiveButton = [
+          ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
+        ];
+        allActiveButton.forEach((element) => {
+          element.classList.remove("active-pagination");
+        });
+        // ********************
         element.classList.remove("active-pagination");
       });
       btn.classList.add("active-pagination");
@@ -106,7 +106,6 @@ const createPagination = (json) => {
     createBtn(i);
   }
 
-  // ________________________________________________________________
   const createPaginationButtonsFirstAndLast = () => {
     const divForFirstButton = document.getElementById("first");
     const divForLastButton = document.getElementById("last");
@@ -116,11 +115,10 @@ const createPagination = (json) => {
     const arrAllItemsInHtml = [...content.querySelectorAll(".item")];
 
     const refreshActiveStatus = (e) => {
-      
-      const divWithPaginationButtons =
-      document.getElementById("pag-buttons");
-      const allActiveButton =
-        [...divWithPaginationButtons.querySelectorAll(".active-pagination")];
+      const divWithPaginationButtons = document.getElementById("pag-buttons");
+      const allActiveButton = [
+        ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
+      ];
       allActiveButton.forEach((element) => {
         element.classList.remove("active-pagination");
       });
@@ -141,6 +139,7 @@ const createPagination = (json) => {
       });
     };
 
+    divForFirstButton.innerHTML = " "
     divForFirstButton.append(firstButton);
     firstButton.classList.add("pagination-button");
     firstButton.textContent = "< First";
@@ -151,7 +150,7 @@ const createPagination = (json) => {
       console.log(a);
       refreshActiveStatus(a);
     });
-
+    divForLastButton.innerHTML = " "
     divForLastButton.append(lastButton);
     lastButton.classList.add("pagination-button");
     lastButton.textContent = "Last >";
@@ -159,22 +158,18 @@ const createPagination = (json) => {
       const a = event.target;
 
       HideAllItems();
-      showFirst();
+      showLast();
       console.log(a);
       refreshActiveStatus(a);
     });
   };
   createPaginationButtonsFirstAndLast();
-
-  // ________________________________________________________________
 };
-// __________________________________________________________________________
 const loadingContent = async function getData() {
   const aaa = await fetch(urlJson);
   const json = await aaa.json();
-  //   setTimeout(() => createAllItems(json), 1500);
-  createAllItems(json);
-  createPagination(json);
+  setTimeout(() => createAllItems(json), 2000);
+  setTimeout(() => createPagination(json), 2500);
 };
 
 loadingContent();
