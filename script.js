@@ -32,7 +32,7 @@ const createAllItems = (arrItems) => {
 };
 
 const createPagination = (json) => {
-  const numberOfItemOnPage = 6; 
+  const numberOfItemOnPage = 6;
   const arrAllItemsInHtml = [...content.querySelectorAll(".item")];
   if (arrAllItemsInHtml.length >= numberOfItemOnPage) {
     for (let i = numberOfItemOnPage; i < arrAllItemsInHtml.length; i++) {
@@ -51,13 +51,16 @@ const createPagination = (json) => {
     const btn = document.createElement("div");
     btn.innerHTML = `${i}`;
     btn.classList.add("col-1", "pagination-button");
+    if (i === 1) {
+      btn.classList.add("active-pagination");
+    }
     content.append(btn);
     btn.addEventListener("click", () => {
       const pagButtons = content.querySelectorAll(".pagination-button");
       pagButtons.forEach((element) => {
-        element.classList.remove("active");
+        element.classList.remove("active-pagination");
       });
-      btn.classList.add("active");
+      btn.classList.add("active-pagination");
       HideAllItems();
 
       const showPagination = (i) => {
@@ -80,8 +83,6 @@ const createPagination = (json) => {
         }
       };
 
-
-      
       showPagination(i);
     });
   };
@@ -94,8 +95,69 @@ const createPagination = (json) => {
   for (let i = 1; i <= howMuchButtons; i++) {
     createBtn(i);
   }
-};
 
+  // ________________________________________________________________
+  const createPaginationButtonsFirstAndLast = () => {
+    const divForFirstButton = document.getElementById("first");
+    const divForLastButton = document.getElementById("last");
+    const firstButton = document.createElement("a");
+    const lastButton = document.createElement("a");
+    const content = document.getElementById("content");
+    const arrAllItemsInHtml = [...content.querySelectorAll(".item")];
+
+    const refreshActiveStatus = (e) => {
+      const divWithPaginationButtons =
+      document.getElementById("pagination-buttion");
+      console.log("🚀 ~ file: script.js ~ line 110 ~ refreshActiveStatus ~ divWithPaginationButtons", divWithPaginationButtons)
+      const allActiveButton =
+        divWithPaginationButtons.querySelectorAll("active-pagination");
+      allActiveButton.forEach((element) => {
+        element.classList.remove("active-pagination");
+      });
+      e.classList.add("active-pagination");
+    };
+
+    const showFirst = () => {
+      const partOfArr = arrAllItemsInHtml.slice(0, numberOfItemOnPage);
+      partOfArr.forEach((element) => {
+        element.classList.remove("hide");
+      });
+    };
+
+    const showLast = () => {
+      const partOfArr = arrAllItemsInHtml.slice(-numberOfItemOnPage);
+      partOfArr.forEach((element) => {
+        element.classList.remove("hide");
+      });
+    };
+
+    divForFirstButton.append(firstButton);
+    firstButton.classList.add("pagination-button");
+    firstButton.textContent = "< First";
+    firstButton.addEventListener("click", (event) => {
+      const a = event.target;
+      HideAllItems();
+      showFirst();
+      console.log(a);
+      refreshActiveStatus(a);
+    });
+
+    divForLastButton.append(lastButton);
+    lastButton.classList.add("pagination-button");
+    lastButton.textContent = "Last >";
+    lastButton.addEventListener("click", (event) => {
+      const a = event.target;
+
+      HideAllItems();
+      showLast();
+      // refreshActiveStatus(a)
+    });
+  };
+  createPaginationButtonsFirstAndLast();
+
+  // ________________________________________________________________
+};
+// __________________________________________________________________________
 const loadingContent = async function getData() {
   const aaa = await fetch(urlJson);
   const json = await aaa.json();
@@ -160,15 +222,7 @@ createUrlParametersSearch();
 
 const creatActiveStyleNavButton = () => {
   const arrNavButtons = document.querySelectorAll(".nav-li");
-  console.log(
-    "🚀 ~ file: script.js ~ line 161 ~ creatActiveStyleNavButton ~ arrNavButtons",
-    arrNavButtons
-  );
   arrNavButtons.forEach((currentItem) => {
-    console.log(
-      "🚀 ~ file: script.js ~ line 163 ~ arrNavButtons.forEach ~ currentItem",
-      currentItem
-    );
     currentItem.addEventListener("click", () => {
       arrNavButtons.forEach((e) => {
         e.classList.remove("nav-active");
@@ -179,4 +233,3 @@ const creatActiveStyleNavButton = () => {
 };
 
 creatActiveStyleNavButton();
-

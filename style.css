@@ -1,6 +1,6 @@
 @font-face {
   font-family: "My-r";
-  src: url(/fonts/Segoe\ UI.woff) format("woff");
+  src: url(fonts/Segoe_UI.woff) format("woff");
 }
 
 @font-face {
@@ -176,7 +176,6 @@ a:hover {
   font-family: My-b;
   font-size: 16px;
   color: #000000;
-  text-transform: uppercase;
   opacity: 0.6;
   padding: 0 25px;
 }
@@ -304,6 +303,13 @@ a:visited {
   width: 33px;
 }
 
-#for-buttons {
-  margin: auto;
+#first, #last {
+  white-space: nowrap;
+}
+
+
+.active-pagination {
+  color: #000000;
+  text-decoration: underline;
+  opacity: 1;
 }
