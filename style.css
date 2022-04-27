@@ -180,6 +180,11 @@ a:hover {
   padding: 0 25px;
 }
 
+#pag-buttons div:hover, a:hover {
+  opacity: 1;
+
+}
+
 .active {
   color: #000000;
 }
@@ -195,6 +200,9 @@ a:hover {
   padding: 0;
 }
 
+.navbar a:hover{
+  text-shadow: 0px 1px #000000
+}
 .navbar-brand {
   font-size: 20px;
   font-family: My-r;
@@ -286,13 +294,37 @@ a:visited {
   width: 100%;
   align-items: center;
 }
+.footer__content a:hover, img:hover{
+text-decoration: underline;
+color: white;
+} 
 
+@keyframes bounce {
+	0%, 20%, 60%, 100% {
+		transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	40% {
+		transform: translateY(-20px);
+		transform: translateY(-20px);
+	}
+
+	80% {
+		transform: translateY(-10px);
+		transform: translateY(-10px);
+	}
+}
+.footer__content img:hover {
+  animation: bounce 1s;
+}
 .footer-link {
   color: white;
   font-family: My-b;
   text-transform: uppercase;
   font-size: 16px;
 }
+
 
 .img-svg {
   width: 31px;
@@ -322,6 +354,10 @@ a:visited {
   display: none;
 }
 
+.item:hover {
+  box-shadow: 0px 3px 6px #00000079;
+}
+
 
 
 @media (max-width: 575.98px) {
@@ -336,8 +372,6 @@ a:visited {
     flex-direction: column;
     justify-content: center;
     text-align: center;
-
-
   }
 
   .overlay-listyear{

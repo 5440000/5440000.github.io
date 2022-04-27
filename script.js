@@ -1,8 +1,12 @@
 const urlJson = "https://5440000.github.io/items.json";
 
 const createItem = (obj) => {
-  const content = document.querySelector(".content");
+  const content = document.querySelector("#content");
   const div = document.createElement("div");
+  div.addEventListener("click", () => {
+    window.location.href = `${obj.url}`;
+  });
+
   div.classList.add("item", "no-padding", "row");
   div.insertAdjacentHTML(
     "afterbegin",
@@ -10,7 +14,7 @@ const createItem = (obj) => {
       <div class="item-overlay no-padding col-xl-3 col-lg-4 col-md-5 col-sm  item__wrapper align-self-center ">
           <img
           class="item__image ${obj.year}"
-          src="${obj.url}"
+          src="${obj.image}"
           alt=""
           />
       </div>
@@ -110,8 +114,8 @@ const createPagination = (json) => {
   const createPaginationButtonsFirstAndLast = () => {
     const divForFirstButton = document.getElementById("first");
     const divForLastButton = document.getElementById("last");
-    const firstButton = document.createElement("a");
-    const lastButton = document.createElement("a");
+    const firstButton = document.createElement("div");
+    const lastButton = document.createElement("div");
     const content = document.getElementById("content");
     const arrAllItemsInHtml = [...content.querySelectorAll(".item")];
 
@@ -148,7 +152,6 @@ const createPagination = (json) => {
       const a = event.target;
       HideAllItems();
       showFirst();
-      console.log(a);
       refreshActiveStatus(a);
     });
     divForLastButton.innerHTML = " ";
@@ -160,7 +163,6 @@ const createPagination = (json) => {
 
       HideAllItems();
       showLast();
-      console.log(a);
       refreshActiveStatus(a);
     });
   };
@@ -175,12 +177,12 @@ const loadingContent = async function getData() {
 
 loadingContent();
 
-const loadingFilteredContent = async function getData(year) {
+const loadingFilteredContent = async (year) => {
   const content = document.getElementById("content");
   content.innerHTML = " ";
-  const aaa = await fetch(urlJson);
-  const json = await aaa.json();
-  json.forEach((element) => {
+  const json = await fetch(urlJson);
+  const data = await json.json();
+  data.forEach((element) => {
     if (element.year === +year) {
       createItem(element);
     }
@@ -188,45 +190,21 @@ const loadingFilteredContent = async function getData(year) {
       createItem(element);
     }
   });
-  createPagination(json);
+  createPagination(data);
 };
 
 const createFilterButtonsAndUrlParametres = (btn) =>
   btn.addEventListener("click", (event) => {
     event.preventDefault();
     history.pushState({ id: `${btn.id}` }, "", `?year=${btn.id}`);
-    const a = btn.id;
-    // const dropdawn = document.querySelector(".overlay-listyear")
-    // dropdawn.style.display = "none"
-    // const divFilter = document.querySelector("filter")
-    // divFilter.style.display = div.style.display === 'none' ? 'block' : 'none'
-
-    // const dropdawn = document.querySelector(".overlay-listyear")
-    // dropdawn.style.display ='none'
-    // dropdown()
-    loadingFilteredContent(a);
+    loadingFilteredContent(btn.id);
   });
 
-  const dropdown = () => {
-    const buttonFilter = document.getElementById("showfilter")
-    const dropdawn = document.querySelector(".overlay-listyear")
-    buttonFilter.addEventListener("click", () => {
-      dropdawn.style.display = dropdawn.style.display === 'none' ? 'block' : 'none'
-console.log("good");
-    })
-
-
-  }
-
-  
-
 const createFilters = () => {
-  const allAncors = document.querySelectorAll("a");
+  const allAncors = document.querySelectorAll(".year");
   allAncors.forEach((element) => {
-    if (element.dataset.id == "filter") {
-      const ancorFilterYear = document.getElementById(`${element.id}`);
-      createFilterButtonsAndUrlParametres(ancorFilterYear);
-    }
+    const ancorFilterYear = document.getElementById(`${element.id}`);
+    createFilterButtonsAndUrlParametres(ancorFilterYear);
   });
 };
 
@@ -261,4 +239,4 @@ const creatActiveStyleNavButton = () => {
 };
 
 creatActiveStyleNavButton();
-dropdown()
+// dropdown()
