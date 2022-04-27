@@ -196,8 +196,29 @@ const createFilterButtonsAndUrlParametres = (btn) =>
     event.preventDefault();
     history.pushState({ id: `${btn.id}` }, "", `?year=${btn.id}`);
     const a = btn.id;
+    // const dropdawn = document.querySelector(".overlay-listyear")
+    // dropdawn.style.display = "none"
+    // const divFilter = document.querySelector("filter")
+    // divFilter.style.display = div.style.display === 'none' ? 'block' : 'none'
+
+    // const dropdawn = document.querySelector(".overlay-listyear")
+    // dropdawn.style.display ='none'
+    // dropdown()
     loadingFilteredContent(a);
   });
+
+  const dropdown = () => {
+    const buttonFilter = document.getElementById("showfilter")
+    const dropdawn = document.querySelector(".overlay-listyear")
+    buttonFilter.addEventListener("click", () => {
+      dropdawn.style.display = dropdawn.style.display === 'none' ? 'block' : 'none'
+console.log("good");
+    })
+
+
+  }
+
+  
 
 const createFilters = () => {
   const allAncors = document.querySelectorAll("a");
@@ -240,3 +261,4 @@ const creatActiveStyleNavButton = () => {
 };
 
 creatActiveStyleNavButton();
+dropdown()
