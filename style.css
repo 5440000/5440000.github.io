@@ -252,6 +252,8 @@ a:visited {
 
 .years-container {
   align-items: baseline;
+  display: flex;
+  justify-content: space-between;
 }
 
 .years-container a:hover {
@@ -314,4 +316,54 @@ a:visited {
   color: #000000;
   text-decoration: underline;
   opacity: 1;
+}
+
+.filter{
+  display: none;
+}
+
+
+
+@media (max-width: 575.98px) {
+  .years-mobile-menu {
+    justify-content: center;
+    
+  }
+
+  .filter {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+
+  }
+
+  .overlay-listyear{
+    /* display: none; */
+  }
+
+
+  .list-of-years{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    left:50%; 
+    margin-left:-10%;
+    top:25px;
+    z-index: 1;
+
+
+  }
+
+  #showfilter:hover .overlay-listyear {
+    display: block;
+
+}
+
+
+
+
 }
