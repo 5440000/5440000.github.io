@@ -19,7 +19,7 @@ const createItem = (obj) => {
           />
       </div>
       <div class="col-xl-9 col-lg-8 col-md-7 col-sm description flex-column justify-content-center">
-          <div class="col no-padding description__article-title">${obj.articleTitle}</div>
+          <h2 class="col no-padding description__article-title">${obj.articleTitle}</h2>
           <div class="col no-padding description__text">${obj.text}
           </div>
           <div class="col no-padding description__writer-name">${obj.writerName}</div>
@@ -213,6 +213,7 @@ createFilters();
 const createUrlParametersSearch = () => {
   const searchForm = document.getElementById("mySearch");
   searchForm.addEventListener("keydown", (event) => {
+    console.log("🚀 ~ file: script.js ~ line 215 ~ createUrlParametersSearch ~ searchForm", searchForm)
     if (event.key === "Enter") {
       event.preventDefault();
       history.pushState(
@@ -239,4 +240,70 @@ const creatActiveStyleNavButton = () => {
 };
 
 creatActiveStyleNavButton();
-// dropdown()
+
+// search
+
+// const getSearchValue = (input) => {
+//   var inputValue = input.value.toUpperCase();
+//   var cards = document.querySelectorAll('.item');
+//   cards.forEach(
+//     function getMatch(info) {
+//       const heading = info.querySelector('h2');
+//       const headingContent = heading.innerHTML.toUpperCase();
+
+//       if (headingContent.includes(inputValue)) {
+//         info.classList.add('show');
+//         info.classList.remove('hide');
+//       }
+//       else {
+//         info.classList.add('hide');
+//         info.classList.remove('show');
+//       }
+//     }
+//   )
+// }
+
+function submit(evt) {
+  evt.preventDefault();
+}
+
+function filter(evt) {
+  evt.preventDefault();
+  var input = document.getElementById('mySearch');
+  var inputValue = input.value.toUpperCase(); 
+  var cards = document.querySelectorAll('.item');
+
+  cards.forEach(function getMatch(info) {
+    let heading = info.querySelector("h2");
+    let headingContent = heading.innerHTML.toUpperCase();
+
+    if (headingContent.includes(inputValue)) {
+      info.classList.add("show");
+      info.classList.remove("hide-result");
+    } else {
+      info.classList.add("hide-result");
+      info.classList.remove("show");
+    }
+  });
+}
+
+function autoReset() {
+  let input = document.getElementById("mySearch");
+  console.log("🚀 ~ file: script.js ~ line 293 ~ autoReset ~ input", input.value)
+  let cards = document.querySelectorAll(".item");
+
+  cards.forEach(function getMatch(info) {
+    if ((input.value == null, input.value == "")) {
+      info.classList.remove("show");
+      info.classList.remove("show");
+    } else {
+      return;
+    }
+  });
+}
+
+let form = document.querySelector(".search");
+
+form.addEventListener("keyup", filter);
+form.addEventListener('keyup', autoReset);
+form.addEventListener("submit", submit);
