@@ -359,6 +359,30 @@ color: white;
 }
 
 
+.hide-result {
+  visibility: hidden;
+  position: absolute;
+}
+.show {
+  visibility: visible;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 575.98px) {
   .years-mobile-menu {
