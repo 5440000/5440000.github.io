@@ -34,6 +34,31 @@ const createAllItems = (arrItems) => {
     createItem(element);
   });
 };
+//кнопки First Last не активные если на странице 1 пагинация
+
+const stopHoverOnPaginationButtonsFirstAndLast = () => {
+  const buttonFirst = document.getElementById("first");
+  const buttonLast = document.getElementById("last");
+
+  const divWithPaginationButtons = document.getElementById("for-buttons");
+  const arrPuginationButtons =
+    divWithPaginationButtons.querySelectorAll(".pagination-button");
+  console.log(
+    "🚀 ~ file: script.js ~ line 43 ~ stopHoverOnPaginationButtonsFirstAndLast ~ arrPuginationButtons",
+    arrPuginationButtons.length
+  );
+
+  buttonFirst.addEventListener("mouseover", (e) => {
+    if (arrPuginationButtons.length <= 1) {
+      buttonFirst.lastChild.classList.add("no-hover");
+      e.preventDefault();
+    }
+    if (arrPuginationButtons.length <= 1) {
+      buttonLast.lastChild.classList.add("no-hover");
+      e.preventDefault();
+    }
+  });
+};
 
 const createPagination = (json) => {
   const numberOfItemOnPage = 6;
@@ -165,12 +190,13 @@ const createPagination = (json) => {
     });
   };
   createPaginationButtonsFirstAndLast();
+  stopHoverOnPaginationButtonsFirstAndLast();
 };
 const loadingContent = async function getData() {
   const aaa = await fetch(urlJson);
   const json = await aaa.json();
-  setTimeout(() => createAllItems(json), 2000);
-  setTimeout(() => createPagination(json), 2500);
+  setTimeout(() => createAllItems(json), 1000);
+  setTimeout(() => createPagination(json), 1500);
 };
 
 loadingContent();
@@ -285,9 +311,7 @@ form.addEventListener("submit", submit);
 
 const createActiveStatusOnClickToFilterYearButtons = () => {
   const divList = document.querySelector(".list-of-years");
-  // const arrayOfYears = divList.getElementsByTagName("div");
   const arrayOfYears = divList.querySelectorAll(".year");
-  console.log("🚀 ~ file: script.js ~ line 289 ~ createActiveStatusOnClickToFilterYearButtons ~ arrayOfYears", arrayOfYears)
   arrayOfYears.forEach((element) => {
     element.addEventListener("click", () => {
       arrayOfYears.forEach((element) => {
@@ -298,4 +322,4 @@ const createActiveStatusOnClickToFilterYearButtons = () => {
   });
 };
 
-createActiveStatusOnClickToFilterYearButtons()
+createActiveStatusOnClickToFilterYearButtons();
