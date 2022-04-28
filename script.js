@@ -63,7 +63,6 @@ const createPagination = (json) => {
     btn.addEventListener("click", () => {
       const pagButtons = content.querySelectorAll(".pagination-button");
       pagButtons.forEach((element) => {
-        // ********
         const divWithPaginationButtons = document.getElementById("pag-buttons");
         const allActiveButton = [
           ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
@@ -72,7 +71,6 @@ const createPagination = (json) => {
         allActiveButton.forEach((element) => {
           element.classList.remove("active-pagination");
         });
-        // ********************
         element.classList.remove("active-pagination");
       });
       btn.classList.add("active-pagination");
@@ -213,7 +211,6 @@ createFilters();
 const createUrlParametersSearch = () => {
   const searchForm = document.getElementById("mySearch");
   searchForm.addEventListener("keydown", (event) => {
-    console.log("🚀 ~ file: script.js ~ line 215 ~ createUrlParametersSearch ~ searchForm", searchForm)
     if (event.key === "Enter") {
       event.preventDefault();
       history.pushState(
@@ -240,38 +237,16 @@ const creatActiveStyleNavButton = () => {
 };
 
 creatActiveStyleNavButton();
-
-// search
-
-// const getSearchValue = (input) => {
-//   var inputValue = input.value.toUpperCase();
-//   var cards = document.querySelectorAll('.item');
-//   cards.forEach(
-//     function getMatch(info) {
-//       const heading = info.querySelector('h2');
-//       const headingContent = heading.innerHTML.toUpperCase();
-
-//       if (headingContent.includes(inputValue)) {
-//         info.classList.add('show');
-//         info.classList.remove('hide');
-//       }
-//       else {
-//         info.classList.add('hide');
-//         info.classList.remove('show');
-//       }
-//     }
-//   )
-// }
-
+//search
 function submit(evt) {
   evt.preventDefault();
 }
 
 function filter(evt) {
   evt.preventDefault();
-  var input = document.getElementById('mySearch');
-  var inputValue = input.value.toUpperCase(); 
-  var cards = document.querySelectorAll('.item');
+  var input = document.getElementById("mySearch");
+  var inputValue = input.value.toUpperCase();
+  var cards = document.querySelectorAll(".item");
 
   cards.forEach(function getMatch(info) {
     let heading = info.querySelector("h2");
@@ -289,12 +264,10 @@ function filter(evt) {
 
 function autoReset() {
   let input = document.getElementById("mySearch");
-  console.log("🚀 ~ file: script.js ~ line 293 ~ autoReset ~ input", input.value)
   let cards = document.querySelectorAll(".item");
 
   cards.forEach(function getMatch(info) {
     if ((input.value == null, input.value == "")) {
-      info.classList.remove("show");
       info.classList.remove("show");
     } else {
       return;
@@ -305,5 +278,24 @@ function autoReset() {
 let form = document.querySelector(".search");
 
 form.addEventListener("keyup", filter);
-form.addEventListener('keyup', autoReset);
+form.addEventListener("keyup", autoReset);
 form.addEventListener("submit", submit);
+
+//active status to filter year buttons
+
+const createActiveStatusOnClickToFilterYearButtons = () => {
+  const divList = document.querySelector(".list-of-years");
+  // const arrayOfYears = divList.getElementsByTagName("div");
+  const arrayOfYears = divList.querySelectorAll(".year");
+  console.log("🚀 ~ file: script.js ~ line 289 ~ createActiveStatusOnClickToFilterYearButtons ~ arrayOfYears", arrayOfYears)
+  arrayOfYears.forEach((element) => {
+    element.addEventListener("click", () => {
+      arrayOfYears.forEach((element) => {
+        element.classList.remove("active-article");
+      });
+      element.classList.add("active-article");
+    });
+  });
+};
+
+createActiveStatusOnClickToFilterYearButtons()
