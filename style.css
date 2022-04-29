@@ -21,6 +21,13 @@ html {
   min-height: calc(100% - 80px);
 }
 
+.nav-li img:hover {
+transform: scale(0.9);  }
+
+
+
+
+
 .padding-15 {
   padding: 20px;
 }
@@ -369,6 +376,7 @@ img:hover {
 .footer__content img:hover {
   animation: bounce 1.1s;
 }
+
 .footer-link {
   color: white;
   font-family: My-b;
