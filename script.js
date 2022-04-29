@@ -346,12 +346,8 @@ createDropdown();
 // burger
 const createBurgerMenu = () => {
   const listMenuPage = document.getElementById("navbarSupportedContent");
-  console.log("🚀 ~ file: script.js ~ line 349 ~ createBurgerMenu ~ listMenuPage", listMenuPage)
   const burgerButton = document.querySelector(".burger");
-  console.log("🚀 ~ file: script.js ~ line 351 ~ createBurgerMenu ~ burgerButton", burgerButton)
   const arrPages = listMenuPage.querySelectorAll(".nav-li");
-  console.log("🚀 ~ file: script.js ~ line 353 ~ createBurgerMenu ~ arrPages", arrPages)
-
   burgerButton.addEventListener("click", (e) => {
     if (listMenuPage.classList.contains("show")) {
       listMenuPage.classList.remove("show");
@@ -360,7 +356,6 @@ const createBurgerMenu = () => {
       arrPages.forEach((element) => {
         element.addEventListener("click", () => {
           listMenuPage.classList.remove("show");
-          // dropButton.innerHTML = "Filter:" + element.innerHTML;
         });
       });
     }

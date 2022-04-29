@@ -21,6 +21,10 @@ html {
   min-height: calc(100% - 80px);
 }
 
+.nav-li img:hover {
+  transform: scale(0.9);
+}
+
 .padding-15 {
   padding: 20px;
 }
@@ -369,6 +373,7 @@ img:hover {
 .footer__content img:hover {
   animation: bounce 1.1s;
 }
+
 .footer-link {
   color: white;
   font-family: My-b;
@@ -437,15 +442,13 @@ img:hover {
 }
 
 @media (max-width: 768px) {
-
-#list-pages{flex-direction: column;
-
+  #list-pages {
+    flex-direction: column;
   }
 
-.collapse{
-  align-items: center;
-
-}
+  .collapse {
+    align-items: center;
+  }
   .navbar-collapse {
     visibility: hidden;
     position: absolute;
@@ -462,10 +465,8 @@ img:hover {
     visibility: visible;
   }
 
-  .burger-style{
-
+  .burger-style {
   }
-
 
   .burger {
     padding: 3px 7px;
@@ -476,47 +477,40 @@ img:hover {
     visibility: visible;
     border-radius: 3px;
   }
-  
+
   .burger:hover {
     box-shadow: 0px 3px 6px #312e2e79;
     color: black;
   }
-  
+
   .flex-custom {
     flex-direction: column;
     align-items: end;
   }
 
-  .navbar-nav a{
+  .navbar-nav a {
     border: none;
     padding: 0;
     font-size: 25px;
-
   }
   .navbar-nav li {
     padding: 5px;
   }
-  .nav-active{
-
-
+  .nav-active {
   }
-  
 }
-  @media (max-width: 575.98px) {
+@media (max-width: 575.98px) {
+  .collapse {
+    width: 95%;
+    align-items: center;
+  }
 
-.collapse{
-  width: 95%;
-  align-items: center;
-}
+  .navbar-collapse {
+    width: 100%;
+  }
 
-
-.navbar-collapse {
-  width: 100%;
-
-}
-
-    .container {
-      padding: 0 10px;
+  .container {
+    padding: 0 10px;
   }
 
   .navbar {
