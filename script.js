@@ -326,7 +326,7 @@ const createDropdown = () => {
   const listOfYears = document.querySelector(".overlay-listyear");
   const dropButton = document.getElementById("filter");
   const arrYears = listOfYears.querySelectorAll(".year");
-  dropButton.addEventListener("click", (e) => {
+  dropButton.addEventListener("click", () => {
     if (listOfYears.classList.contains("show")) {
       listOfYears.classList.remove("show");
     } else {
@@ -341,3 +341,30 @@ const createDropdown = () => {
   });
 };
 createDropdown();
+
+
+// burger
+const createBurgerMenu = () => {
+  const listMenuPage = document.getElementById("navbarSupportedContent");
+  console.log("🚀 ~ file: script.js ~ line 349 ~ createBurgerMenu ~ listMenuPage", listMenuPage)
+  const burgerButton = document.querySelector(".burger");
+  console.log("🚀 ~ file: script.js ~ line 351 ~ createBurgerMenu ~ burgerButton", burgerButton)
+  const arrPages = listMenuPage.querySelectorAll(".nav-li");
+  console.log("🚀 ~ file: script.js ~ line 353 ~ createBurgerMenu ~ arrPages", arrPages)
+
+  burgerButton.addEventListener("click", (e) => {
+    if (listMenuPage.classList.contains("show")) {
+      listMenuPage.classList.remove("show");
+    } else {
+      listMenuPage.classList.add("show");
+      arrPages.forEach((element) => {
+        element.addEventListener("click", () => {
+          listMenuPage.classList.remove("show");
+          // dropButton.innerHTML = "Filter:" + element.innerHTML;
+        });
+      });
+    }
+  });
+};
+createBurgerMenu();
+

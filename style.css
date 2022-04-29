@@ -431,7 +431,98 @@ img:hover {
   opacity: 0.6;
 }
 
-@media (max-width: 575.98px) {
+.burger {
+  display: none;
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+
+#list-pages{flex-direction: column;
+
+  }
+
+.collapse{
+  align-items: center;
+
+}
+  .navbar-collapse {
+    visibility: hidden;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 50%;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid #707070;
+    border-radius: 3px;
+  }
+
+  .show {
+    visibility: visible;
+  }
+
+  .burger-style{
+
+  }
+
+
+  .burger {
+    padding: 3px 7px;
+    font-size: 20px;
+    color: #707070;
+    font-family: My-r;
+    display: block;
+    visibility: visible;
+    border-radius: 3px;
+  }
+  
+  .burger:hover {
+    box-shadow: 0px 3px 6px #312e2e79;
+    color: black;
+  }
+  
+  .flex-custom {
+    flex-direction: column;
+    align-items: end;
+  }
+
+  .navbar-nav a{
+    border: none;
+    padding: 0;
+    font-size: 25px;
+
+  }
+  .navbar-nav li {
+    padding: 5px;
+  }
+  .nav-active{
+
+
+  }
+  
+}
+  @media (max-width: 575.98px) {
+
+.collapse{
+  width: 95%;
+  align-items: center;
+}
+
+
+.navbar-collapse {
+  width: 100%;
+
+}
+
+    .container {
+      padding: 0 10px;
+  }
+
+  .navbar {
+    padding-left: 20px;
+  }
+
   .years-mobile-menu {
     justify-content: center;
   }
