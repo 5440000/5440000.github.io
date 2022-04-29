@@ -12,14 +12,14 @@
   font-family: "My-l";
   src: url(fonts/segoeuil.ttf);
 }
-body, html{
-  height: 100%;
 
+body,
+html {
+  height: 100%;
 }
 .main {
   min-height: calc(100% - 80px);
 }
-
 
 .padding-15 {
   padding: 20px;
@@ -80,8 +80,8 @@ header {
   color: #000000;
 }
 
-.collapse{
-padding-right: 7px;
+.collapse {
+  padding-right: 7px;
 }
 
 /* //форма поиска */
@@ -90,15 +90,18 @@ padding-right: 7px;
   font-size: 20px;
   padding: 0;
   margin-bottom: 38px;
-
 }
 [type="search"] {
   border: none;
   outline: none;
   width: 100%;
 }
-/* .fas.fa-search {
-  color: rgb(0, 0, 0);
+
+/* .first {
+  padding-right: 30px;
+}
+.last{
+  padding-left: 30px;
 } */
 
 .item__image {
@@ -111,6 +114,7 @@ padding-right: 7px;
   box-shadow: 0px 3px 6px #00000029;
   opacity: 1;
   margin-bottom: 38px;
+  cursor: pointer;
 }
 
 /* content */
@@ -120,11 +124,10 @@ padding-right: 7px;
 }
 .description {
   padding: 21px 27px 11px 13px;
-
 }
 
-.pag-buttons{
-  margin-top:63px ;
+.pag-buttons {
+  margin-top: 63px;
   margin-bottom: 120px;
 }
 .description__article-title {
@@ -165,12 +168,11 @@ padding-right: 7px;
   opacity: 0.6;
 }
 
-.title{
+.title {
   margin: 0 0 23px 0;
-
 }
 
-.subtitle{
+.subtitle {
   line-height: 1.2;
   margin-bottom: 41px;
 }
@@ -209,7 +211,6 @@ a:hover {
   font-size: 16px;
   color: #000000;
   opacity: 0.6;
-  padding: 0 25px;
 }
 #pag-buttons div:hover:not(.no-hover) {
   /* #pag-buttons div:hover, a:hover { */
@@ -232,14 +233,14 @@ a:hover {
   margin: auto;
 }
 
-.navbar{
+.navbar {
   padding: 22px 17px 18px 32px;
 }
 .no-padding {
   padding: 0;
 }
 
-.last-li{
+.last-li {
   padding-left: 10px;
 }
 .navbar a:hover {
@@ -322,7 +323,6 @@ a:visited {
 #allArticle {
   white-space: nowrap;
   font-family: My-r;
-  font-size: 20px;
 }
 
 .item-overlay {
@@ -343,8 +343,8 @@ img:hover {
   color: white;
 }
 
-.overlay-listyear{
-margin-bottom: 45px;
+.overlay-listyear {
+  margin-bottom: 45px;
 }
 
 @keyframes bounce {
@@ -374,6 +374,10 @@ margin-bottom: 45px;
   font-family: My-b;
   text-transform: uppercase;
   font-size: 16px;
+}
+
+.all-article {
+  font-size: 20px;
 }
 
 .img-svg {
@@ -438,6 +442,9 @@ margin-bottom: 45px;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    font-size: 35px;
+    margin-bottom: 20px;
+    font-family: My-l;
   }
 
   .list-of-years {
@@ -445,13 +452,48 @@ margin-bottom: 45px;
     display: flex;
     flex-direction: column;
     text-align: center;
-    left: 50%;
-    margin-left: -10%;
-    top: 25px;
+    left: 37%;
+    /* margin-left: -10%; */
+    top: 50px;
     z-index: 1;
+  }
+  .list-of-years a {
+    font-size: 25px;
+    width: 100%;
+  }
+
+  .list-of-years div {
+    width: 100%;
+    border-bottom: 1px solid grey;
+  }
+
+  .all-article {
+    font-size: 30px;
+  }
+
+  .years-mobile-menu {
+    left: 0;
+    width: 100%;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    /* border-radius: 20px; */
+    border: 2px solid grey;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid grey;
+  }
+
+  .overlay-listyear {
+    visibility: hidden;
   }
 
   #showfilter:hover .overlay-listyear {
     display: block;
+  }
+
+  .show {
+    visibility: visible;
   }
 }

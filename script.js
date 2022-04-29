@@ -43,10 +43,6 @@ const stopHoverOnPaginationButtonsFirstAndLast = () => {
   const divWithPaginationButtons = document.getElementById("for-buttons");
   const arrPuginationButtons =
     divWithPaginationButtons.querySelectorAll(".pagination-button");
-  console.log(
-    "🚀 ~ file: script.js ~ line 43 ~ stopHoverOnPaginationButtonsFirstAndLast ~ arrPuginationButtons",
-    arrPuginationButtons.length
-  );
 
   buttonFirst.addEventListener("mouseover", (e) => {
     if (arrPuginationButtons.length <= 1) {
@@ -324,3 +320,24 @@ const createActiveStatusOnClickToFilterYearButtons = () => {
 
 createActiveStatusOnClickToFilterYearButtons();
 
+// dropdauwn of years in mobile
+
+const createDropdown = () => {
+  const listOfYears = document.querySelector(".overlay-listyear");
+  const dropButton = document.getElementById("filter");
+  const arrYears = listOfYears.querySelectorAll(".year");
+  dropButton.addEventListener("click", (e) => {
+    if (listOfYears.classList.contains("show")) {
+      listOfYears.classList.remove("show");
+    } else {
+      listOfYears.classList.add("show");
+      arrYears.forEach((element) => {
+        element.addEventListener("click", () => {
+          listOfYears.classList.remove("show");
+          dropButton.innerHTML = "Filter:" + element.innerHTML;
+        });
+      });
+    }
+  });
+};
+createDropdown();
