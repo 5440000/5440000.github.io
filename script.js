@@ -216,8 +216,14 @@ const loadingFilteredContent = async (year) => {
 const createFilterButtonsAndUrlParametres = (btn) =>
   btn.addEventListener("click", (event) => {
     event.preventDefault();
-    history.pushState({ id: `${btn.id}` }, "", `?year=${btn.id}`);
+    if (btn.id !=="allArticle") {
+      history.pushState({ id: `${btn.id}` }, "", `?year=${btn.id}`);
+    }
+    else {
+      history.pushState({ id: `${btn.id}` }, "", "?");
+    };
     loadingFilteredContent(btn.id);
+
   });
 
 const createFilters = () => {
@@ -228,18 +234,61 @@ const createFilters = () => {
   });
 };
 
-createFilters();
+// ?keyword=test&
 
+const createActionForSearcIcon = () => {
+  const searchIcon = document.querySelector(".search__icon");
+  console.log(
+    "🚀 ~ file: script.js ~ line 235 ~ createActionForSearcIcon ~ searchIcon",
+    searchIcon
+  );
+  const searchForm = document.getElementById("mySearch");
+  console.log(
+    "🚀 ~ file: script.js ~ line 237 ~ createActionForSearcIcon ~ searchForm",
+    searchForm
+  );
+  searchIcon.addEventListener("click", () => {
+    console.log("123");
+    history.pushState(
+      { id: `${searchForm.value}` },
+      "",
+      `?keyword=${searchForm.value}`
+    );
+    createActionForSearcIcon();
+  });
+};
+
+createActionForSearcIcon();
+
+createFilters();
+// #search
 const createUrlParametersSearch = () => {
+  const divWithYears = document.querySelector(".overlay-listyear");
   const searchForm = document.getElementById("mySearch");
   searchForm.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
+      const activYear = divWithYears.querySelector(".active-article");
       event.preventDefault();
-      history.pushState(
-        { id: `${searchForm.value}` },
-        "",
-        `?keyword=${searchForm.value}`
-      );
+      if (location.href.includes("All")) {
+        history.pushState(
+          { id: `${searchForm.value}` },
+          "",
+          `?keyword=${searchForm.value}`
+        );
+      };
+      if (location.href.includes("year")) {
+        history.pushState(
+          { id: `${searchForm.value}` },
+          "",
+          `?keyword=${searchForm.value}&year=${activYear.innerHTML}`
+        );
+      } else {
+        history.pushState(
+          { id: `${searchForm.value}` },
+          "",
+          `?keyword=${searchForm.value}`
+        );
+      }
     }
   });
 };
@@ -259,7 +308,11 @@ const creatActiveStyleNavButton = () => {
 };
 
 creatActiveStyleNavButton();
+
+
 //search
+
+const search =() => {
 function submit(evt) {
   evt.preventDefault();
 }
@@ -291,10 +344,15 @@ function autoReset() {
   cards.forEach(function getMatch(info) {
     if ((input.value == null, input.value == "")) {
       info.classList.remove("show");
+      createPagination()
     } else {
       return;
     }
   });
+
+
+
+
 }
 
 let form = document.querySelector(".search");
@@ -303,6 +361,8 @@ form.addEventListener("keyup", filter);
 form.addEventListener("keyup", autoReset);
 form.addEventListener("submit", submit);
 
+}
+search()
 //active status to filter year buttons
 
 const createActiveStatusOnClickToFilterYearButtons = () => {
@@ -342,7 +402,6 @@ const createDropdown = () => {
 };
 createDropdown();
 
-
 // burger
 const createBurgerMenu = () => {
   const listMenuPage = document.getElementById("navbarSupportedContent");
@@ -363,3 +422,14 @@ const createBurgerMenu = () => {
 };
 createBurgerMenu();
 
+// фокус на инпуте при нажатии на  кнопку из навбар
+const createFocusOnSearchInput = () => {
+  const input = document.getElementById("mySearch");
+  const searchButton = document.getElementById("search-svg");
+
+  searchButton.addEventListener("click", function () {
+    input.focus();
+  });
+};
+
+createFocusOnSearchInput();
