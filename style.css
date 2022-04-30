@@ -217,8 +217,6 @@ a:hover {
   opacity: 0.6;
 }
 #pag-buttons div:hover:not(.no-hover) {
-  /* #pag-buttons div:hover, a:hover { */
-
   opacity: 1;
 }
 
@@ -530,6 +528,7 @@ img:hover {
     font-size: 35px;
     margin-bottom: 20px;
     font-family: My-l;
+    margin: auto;
   }
 
   .list-of-years {
@@ -580,5 +579,10 @@ img:hover {
 
   .show {
     visibility: visible;
+  }
+
+  .filter:hover{
+    text-shadow: 3px 3px #c5b9b985;
+
   }
 }
