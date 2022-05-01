@@ -37,28 +37,51 @@ const createAllItems = (arrItems) => {
 //кнопки First Last не активные если на странице 1 пагинация
 
 const stopHoverOnPaginationButtonsFirstAndLast = () => {
-  const buttonFirst = document.getElementById("first");
-  const buttonLast = document.getElementById("last");
+  const buttonFirst = document.getElementById("first").firstElementChild;
+  console.log(
+    "🚀 ~ file: script.js ~ line 41 ~ stopHoverOnPaginationButtonsFirstAndLast ~ buttonFirst",
+    buttonFirst
+  );
+  const buttonLast = document.getElementById("last").lastChild;
+  console.log(
+    "🚀 ~ file: script.js ~ line 43 ~ stopHoverOnPaginationButtonsFirstAndLast ~ buttonLast",
+    buttonLast
+  );
 
   const divWithPaginationButtons = document.getElementById("for-buttons");
   const arrPuginationButtons =
     divWithPaginationButtons.querySelectorAll(".pagination-button");
 
   buttonFirst.addEventListener("mouseover", (e) => {
-    if (arrPuginationButtons.length <= 1) {
-      buttonFirst.lastChild.classList.add("no-hover");
-      e.preventDefault();
+    buttonFirst.classList.remove("no-hover");
+
+    if (arrPuginationButtons.length === 1) {
+      buttonFirst.classList.add("no-hover");
     }
-    if (arrPuginationButtons.length <= 1) {
-      buttonLast.lastChild.classList.add("no-hover");
-      e.preventDefault();
+    if (arrPuginationButtons[0].classList.contains("active-pagination")) {
+      buttonFirst.classList.add("no-hover");
     }
+    e.preventDefault();
   });
+  buttonLast.addEventListener("mouseover", (e) => {
+    buttonLast.classList.remove("no-hover");
+
+    if (arrPuginationButtons.length === 1) {
+      buttonLast.classList.add("no-hover");
+    }
+    if (
+      arrPuginationButtons[arrPuginationButtons.length - 1].classList.contains(
+        "active-pagination"
+        )
+        ) {
+          buttonLast.classList.add("no-hover");
+        }
+      });
 };
 
-const createPagination = (json) => {
+const createPagination = (itemClass) => {
   const numberOfItemOnPage = 6;
-  const arrAllItemsInHtml = [...content.querySelectorAll(".item")];
+  const arrAllItemsInHtml = [...content.querySelectorAll(itemClass)];
   if (arrAllItemsInHtml.length >= numberOfItemOnPage) {
     for (let i = numberOfItemOnPage; i < arrAllItemsInHtml.length; i++) {
       arrAllItemsInHtml[i].classList.add("hide");
@@ -98,15 +121,19 @@ const createPagination = (json) => {
       HideAllItems();
 
       const showPagination = (i) => {
-        const number = i;
-        const startIndex = number * numberOfItemOnPage - numberOfItemOnPage;
-        let lastIndex = number * numberOfItemOnPage - 1;
-        if (arrAllItemsInHtml.length > numberOfItemOnPage * i) {
+        console.log("🚀 ~ file: script.js ~ line 118 ~ showPagination ~ i", i);
+        const startIndex = i * numberOfItemOnPage - numberOfItemOnPage;
+        let lastIndex = i * numberOfItemOnPage - 1;
+        console.log(
+          "🚀 ~ file: script.js ~ line 105 ~ showPagination ~ arrAllItemsInHtml.length",
+          arrAllItemsInHtml.length
+        );
+        if (arrAllItemsInHtml.length >= numberOfItemOnPage * i) {
           for (let index = startIndex; index <= lastIndex; index++) {
             arrAllItemsInHtml[index].classList.remove("hide");
           }
         } else {
-          if (arrAllItemsInHtml.length <= lastIndex) {
+          if (arrAllItemsInHtml.length < lastIndex) {
             for (let i = lastIndex; i > arrAllItemsInHtml.length - 1; --i) {
               lastIndex = lastIndex - 1;
             }
@@ -189,10 +216,11 @@ const createPagination = (json) => {
   stopHoverOnPaginationButtonsFirstAndLast();
 };
 const loadingContent = async function getData() {
-  const aaa = await fetch(urlJson);
-  const json = await aaa.json();
+  const data = await fetch(urlJson);
+  const json = await data.json();
+  const itemClass = ".item";
   setTimeout(() => createAllItems(json), 1000);
-  setTimeout(() => createPagination(json), 1500);
+  setTimeout(() => createPagination(itemClass), 1500);
 };
 
 loadingContent();
@@ -210,20 +238,19 @@ const loadingFilteredContent = async (year) => {
       createItem(element);
     }
   });
-  createPagination(data);
+  const itemClass = ".item";
+  createPagination(itemClass);
 };
 
 const createFilterButtonsAndUrlParametres = (btn) =>
   btn.addEventListener("click", (event) => {
     event.preventDefault();
-    if (btn.id !=="allArticle") {
+    if (btn.id !== "allArticle") {
       history.pushState({ id: `${btn.id}` }, "", `?year=${btn.id}`);
-    }
-    else {
+    } else {
       history.pushState({ id: `${btn.id}` }, "", "?");
-    };
+    }
     loadingFilteredContent(btn.id);
-
   });
 
 const createFilters = () => {
@@ -238,15 +265,7 @@ const createFilters = () => {
 
 const createActionForSearcIcon = () => {
   const searchIcon = document.querySelector(".search__icon");
-  console.log(
-    "🚀 ~ file: script.js ~ line 235 ~ createActionForSearcIcon ~ searchIcon",
-    searchIcon
-  );
   const searchForm = document.getElementById("mySearch");
-  console.log(
-    "🚀 ~ file: script.js ~ line 237 ~ createActionForSearcIcon ~ searchForm",
-    searchForm
-  );
   searchIcon.addEventListener("click", () => {
     console.log("123");
     history.pushState(
@@ -275,7 +294,7 @@ const createUrlParametersSearch = () => {
           "",
           `?keyword=${searchForm.value}`
         );
-      };
+      }
       if (location.href.includes("year")) {
         history.pushState(
           { id: `${searchForm.value}` },
@@ -309,60 +328,80 @@ const creatActiveStyleNavButton = () => {
 
 creatActiveStyleNavButton();
 
+//##search
 
-//search
+const search = () => {
+  function submit(e) {
+    e.preventDefault();
+  }
 
-const search =() => {
-function submit(evt) {
-  evt.preventDefault();
-}
+  function filter(e) {
+    e.preventDefault();
+    const input = document.getElementById("mySearch");
+    const inputValue = input.value.toUpperCase();
+    const cards = document.querySelectorAll(".item");
 
-function filter(evt) {
-  evt.preventDefault();
-  var input = document.getElementById("mySearch");
-  var inputValue = input.value.toUpperCase();
-  var cards = document.querySelectorAll(".item");
+    cards.forEach(function getMatch(info) {
+      let heading = info.querySelector("h2");
+      let headingContent = heading.innerHTML.toUpperCase();
 
-  cards.forEach(function getMatch(info) {
-    let heading = info.querySelector("h2");
-    let headingContent = heading.innerHTML.toUpperCase();
+      if (headingContent.includes(inputValue)) {
+        info.classList.add("show");
+        info.classList.remove("hide");
+      } else {
+        info.classList.add("hide");
+        info.classList.remove("show");
+      }
+    });
+  }
 
-    if (headingContent.includes(inputValue)) {
-      info.classList.add("show");
-      info.classList.remove("hide-result");
-    } else {
-      info.classList.add("hide-result");
-      info.classList.remove("show");
-    }
+  function autoReset() {
+    const input = document.getElementById("mySearch");
+    const cards = document.querySelectorAll(".item");
+
+    cards.forEach(function getMatch(info) {
+      if ((input.value == null, input.value == "")) {
+        info.classList.remove("show");
+      } else {
+        return;
+      }
+    });
+  }
+
+  const form = document.querySelector(".search");
+
+  form.addEventListener("keyup", (e) => {
+    filter(e);
+    const itemClass = ".show";
+    createPagination(itemClass);
   });
-}
+  //   filter(e);
+  //   const divWithPaginationButtons = document.getElementById("for-buttons");
+  //   const arrPaginationButtons = [
+  //     ...divWithPaginationButtons.querySelectorAll(".pagination-button"),
+  //   ];
+  //   const divContent = document.getElementById("content");
+  //   const arrShowItems = divContent.querySelectorAll(".show");
+  //   const numberOfItemOnPage = 6;
 
-function autoReset() {
-  let input = document.getElementById("mySearch");
-  let cards = document.querySelectorAll(".item");
+  //   // if (arrShowItems.length > numberOfItemOnPage) {
+  //     const howMuchButtons = Math.ceil(
+  //       arrShowItems.length / numberOfItemOnPage
+  //     );
+  //     const firstIndex = howMuchButtons - 1;
+  //     const arrButtonsToHide = arrPaginationButtons.slice(firstIndex);
+  //   // }
+  //   arrButtonsToHide.forEach(element => {
+  //   element.classList.add("hide");
 
-  cards.forEach(function getMatch(info) {
-    if ((input.value == null, input.value == "")) {
-      info.classList.remove("show");
-      createPagination()
-    } else {
-      return;
-    }
-  });
+  //   });
 
-
-
-
-}
-
-let form = document.querySelector(".search");
-
-form.addEventListener("keyup", filter);
-form.addEventListener("keyup", autoReset);
-form.addEventListener("submit", submit);
-
-}
-search()
+  //   // element.classList.remove("active-pagination");
+  // });
+  form.addEventListener("keyup", autoReset);
+  form.addEventListener("submit", submit);
+};
+search();
 //active status to filter year buttons
 
 const createActiveStatusOnClickToFilterYearButtons = () => {

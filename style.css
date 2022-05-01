@@ -10,10 +10,10 @@
 
 @font-face {
   font-family: "Segoe UI Light";
-  src: url(fonts/segoeuil.ttf) ;
+  src: url(fonts/segoeuil.ttf);
 }
 
-body{
+body {
   font-family: "Segoe UI Light";
 }
 
@@ -45,7 +45,7 @@ img {
 }
 
 header {
-  box-shadow: 0px 3px 6px #00000015;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.082);
   width: 100%;
   position: fixed;
   top: 0;
@@ -65,27 +65,27 @@ header {
 .main-head__title {
   text-align: center;
   font-size: 40px;
-  letter-spacing: 0px;
-  color: rgb(0, 0, 0);
+  letter-spacing: 0;
+  color: #000000;
 }
 
 .black {
   color: #000000;
 }
 
-.black, .pagination-button, .nav-active, .footer-link {
-  font-family:Segoe UI Bold ;
+.black,
+.pagination-button,
+.nav-active,
+.footer-link {
+  font-family: Segoe UI Bold;
 }
 
-.h-40 {
-  height: 40px;
-}
 
 .main-head__subtitle {
   /* UI Properties */
   text-align: center;
   font-size: 28px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   color: #000000;
 }
 
@@ -95,7 +95,7 @@ header {
 
 /* //форма поиска */
 .search {
-  border: 2px solid rgb(0, 0, 0);
+  border: 2px solid #000000;
   font-size: 20px;
   padding: 0;
   margin-bottom: 38px;
@@ -106,13 +106,6 @@ header {
   width: 100%;
 }
 
-/* .first {
-  padding-right: 30px;
-}
-.last{
-  padding-left: 30px;
-} */
-
 .item__image {
   aspect-ratio: 16 / 9;
   width: 100%;
@@ -120,7 +113,7 @@ header {
 }
 
 .item {
-  box-shadow: 0px 3px 6px #00000029;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.161);
   opacity: 1;
   margin-bottom: 38px;
   cursor: pointer;
@@ -143,7 +136,7 @@ header {
   text-align: left;
   font-family: Segoe UI Regelar;
   font-size: 20px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   color: #000000;
   opacity: 1;
 }
@@ -163,14 +156,14 @@ header {
   text-align: left;
   font-family: Segoe UI Regelar;
   font-size: 16px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   color: #000000;
   opacity: 1;
 }
 .description__company {
   text-align: left;
   font: size 16px;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   color: #000000;
   opacity: 0.6;
 }
@@ -218,21 +211,25 @@ a:hover {
   color: #000000;
   opacity: 0.6;
 }
+
+.no-hover {
+
+  cursor: default;
+}
+
+
 #pag-buttons div:hover:not(.no-hover) {
   opacity: 1;
 }
 
-.no-hover {
-  cursor: default;
-}
 
 .active {
-  color: #000000;
+  color: hsl(0, 0%, 0%);
 }
 
 .footer {
-  background-color: black;
-  height: 80px;
+  background-color: #000000;
+  padding: 19px 30px;
   width: 100%;
   margin: auto;
 }
@@ -248,12 +245,12 @@ a:hover {
   padding-left: 10px;
 }
 .navbar a:hover {
-  text-shadow: 0px 1px #000000;
+  text-shadow: 0 1px #000000;
 }
 .navbar-brand {
   font-size: 20px;
   font-family: Segoe UI Regelar;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   color: #707070;
 }
 
@@ -341,7 +338,7 @@ a:visited {
 .footer__content a:hover,
 img:hover {
   text-decoration: underline;
-  color: white;
+  color: #ffffff;
 }
 
 .overlay-listyear {
@@ -373,7 +370,7 @@ img:hover {
 }
 
 .footer-link {
-  color: white;
+  color: #ffffff;
   text-transform: uppercase;
   font-size: 16px;
 }
@@ -411,7 +408,7 @@ img:hover {
 }
 
 .item:hover {
-  box-shadow: 0px 3px 6px #00000079;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.475);
 }
 
 .hide-result {
@@ -423,7 +420,7 @@ img:hover {
 }
 
 .active-article {
-  color: black;
+  color: #000000;
   text-decoration: underline;
   opacity: 1;
 }
@@ -452,7 +449,7 @@ img:hover {
     top: 60px;
     right: 0;
     width: 50%;
-    background-color: white;
+    background-color: #ffffff;
     padding: 20px;
     border: 2px solid #707070;
     border-radius: 3px;
@@ -476,7 +473,7 @@ img:hover {
   }
 
   .burger:hover {
-    box-shadow: 0px 3px 6px #312e2e79;
+    box-shadow: 0 3px 6px rgba(49, 46, 46, 0.475);
     color: black;
   }
 
@@ -492,8 +489,6 @@ img:hover {
   }
   .navbar-nav li {
     padding: 5px;
-  }
-  .nav-active {
   }
 }
 @media (max-width: 575.98px) {
@@ -547,7 +542,7 @@ img:hover {
 
   .list-of-years div {
     width: 100%;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid #808080;
   }
 
   .all-article {
@@ -558,14 +553,12 @@ img:hover {
     left: 0;
     width: 100%;
     align-items: center;
-    background-color: white;
     padding: 20px;
-    /* border-radius: 20px; */
-    border: 2px solid grey;
+    border: 2px solid #808080;
     align-items: center;
-    background-color: white;
+    background-color: #ffffff;
     padding: 20px;
-    border: 2px solid grey;
+    border: 2px solid #808080;
   }
 
   .overlay-listyear {
@@ -580,8 +573,7 @@ img:hover {
     visibility: visible;
   }
 
-  .filter:hover{
-    text-shadow: 3px 3px #c5b9b985;
-
+  .filter:hover {
+    text-shadow: 3px 3px rgba(197, 185, 185, 0.522);
   }
 }
