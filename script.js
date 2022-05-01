@@ -72,11 +72,11 @@ const stopHoverOnPaginationButtonsFirstAndLast = () => {
     if (
       arrPuginationButtons[arrPuginationButtons.length - 1].classList.contains(
         "active-pagination"
-        )
-        ) {
-          buttonLast.classList.add("no-hover");
-        }
-      });
+      )
+    ) {
+      buttonLast.classList.add("no-hover");
+    }
+  });
 };
 
 const createPagination = (itemClass) => {
@@ -97,7 +97,7 @@ const createPagination = (itemClass) => {
   const createBtn = (i) => {
     const content = document.getElementById("for-buttons");
     const btn = document.createElement("div");
-    btn.innerHTML = `${i}`;
+    btn.innerHTML = i;
 
     btn.classList.add("col-1", "pagination-button");
     if (i === 1) {
@@ -121,27 +121,12 @@ const createPagination = (itemClass) => {
       HideAllItems();
 
       const showPagination = (i) => {
-        console.log("🚀 ~ file: script.js ~ line 118 ~ showPagination ~ i", i);
         const startIndex = i * numberOfItemOnPage - numberOfItemOnPage;
-        let lastIndex = i * numberOfItemOnPage - 1;
-        console.log(
-          "🚀 ~ file: script.js ~ line 105 ~ showPagination ~ arrAllItemsInHtml.length",
-          arrAllItemsInHtml.length
-        );
-        if (arrAllItemsInHtml.length >= numberOfItemOnPage * i) {
-          for (let index = startIndex; index <= lastIndex; index++) {
-            arrAllItemsInHtml[index].classList.remove("hide");
-          }
-        } else {
-          if (arrAllItemsInHtml.length < lastIndex) {
-            for (let i = lastIndex; i > arrAllItemsInHtml.length - 1; --i) {
-              lastIndex = lastIndex - 1;
-            }
-            for (let index = startIndex; index <= lastIndex; index++) {
-              arrAllItemsInHtml[index].classList.remove("hide");
-            }
-          }
-        }
+        const lastIndex = i * numberOfItemOnPage - 1;
+        const renderedItems = arrAllItemsInHtml.slice(startIndex, lastIndex);
+        renderedItems.forEach((element) => {
+          element.classList.remove("hide");
+        });
       };
 
       showPagination(i);
