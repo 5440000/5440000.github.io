@@ -80,7 +80,6 @@ header {
   font-family: Segoe UI Bold;
 }
 
-
 .main-head__subtitle {
   /* UI Properties */
   text-align: center;
@@ -182,9 +181,6 @@ header {
   margin-right: 0;
 }
 
-#all-article {
-  white-space: nowrap;
-}
 
 .pl-0 {
   padding-left: 0;
@@ -213,15 +209,12 @@ a:hover {
 }
 
 .no-hover {
-
   cursor: default;
 }
-
 
 #pag-buttons div:hover:not(.no-hover) {
   opacity: 1;
 }
-
 
 .active {
   color: hsl(0, 0%, 0%);
@@ -270,12 +263,12 @@ a:hover {
   padding-bottom: 27px;
 }
 
-#search-svg {
+.search-svg {
   width: 16px;
   height: 16px;
 }
 
-#profile-svg {
+.profile-svg {
   width: 24px;
 }
 
@@ -283,7 +276,7 @@ a:visited {
   text-decoration: none;
 }
 
-#mySearch {
+.my-search {
   height: 60px;
   font-size: 24px;
   font-family: Segoe UI Regelar;
@@ -318,9 +311,10 @@ a:visited {
   opacity: 0.6;
 }
 
-#allArticle {
+.all-article {
   white-space: nowrap;
   font-family: Segoe UI Regelar;
+  font-size: 20px;
 }
 
 .item-overlay {
@@ -375,24 +369,20 @@ img:hover {
   font-size: 16px;
 }
 
-.all-article {
-  font-size: 20px;
-}
-
 .img-svg {
   width: 31px;
 }
 
-#linkedin {
+.linkedin {
   width: 26px;
 }
 
-#first {
+.first {
   text-align: right;
   padding-left: 0;
   white-space: nowrap;
 }
-#last {
+.last {
   white-space: nowrap;
   padding-right: 0;
 }
@@ -436,7 +426,7 @@ img:hover {
 }
 
 @media (max-width: 768px) {
-  #list-pages {
+  .list-pages {
     flex-direction: column;
   }
 
@@ -545,9 +535,6 @@ img:hover {
     border-bottom: 1px solid #808080;
   }
 
-  .all-article {
-    font-size: 30px;
-  }
 
   .years-mobile-menu {
     left: 0;
@@ -565,7 +552,7 @@ img:hover {
     visibility: hidden;
   }
 
-  #showfilter:hover .overlay-listyear {
+  .overlay-listyear {
     display: block;
   }
 
