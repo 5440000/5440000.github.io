@@ -33,6 +33,11 @@ html {
   padding: 20px;
 }
 
+.container-svg {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .container {
   max-width: 1200px;
   margin: auto;
@@ -127,6 +132,10 @@ header {
   padding: 21px 27px 11px 13px;
 }
 
+.for-buttons {
+  display: flex;
+  justify-content: center;
+}
 .pag-buttons {
   margin-top: 63px;
   margin-bottom: 120px;
@@ -181,7 +190,6 @@ header {
   margin-right: 0;
 }
 
-
 .pl-0 {
   padding-left: 0;
 }
@@ -206,6 +214,7 @@ a:hover {
   font-size: 16px;
   color: #000000;
   opacity: 0.6;
+  margin: 0 20px;
 }
 
 .no-hover {
@@ -260,7 +269,7 @@ a:hover {
 
 .navbar-nav a {
   padding-top: 23px;
-  padding-bottom: 27px;
+  padding-bottom: 23px;
 }
 
 .search-svg {
@@ -379,12 +388,18 @@ img:hover {
 
 .first {
   text-align: right;
-  padding-left: 0;
+  padding: 0;
   white-space: nowrap;
+  justify-content: flex-start;
+  display: flex;
+  margin-right: 30px;
 }
 .last {
   white-space: nowrap;
-  padding-right: 0;
+  padding: 0;
+  justify-content: flex-end;
+  display: flex;
+  margin-left: 30px;
 }
 
 .active-pagination {
@@ -425,6 +440,14 @@ img:hover {
   visibility: hidden;
 }
 
+.footer__links {
+  flex-wrap: nowrap;
+}
+.footer__privacy,
+.face,
+.link {
+  margin-right: 40px;
+}
 @media (max-width: 768px) {
   .list-pages {
     flex-direction: column;
@@ -447,9 +470,6 @@ img:hover {
 
   .show {
     visibility: visible;
-  }
-
-  .burger-style {
   }
 
   .burger {
@@ -502,6 +522,15 @@ img:hover {
   .years-mobile-menu {
     justify-content: center;
   }
+  .footer__content {
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer {
+    padding: 19px 10px;
+  }
 
   .filter {
     position: relative;
@@ -535,7 +564,6 @@ img:hover {
     border-bottom: 1px solid #808080;
   }
 
-
   .years-mobile-menu {
     left: 0;
     width: 100%;
@@ -562,5 +590,35 @@ img:hover {
 
   .filter:hover {
     text-shadow: 3px 3px rgba(197, 185, 185, 0.522);
+  }
+
+  .container-svg {
+    justify-content: center;
+  }
+
+  .list-links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .pag-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pagination-button {
+    padding: 0 15px;
+    font-size: 25px;
+    border: 1px solid #808080;
+    margin: 0 5px;
+  }
+
+  .first {
+    justify-content: flex-end;
+  }
+  .first,
+  .last {
+    display: none;
   }
 }
