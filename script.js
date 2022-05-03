@@ -99,7 +99,7 @@ const createPagination = (itemClass) => {
     const btn = document.createElement("div");
     btn.innerHTML = i;
 
-    btn.classList.add("col-1", "pagination-button");
+    btn.classList.add("pagination-button");
     if (i === 1) {
       btn.classList.add("active-pagination");
     }
