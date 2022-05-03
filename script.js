@@ -38,16 +38,7 @@ const createAllItems = (arrItems) => {
 
 const stopHoverOnPaginationButtonsFirstAndLast = () => {
   const buttonFirst = document.getElementById("first").firstElementChild;
-  console.log(
-    "🚀 ~ file: script.js ~ line 41 ~ stopHoverOnPaginationButtonsFirstAndLast ~ buttonFirst",
-    buttonFirst
-  );
   const buttonLast = document.getElementById("last").lastChild;
-  console.log(
-    "🚀 ~ file: script.js ~ line 43 ~ stopHoverOnPaginationButtonsFirstAndLast ~ buttonLast",
-    buttonLast
-  );
-
   const divWithPaginationButtons = document.getElementById("for-buttons");
   const arrPuginationButtons =
     divWithPaginationButtons.querySelectorAll(".pagination-button");
@@ -208,8 +199,6 @@ const loadingContent = async function getData() {
   setTimeout(() => createPagination(itemClass), 1500);
 };
 
-loadingContent();
-
 const loadingFilteredContent = async (year) => {
   const content = document.getElementById("content");
   content.innerHTML = " ";
@@ -262,9 +251,6 @@ const createActionForSearcIcon = () => {
   });
 };
 
-createActionForSearcIcon();
-
-createFilters();
 // #search
 const createUrlParametersSearch = () => {
   const divWithYears = document.querySelector(".overlay-listyear");
@@ -297,8 +283,6 @@ const createUrlParametersSearch = () => {
   });
 };
 
-createUrlParametersSearch();
-
 const creatActiveStyleNavButton = () => {
   const arrNavButtons = document.querySelectorAll(".nav-li");
   arrNavButtons.forEach((currentItem) => {
@@ -310,8 +294,6 @@ const creatActiveStyleNavButton = () => {
     });
   });
 };
-
-creatActiveStyleNavButton();
 
 //##search
 
@@ -360,33 +342,10 @@ const search = () => {
     const itemClass = ".show";
     createPagination(itemClass);
   });
-  //   filter(e);
-  //   const divWithPaginationButtons = document.getElementById("for-buttons");
-  //   const arrPaginationButtons = [
-  //     ...divWithPaginationButtons.querySelectorAll(".pagination-button"),
-  //   ];
-  //   const divContent = document.getElementById("content");
-  //   const arrShowItems = divContent.querySelectorAll(".show");
-  //   const numberOfItemOnPage = 6;
 
-  //   // if (arrShowItems.length > numberOfItemOnPage) {
-  //     const howMuchButtons = Math.ceil(
-  //       arrShowItems.length / numberOfItemOnPage
-  //     );
-  //     const firstIndex = howMuchButtons - 1;
-  //     const arrButtonsToHide = arrPaginationButtons.slice(firstIndex);
-  //   // }
-  //   arrButtonsToHide.forEach(element => {
-  //   element.classList.add("hide");
-
-  //   });
-
-  //   // element.classList.remove("active-pagination");
-  // });
   form.addEventListener("keyup", autoReset);
   form.addEventListener("submit", submit);
 };
-search();
 //active status to filter year buttons
 
 const createActiveStatusOnClickToFilterYearButtons = () => {
@@ -401,8 +360,6 @@ const createActiveStatusOnClickToFilterYearButtons = () => {
     });
   });
 };
-
-createActiveStatusOnClickToFilterYearButtons();
 
 // dropdauwn of years in mobile
 
@@ -424,7 +381,6 @@ const createDropdown = () => {
     }
   });
 };
-createDropdown();
 
 // burger
 const createBurgerMenu = () => {
@@ -433,8 +389,10 @@ const createBurgerMenu = () => {
   const arrPages = listMenuPage.querySelectorAll(".nav-li");
   burgerButton.addEventListener("click", (e) => {
     if (listMenuPage.classList.contains("show")) {
+      burgerButton.classList.remove("show");
       listMenuPage.classList.remove("show");
     } else {
+      burgerButton.classList.add("show");
       listMenuPage.classList.add("show");
       arrPages.forEach((element) => {
         element.addEventListener("click", () => {
@@ -444,7 +402,6 @@ const createBurgerMenu = () => {
     }
   });
 };
-createBurgerMenu();
 
 // фокус на инпуте при нажатии на  кнопку из навбар
 const createFocusOnSearchInput = () => {
@@ -456,4 +413,13 @@ const createFocusOnSearchInput = () => {
   });
 };
 
+loadingContent();
+createActionForSearcIcon();
+createFilters();
+createUrlParametersSearch();
+creatActiveStyleNavButton();
+search();
+createActiveStatusOnClickToFilterYearButtons();
+createDropdown();
+createBurgerMenu();
 createFocusOnSearchInput();
