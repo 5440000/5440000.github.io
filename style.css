@@ -650,13 +650,14 @@ img:hover {
   .pag-buttons {
     flex-direction: column;
     align-items: center;
+    
   }
 
   .pagination-button {
     padding: 0 15px;
     font-size: 25px;
     border: 1px solid #808080;
-    margin: 0 5px;
+    margin: 5px;
   }
 
   .first {
@@ -666,4 +667,19 @@ img:hover {
   .last {
     display: none;
   }
+
+  .for-buttons {
+    flex-wrap: wrap;
+  }
+
+}
+
+@media (max-width: 310px) {
+  .navbar {
+    flex-direction: column-reverse;
+  }
+.navbar-brand {
+  margin-top: 8px;
+}
+
 }
