@@ -72,7 +72,7 @@ const stopHoverOnPaginationButtonsFirstAndLast = () => {
 
 const createPagination = (itemClass) => {
   const numberOfItemOnPage = 6;
-  const arrAllItemsInHtml = [...content.querySelectorAll(itemClass)];
+  const arrAllItemsInHtml = [...CONTENT.querySelectorAll(itemClass)];
   if (arrAllItemsInHtml.length >= numberOfItemOnPage) {
     for (let i = numberOfItemOnPage; i < arrAllItemsInHtml.length; i++) {
       arrAllItemsInHtml[i].classList.add("hide");
@@ -199,22 +199,7 @@ const loadingContent = async function getData() {
   setTimeout(() => createPagination(itemClass), 1500);
 };
 
-const loadingFilteredContent = async (year) => {
-  const content = document.getElementById("content");
-  content.innerHTML = " ";
-  const json = await fetch(urlJson);
-  const data = await json.json();
-  data.forEach((element) => {
-    if (element.year === +year) {
-      createItem(element);
-    }
-    if (year === "allArticle") {
-      createItem(element);
-    }
-  });
-  const itemClass = ".item";
-  createPagination(itemClass);
-};
+
 
 const createFilterButtonsAndUrlParametres = (btn) =>
   btn.addEventListener("click", (event) => {
