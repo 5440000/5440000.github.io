@@ -1,4 +1,5 @@
 const urlJson = "https://5440000.github.io/items.json";
+const ITEMS_ON_PAGE = 5;
 
 const createItem = (obj) => {
   const content = document.querySelector("#content");
@@ -32,11 +33,51 @@ const createItem = (obj) => {
 const loadingContent = async function getData() {
   const json = await fetch(urlJson);
   const data = await json.json();
-  const itemsOnPage = 5 
-  const firstItems = data.filter((e,index)=>index < itemsOnPage);
-  firstItems.map(createItem)
-}
-loadingContent()
+  const firstItems = data.filter((e, index) => index < ITEMS_ON_PAGE);
+  firstItems.map(createItem);
+  createPagination(data, ITEMS_ON_PAGE);
+};
+loadingContent();
+
+const createPagination = (data, ITEMS_ON_PAGE) => {
+  const div = document.getElementById("for-buttons");
+  const howMatchButtons = Math.ceil(data.length / ITEMS_ON_PAGE);
+  let numberForRender = 0;
+  while (numberForRender < howMatchButtons) {
+    numberForRender++;
+    const createPagButtons = function () {
+      const btn = document.createElement("div");
+      btn.innerHTML = numberForRender;
+      numberForRender === 1
+        ? btn.classList.add("pagination-button", "active-pagination")
+        : btn.classList.add("pagination-button");
+      div.append(btn);
+      btn.addEventListener("click", function showItems(e) {
+        const buttons =document.querySelectorAll(".pagination-button")
+        buttons.forEach(e => {e.classList.remove("active-pagination")});
+        e.target.classList.add("active-pagination")
+        const content = document.querySelector("#content");
+        content.innerHTML = " ";
+        const firstIndex = e.target.innerHTML;
+        const items = data.filter(
+          (e, index) =>
+            index >= firstIndex * ITEMS_ON_PAGE - 5 &&
+            index <= firstIndex * ITEMS_ON_PAGE - 1
+        );
+        items.map(createItem);
+      });
+    };
+    createPagButtons();
+  }
+};
+
+// const activeButtonStyle = (params) => {
+//   const buttons = document.querySelectorAll("pagination-button")
+//   buttons.find((e) => {e.
+
+//   })
+
+// }
 
 // const createPaginationButton = (i) => {
 //   const content = document.getElementById("for-buttons");
