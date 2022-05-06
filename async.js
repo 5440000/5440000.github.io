@@ -2,6 +2,7 @@ const URL_JSON = "https://5440000.github.io/items.json";
 const ITEMS_ON_PAGE = 5;
 const CONTENT = document.querySelector("#content");
 let DATA = [];
+let filteredItems = [];
 
 const createItem = (articlePreview) => {
   const div = document.createElement("div");
@@ -33,13 +34,14 @@ const createItem = (articlePreview) => {
 const loadingContent = async () => {
   const json = await fetch(URL_JSON);
   DATA = await json.json();
+  filteredItems = DATA;
   const firstItems = DATA.filter((e, index) => index < ITEMS_ON_PAGE);
   firstItems.map(createItem);
-  createPagination(DATA, ITEMS_ON_PAGE);
+  createPagination(DATA);
 };
 loadingContent();
 
-const createPagination = (DATA, ITEMS_ON_PAGE) => {
+const createPagination = (DATA) => {
   const buttonsWrap = document.getElementById("for-buttons");
   buttonsWrap.innerHTML = "";
   const howMatchButtonsForItemsNeed = Math.ceil(DATA.length / ITEMS_ON_PAGE);
@@ -59,7 +61,7 @@ const createPagination = (DATA, ITEMS_ON_PAGE) => {
           e.classList.remove("active-pagination");
         });
         e.target.classList.add("active-pagination");
-        CONTENT.innerHTML = " ";
+        CONTENT.innerHTML = "";
         const firstIndex = e.target.innerHTML;
         const items = DATA.filter(
           (e, index) =>
@@ -84,7 +86,7 @@ const createFilterButtons = () => {
       });
       filterButton.classList.add("active-article");
       CONTENT.innerHTML = "";
-      const filteredItems = DATA.filter(
+      filteredItems = DATA.filter(
         (el) =>
           filterButton.id === "allArticle" ||
           el.year === Number(filterButton.id)
@@ -95,91 +97,49 @@ const createFilterButtons = () => {
   });
 };
 createFilterButtons();
-//     if (year === "allArticle") {
-//       createItem(element);
-//     }
 
-// const createFilterButtonsAndUrlParametres = (btn) =>
-//   btn.addEventListener("click", (event) => {
-//     event.preventDefault();
-//     if (btn.id !== "allArticle") {
-//       history.pushState({ id: `${btn.id}` }, "", `?year=${btn.id}`);
-//     } else {
-//       history.pushState({ id: `${btn.id}` }, "", "?");
-//     }
-//     loadingFilteredContent(btn.id);
-//     createPagination()
-//   });
+// ___________________________________________________________________________________________________________
 
-// const loadingFilteredContent = async (year) => {
-//   const content = document.getElementById("content");
-//   content.innerHTML = " ";
-//   const json = await fetch(URL_JSON);
-//   const data = await json.json();
+const createSearch = () => {
+  function submit(e) {
+    e.preventDefault();
+  }
+  function filter(e) {
+    const input = document.getElementById("mySearch");
+    let filteredItemForRender = [];
+    const inputValue = input.value.toUpperCase();
+    filteredItems.forEach((item) => {
+      let article = item.articleTitle.toUpperCase();
+      if (article.includes(inputValue)) {
+        filteredItemForRender.push(item);
+      }
+    });
+    CONTENT.innerHTML = "";
+    filteredItemForRender.slice(0, ITEMS_ON_PAGE).map(createItem);
+    createPagination(filteredItemForRender);
+  }
 
-//   data.forEach((element) => {
-//     if (element.year === +year) {
-//       createItem(element);
-//     }
-//     if (year === "allArticle") {
-//       createItem(element);
-//     }
-//   });
-//   // createPagination();
-// };
+  function autoReset() {
+    const input = document.getElementById("mySearch");
+    const cards = document.querySelectorAll(".item");
 
-// const createFilters = () => {
-//   const allAncors = document.querySelectorAll(".year");
-//   allAncors.forEach((element) => {
-//     const ancorFilterYear = document.getElementById(`${element.id}`);
-//     createFilterButtonsAndUrlParametres(ancorFilterYear);
-//   });
-// };
+    cards.forEach(function getMatch(info) {
+      if ((input.value == null, input.value == "")) {
+        createPagination(filteredItems);
+      } else {
+        return;
+      }
+    });
+  }
 
-// createFilters()
+  const form = document.querySelector(".search");
 
-// const activeButtonStyle = (params) => {
-//   const buttons = document.querySelectorAll("pagination-button")
-//   buttons.find((e) => {e.
+  form.addEventListener("keyup", (e) => {
+    e.preventDefault();
+    filter(e);
+  });
 
-//   })
-
-// }
-
-// const createPaginationButton = (i) => {
-//   const content = document.getElementById("for-buttons");
-//   const btn = document.createElement("div");
-//   btn.innerHTML = i;
-
-//   btn.classList.add("col-1", "pagination-button");
-//   if (i === 1) {
-//     btn.classList.add("active-pagination");
-//   }
-//   content.append(btn);
-//   btn.addEventListener("click", () => {
-//     const pagButtons = content.querySelectorAll(".pagination-button");
-//     pagButtons.forEach((element) => {
-//       const divWithPaginationButtons = document.getElementById("pag-buttons");
-//       const allActiveButton = [
-//         ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
-//       ];
-
-//       allActiveButton.forEach((element) => {
-//         element.classList.remove("active-pagination");
-//       });
-//       element.classList.remove("active-pagination");
-//     });
-//     btn.classList.add("active-pagination");
-
-//     const showPagination = (i) => {
-//       const startIndex = i * numberOfItemOnPage - numberOfItemOnPage;
-//       const lastIndex = i * numberOfItemOnPage - 1;
-//       const renderedItems = arrAllItemsInHtml.slice(startIndex, lastIndex);
-//       renderedItems.forEach((element) => {
-//         element.classList.remove("hide");
-//       });
-//     };
-
-//     showPagination(i);
-//   });
-// };
+  form.addEventListener("keyup", autoReset);
+  form.addEventListener("submit", submit);
+};
+createSearch();
