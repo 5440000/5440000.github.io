@@ -37,8 +37,8 @@ const loadingContent = async () => {
   DATA = await json.json();
   FILTERED_ITEMS = DATA;
   const firstItems = DATA.filter((e, index) => index < ITEMS_ON_PAGE);
-  firstItems.map(createItem);
-  createPagination(DATA);
+  setTimeout(() => firstItems.map(createItem), 1000);
+  setTimeout(() => createPagination(DATA), 1000);
 };
 // ___________________________________PAGINATION_______________________________________________________________________
 
@@ -57,7 +57,7 @@ const createPagination = (array) => {
         : button.classList.add("pagination-button");
       buttonsWrap.append(button);
       button.addEventListener("click", function showItems(e) {
-        removeActiveStyleFromFirstAndLastButtons()
+        removeActiveStyleFromFirstAndLastButtons();
         const buttons = document.querySelectorAll(".pagination-button");
         buttons.forEach((e) => {
           e.classList.remove("active-pagination");
@@ -81,7 +81,7 @@ const createPagination = (array) => {
     const divForLastButton = document.getElementById("last");
     const firstButton = document.createElement("div");
     const lastButton = document.createElement("div");
-  
+
     const refreshActiveStatus = (e) => {
       const divWithPaginationButtons = document.getElementById("pag-buttons");
       const allActiveButton = [
@@ -92,15 +92,15 @@ const createPagination = (array) => {
       });
       e.classList.add("active-pagination");
     };
-  
+
     divForFirstButton.innerHTML = " ";
     divForFirstButton.append(firstButton);
     firstButton.classList.add("pagination-button", "no-padding");
     firstButton.textContent = "< First";
     firstButton.addEventListener("click", (event) => {
       const a = event.target;
-      CONTENT.innerHTML = ""
-      array.filter((e, index) => index < ITEMS_ON_PAGE).map(createItem)
+      CONTENT.innerHTML = "";
+      array.filter((e, index) => index < ITEMS_ON_PAGE).map(createItem);
       refreshActiveStatus(a);
     });
     divForLastButton.innerHTML = " ";
@@ -109,23 +109,28 @@ const createPagination = (array) => {
     lastButton.textContent = "Last >";
     lastButton.addEventListener("click", (event) => {
       const a = event.target;
-      CONTENT.innerHTML = ""
-      array.filter((e, index) => index >= Math.floor(array.length/ITEMS_ON_PAGE)*ITEMS_ON_PAGE).map(createItem)
+      CONTENT.innerHTML = "";
+      array
+        .filter(
+          (e, index) =>
+            index >= Math.floor(array.length / ITEMS_ON_PAGE) * ITEMS_ON_PAGE
+        )
+        .map(createItem);
       refreshActiveStatus(a);
     });
   };
-  
+
   // ___________________________________________________________________________________________________________-
   const stopHoverOnPaginationButtonsFirstAndLast = () => {
     const buttonFirst = document.getElementById("first").firstElementChild;
     const buttonLast = document.getElementById("last").lastChild;
     const divWithPaginationButtons = document.getElementById("for-buttons");
     const arrPuginationButtons =
-    divWithPaginationButtons.querySelectorAll(".pagination-button");
-    
+      divWithPaginationButtons.querySelectorAll(".pagination-button");
+
     buttonFirst.addEventListener("mouseover", (e) => {
       buttonFirst.classList.remove("no-hover");
-      
+
       if (arrPuginationButtons.length === 1) {
         buttonFirst.classList.add("no-hover");
       }
@@ -136,21 +141,22 @@ const createPagination = (array) => {
     });
     buttonLast.addEventListener("mouseover", (e) => {
       buttonLast.classList.remove("no-hover");
-      
+
       if (arrPuginationButtons.length === 1) {
         buttonLast.classList.add("no-hover");
-    }
-    if (
-      arrPuginationButtons[arrPuginationButtons.length - 1].classList.contains(
-        "active-pagination"
-      )
-    ) {
-      buttonLast.classList.add("no-hover");
-    }
-  });
-};
-createFirstAndLast(array)
-stopHoverOnPaginationButtonsFirstAndLast()
+      }
+      if (
+        arrPuginationButtons[
+          arrPuginationButtons.length - 1
+        ].classList.contains("active-pagination")
+      ) {
+        buttonLast.classList.add("no-hover");
+      }
+    });
+  };
+
+  createFirstAndLast(array);
+  stopHoverOnPaginationButtonsFirstAndLast();
 };
 // ___________________________________FILTER--BUTTONS________________________________________________________________________
 
@@ -169,7 +175,9 @@ const createFilterButtons = () => {
           filterButton.id === "allArticle" ||
           el.year === Number(filterButton.id)
       );
-      FILTERED_ITEMS.filter((e, index) => index < ITEMS_ON_PAGE).map(createItem);
+      FILTERED_ITEMS.filter((e, index) => index < ITEMS_ON_PAGE).map(
+        createItem
+      );
       createPagination(FILTERED_ITEMS);
     });
   });
@@ -182,7 +190,6 @@ const createSearch = () => {
     e.preventDefault();
   }
   function filter(e) {
-    removeActiveStyleFromFirstAndLastButtons()
     const input = document.getElementById("mySearch");
     let filteredItemForRender = [];
     const inputValue = input.value.toUpperCase();
@@ -192,13 +199,21 @@ const createSearch = () => {
         filteredItemForRender.push(item);
       }
     });
-    console.log("🚀 ~ file: async.js ~ line 157 ~ FILTERED_ITEMS.forEach ~ filteredItemForRender", filteredItemForRender)
-      console.log("🚀 ~ file: async.js ~ line 160 ~ FILTERED_ITEMS.forEach ~ FILTERED_ITEMS", FILTERED_ITEMS)
     CONTENT.innerHTML = "";
-    filteredItemForRender.filter((e, index) => index < ITEMS_ON_PAGE).map(createItem);
+    filteredItemForRender
+      .filter((e, index) => index < ITEMS_ON_PAGE)
+      .map(createItem);
     createPagination(filteredItemForRender);
+    if (filteredItemForRender.length > 0) {
+      removeActiveStyleFromFirstAndLastButtons();
+    }
+    if (filteredItemForRender.length === 0) {
+      const divsForFirstAndLast = document.querySelectorAll("#first, #last");
+      divsForFirstAndLast.forEach((div) => {
+        div.innerHTML = "";
+      });
+    }
   }
-
   function autoReset() {
     const input = document.getElementById("mySearch");
     const cards = document.querySelectorAll(".item");
@@ -210,7 +225,6 @@ const createSearch = () => {
       }
     });
   }
-
   const form = document.querySelector(".search");
   form.addEventListener("keyup", (e) => {
     e.preventDefault();
@@ -227,7 +241,6 @@ const createFocusOnSearchInput = () => {
     input.focus();
   });
 };
-
 // ___________________________________FOCUS--ON--SEARCH________________________________________________________________________
 const createBurgerMenu = () => {
   const listMenuPage = document.getElementById("navbarSupportedContent");
@@ -279,15 +292,67 @@ const creatActiveStyleNavButton = () => {
     });
   });
 };
-
+// ______________________________________________________________________
 const removeActiveStyleFromFirstAndLastButtons = () => {
-  const firstAndLastButtons = document.querySelectorAll("#first, #last")
-  firstAndLastButtons.forEach(div => {div.firstElementChild.classList.remove(".active-pagination")  
-  });  
-}
+  const firstAndLastButtons = document.querySelectorAll("#first, #last");
+  firstAndLastButtons.forEach((div) => {
+    div.firstElementChild.classList.remove(".active-pagination");
+  });
+};
+
+const _UrlParametres = (btn) =>
+  btn.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (btn.id !== "allArticle") {
+      history.pushState({ id: `${btn.id}` }, "", `?year=${btn.id}`);
+    } else {
+      history.pushState({ id: `${btn.id}` }, "", "?year=all");
+    }
+  });
+
+const createFilterUrlParams = () => {
+  const allAncors = document.querySelectorAll(".year");
+  allAncors.forEach((element) => {
+    const ancorFilterYear = document.getElementById(`${element.id}`);
+    _UrlParametres(ancorFilterYear);
+  });
+};
+// ______________
+const createUrlParametersSearch = () => {
+  const divWithYears = document.querySelector(".overlay-listyear");
+  const searchForm = document.getElementById("mySearch");
+  searchForm.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const activYear = divWithYears.querySelector(".active-article");
+      event.preventDefault();
+      if (location.href.includes("All")) {
+        history.pushState(
+          { id: `${searchForm.value}` },
+          "",
+          `?keyword=${searchForm.value}`
+        );
+      }
+      if (location.href.includes("year")) {
+        history.pushState(
+          { id: `${searchForm.value}` },
+          "",
+          `?keyword=${searchForm.value}&year=${activYear.innerHTML}`
+        );
+      } else {
+        history.pushState(
+          { id: `${searchForm.value}` },
+          "",
+          `?keyword=${searchForm.value}`
+        );
+      }
+    }
+  });
+};
+createUrlParametersSearch();
 
 loadingContent();
 createFilterButtons();
+createFilterUrlParams();
 createSearch();
 createFocusOnSearchInput();
 createBurgerMenu();
