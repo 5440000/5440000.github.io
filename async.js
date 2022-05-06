@@ -292,7 +292,7 @@ const creatActiveStyleNavButton = () => {
     });
   });
 };
-// ______________________________________________________________________
+// __________________________________STYLE--FIRST--LAST_________________________________________________________________________
 const removeActiveStyleFromFirstAndLastButtons = () => {
   const firstAndLastButtons = document.querySelectorAll("#first, #last");
   firstAndLastButtons.forEach((div) => {
@@ -317,7 +317,7 @@ const createFilterUrlParams = () => {
     _UrlParametres(ancorFilterYear);
   });
 };
-// ______________
+// __________________________________URL--SEARCH--PARAMS_________________________________________________________________________
 const createUrlParametersSearch = () => {
   const divWithYears = document.querySelector(".overlay-listyear");
   const searchForm = document.getElementById("mySearch");
@@ -348,8 +348,8 @@ const createUrlParametersSearch = () => {
     }
   });
 };
-createUrlParametersSearch();
 
+createUrlParametersSearch();
 loadingContent();
 createFilterButtons();
 createFilterUrlParams();
