@@ -225,6 +225,11 @@ a:hover {
   opacity: 1;
 }
 
+#list-pages a:hover:not(.nav-active) {
+  text-shadow: 0 1px #000000;
+
+}
+
 .active {
   color: hsl(0, 0%, 0%);
 }
@@ -246,9 +251,7 @@ a:hover {
 .last-li {
   padding-left: 10px;
 }
-.navbar a:hover {
-  text-shadow: 0 1px #000000;
-}
+
 .navbar-brand {
   font-size: 20px;
   font-family: Segoe UI Regelar;
