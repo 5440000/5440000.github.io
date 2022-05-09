@@ -233,7 +233,7 @@ const createSearch = () => {
   form.addEventListener("keyup", autoReset);
   form.addEventListener("submit", submit);
 };
-// ___________________________________FOCUS--ON--SEARCH________________________________________________________________________
+// ___________________________________FOCUS--ON--SEARCH____________________________________________________________________
 const createFocusOnSearchInput = () => {
   const input = document.getElementById("mySearch");
   const searchButton = document.getElementById("search-svg");
@@ -241,7 +241,7 @@ const createFocusOnSearchInput = () => {
     input.focus();
   });
 };
-// ___________________________________FOCUS--ON--SEARCH________________________________________________________________________
+// ____________________________________BURGER--MENU________________________________________________________________________
 const createBurgerMenu = () => {
   const listMenuPage = document.getElementById("navbarSupportedContent");
   const burgerButton = document.querySelector(".burger");
@@ -256,6 +256,7 @@ const createBurgerMenu = () => {
       arrPages.forEach((element) => {
         element.addEventListener("click", () => {
           listMenuPage.classList.remove("show");
+          burgerButton.classList.remove("show");
         });
       });
     }
@@ -280,7 +281,7 @@ const createDropdown = () => {
     }
   });
 };
-// __________________________________NAV--BUTTONS--STYLE_________________________________________________________________________
+// __________________________________NAV--BUTTONS--STYLE_______________________________________________________________
 const creatActiveStyleNavButton = () => {
   const arrNavButtons = document.querySelectorAll(".nav-li");
   arrNavButtons.forEach((currentItem) => {
@@ -292,7 +293,7 @@ const creatActiveStyleNavButton = () => {
     });
   });
 };
-// __________________________________STYLE--FIRST--LAST_________________________________________________________________________
+// __________________________________STYLE--FIRST--LAST_______________________________________________________________
 const removeActiveStyleFromFirstAndLastButtons = () => {
   const firstAndLastButtons = document.querySelectorAll("#first, #last");
   firstAndLastButtons.forEach((div) => {
