@@ -15,11 +15,27 @@
 
 body {
   font-family: "Segoe UI Light";
+  min-width: 360px;
 }
 
 body,
 html {
   height: 100%;
+}
+
+.black,
+.pagination-button,
+.nav-active,
+.footer-link {
+  font-family: Segoe UI Bold;
+}
+
+.description__writer-name,
+.navbar-brand,
+.my-search,
+.all-article,
+.description__article-title {
+  font-family: Segoe UI Regelar;
 }
 .main {
   min-height: calc(100% - 80px);
@@ -55,7 +71,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: white;
+  background-color: #ffffff;
   z-index: 1;
 }
 
@@ -76,13 +92,6 @@ header {
 
 .black {
   color: #000000;
-}
-
-.black,
-.pagination-button,
-.nav-active,
-.footer-link {
-  font-family: Segoe UI Bold;
 }
 
 .main-head__subtitle {
@@ -142,7 +151,6 @@ header {
 }
 .description__article-title {
   text-align: left;
-  font-family: Segoe UI Regelar;
   font-size: 20px;
   letter-spacing: 0;
   color: #000000;
@@ -160,9 +168,9 @@ header {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 .description__writer-name {
   text-align: left;
-  font-family: Segoe UI Regelar;
   font-size: 16px;
   letter-spacing: 0;
   color: #000000;
@@ -221,13 +229,12 @@ a:hover {
   cursor: default;
 }
 
-#pag-buttons div:hover:not(.no-hover) {
+.pag-buttons div:hover:not(.no-hover) {
   opacity: 1;
 }
 
-#list-pages a:hover:not(.nav-active) {
+.list-pages a:hover:not(.nav-active) {
   text-shadow: 0 1px #000000;
-
 }
 
 .active {
@@ -254,7 +261,6 @@ a:hover {
 
 .navbar-brand {
   font-size: 20px;
-  font-family: Segoe UI Regelar;
   letter-spacing: 0;
   color: #707070;
 }
@@ -291,7 +297,6 @@ a:visited {
 .my-search {
   height: 60px;
   font-size: 24px;
-  font-family: Segoe UI Regelar;
   color: #000000;
   padding-left: 30px;
 }
@@ -325,7 +330,6 @@ a:visited {
 
 .all-article {
   white-space: nowrap;
-  font-family: Segoe UI Regelar;
   font-size: 20px;
 }
 
@@ -483,12 +487,11 @@ img:hover {
     top: 50%;
     left: 0;
     transform: translateY(-50%);
-
   }
 
-.burger.show .middle-line{
-  display: none;
-}
+  .burger.show .middle-line {
+    display: none;
+  }
 
   .burger {
     display: block;
@@ -512,11 +515,11 @@ img:hover {
   }
 
   .burger:before {
-    top: 0px;
+    top: 0;
   }
 
   .burger:after {
-    bottom: 0px;
+    bottom: 0;
   }
 
   .burger.show {
@@ -588,7 +591,6 @@ img:hover {
     text-align: center;
     font-size: 35px;
     margin-bottom: 20px;
-    font-family: Segoe UI Light;
     margin: auto;
   }
 
@@ -653,7 +655,6 @@ img:hover {
   .pag-buttons {
     flex-direction: column;
     align-items: center;
-    
   }
 
   .pagination-button {
@@ -674,15 +675,10 @@ img:hover {
   .for-buttons {
     flex-wrap: wrap;
   }
-
 }
 
-@media (max-width: 310px) {
-  .navbar {
-    flex-direction: column-reverse;
+@media (max-width: 360px) {
+  body {
+    overflow-x: scroll;
   }
-.navbar-brand {
-  margin-top: 8px;
-}
-
 }
