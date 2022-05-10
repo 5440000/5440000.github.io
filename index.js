@@ -43,18 +43,92 @@ const loadingContent = async () => {
 // ___________________________________PAGINATION_______________________________________________________________________
 
 const createPagination = (array) => {
+  const createFirstAndLast = (showFirstItems, showLastItems) => {
+    const divForFirstButton = document.getElementById("first");
+    const divForLastButton = document.getElementById("last");
+    const firstButton = document.createElement("div");
+    const lastButton = document.createElement("div");
+
+    divForFirstButton.innerHTML = " ";
+    divForFirstButton.append(firstButton);
+    firstButton.classList.add("pagination-button", "no-padding");
+    firstButton.textContent = "< First";
+    firstButton.addEventListener("click", showFirstItems);
+    divForLastButton.innerHTML = " ";
+    divForLastButton.append(lastButton);
+    lastButton.classList.add("pagination-button", "no-padding");
+    lastButton.textContent = "Last >";
+    lastButton.addEventListener("click", showLastItems);
+  };
+
+  const refreshActiveStatus = (e) => {
+    const divWithPaginationButtons = document.getElementById("pag-buttons");
+    const allActiveButton = [
+      ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
+    ];
+    allActiveButton.forEach((element) => {
+      element.classList.remove("active-pagination");
+    });
+    e.classList.add("active-pagination");
+  };
+
+  const showFirstItems = function (event) {
+    const paginationButtons = document.getElementById("for-buttons");
+    const arrayButtons =
+      paginationButtons.querySelectorAll(".pagination-button");
+    if (
+      arrayButtons.length === 1 ||
+      arrayButtons[0].classList.contains("active-pagination")
+    ) {
+      console.log(arrayButtons[0]);
+      console.log(arrayButtons.length);
+    } else {
+      const a = event.target;
+      CONTENT.innerHTML = "";
+      array.filter((e, index) => index < ITEMS_ON_PAGE).map(createItem);
+      refreshActiveStatus(a);
+    }
+  };
+
+  const showLastItems = function (event) {
+    const paginationButtons = document.getElementById("for-buttons");
+    const arrayButtons =
+      paginationButtons.querySelectorAll(".pagination-button");
+
+    if (
+      arrayButtons.length === 1 ||
+      arrayButtons[arrayButtons.length-1].classList.contains("active-pagination")
+    ) {
+    } else {
+      const a = event.target;
+      CONTENT.innerHTML = "";
+      array
+        .filter(
+          (e, index) =>
+            index >= Math.floor(array.length / ITEMS_ON_PAGE) * ITEMS_ON_PAGE
+        )
+        .map(createItem);
+    }
+    refreshActiveStatus(a);
+  };
+  createFirstAndLast(showFirstItems, showLastItems);
+
   const buttonsWrap = document.getElementById("for-buttons");
   buttonsWrap.innerHTML = "";
   const howMatchButtonsForItemsNeed = Math.ceil(array.length / ITEMS_ON_PAGE);
   let buttonNumber = 0;
+  const buttonFirst = document.getElementById("first").firstElementChild;
+
   while (buttonNumber < howMatchButtonsForItemsNeed) {
     buttonNumber++;
     const createPagButtons = function () {
       const button = document.createElement("div");
       button.innerHTML = buttonNumber;
-      buttonNumber === 1
-        ? button.classList.add("pagination-button", "active-pagination")
-        : button.classList.add("pagination-button");
+      if (buttonNumber === 1) {
+        button.classList.add("pagination-button", "active-pagination");
+      } else {
+        button.classList.add("pagination-button");
+      }
       buttonsWrap.append(button);
       button.addEventListener("click", function showItems(e) {
         removeActiveStyleFromFirstAndLastButtons();
@@ -76,52 +150,10 @@ const createPagination = (array) => {
     createPagButtons();
   }
   // _____________________________________——____________**************
-  const createFirstAndLast = (array) => {
-    const divForFirstButton = document.getElementById("first");
-    const divForLastButton = document.getElementById("last");
-    const firstButton = document.createElement("div");
-    const lastButton = document.createElement("div");
-
-    const refreshActiveStatus = (e) => {
-      const divWithPaginationButtons = document.getElementById("pag-buttons");
-      const allActiveButton = [
-        ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
-      ];
-      allActiveButton.forEach((element) => {
-        element.classList.remove("active-pagination");
-      });
-      e.classList.add("active-pagination");
-    };
-
-    divForFirstButton.innerHTML = " ";
-    divForFirstButton.append(firstButton);
-    firstButton.classList.add("pagination-button", "no-padding");
-    firstButton.textContent = "< First";
-    firstButton.addEventListener("click", (event) => {
-      const a = event.target;
-      CONTENT.innerHTML = "";
-      array.filter((e, index) => index < ITEMS_ON_PAGE).map(createItem);
-      refreshActiveStatus(a);
-    });
-    divForLastButton.innerHTML = " ";
-    divForLastButton.append(lastButton);
-    lastButton.classList.add("pagination-button", "no-padding");
-    lastButton.textContent = "Last >";
-    lastButton.addEventListener("click", (event) => {
-      const a = event.target;
-      CONTENT.innerHTML = "";
-      array
-        .filter(
-          (e, index) =>
-            index >= Math.floor(array.length / ITEMS_ON_PAGE) * ITEMS_ON_PAGE
-        )
-        .map(createItem);
-      refreshActiveStatus(a);
-    });
-  };
-
-  // ___________________________________________________________________________________________________________-
-  const stopHoverOnPaginationButtonsFirstAndLast = () => {
+  const stopHoverOnPaginationButtonsFirstAndLast = (
+    showFirstItems,
+    showLastItems
+  ) => {
     const buttonFirst = document.getElementById("first").firstElementChild;
     const buttonLast = document.getElementById("last").lastChild;
     const divWithPaginationButtons = document.getElementById("for-buttons");
@@ -154,9 +186,9 @@ const createPagination = (array) => {
       }
     });
   };
+  stopHoverOnPaginationButtonsFirstAndLast(showFirstItems, showLastItems);
 
-  createFirstAndLast(array);
-  stopHoverOnPaginationButtonsFirstAndLast();
+  // ___________________________________________________________________________________________________________-
 };
 // ___________________________________FILTER--BUTTONS________________________________________________________________________
 
