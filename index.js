@@ -45,13 +45,13 @@
   const createFirstAndLast = (array) => {
     const divForFirstButton = document.getElementById("first");
     const divForLastButton = document.getElementById("last");
-    const firstButton = document.createElement("div");
-    const lastButton = document.createElement("div");
+    const firstButton = document.createElement("li");
+    const lastButton = document.createElement("li");
 
     const refreshActiveStatus = (e) => {
       const buttonFirst = document.getElementById("first").firstElementChild;
       const buttonLast = document.getElementById("last").lastChild;
-  
+
       const divWithPaginationButtons = document.getElementById("pag-buttons");
       const allActiveButton = [
         ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
@@ -65,15 +65,14 @@
       if (e.innerHTML === "&lt; First") {
         allPaginationNumbers[0].classList.add("active-pagination");
         e.classList.add("no-hover");
-        buttonLast.classList.remove("no-hover")
-
+        buttonLast.classList.remove("no-hover");
       }
       if (e.innerHTML === "Last &gt;") {
         allPaginationNumbers[allPaginationNumbers.length - 1].classList.add(
           "active-pagination"
         );
         e.classList.add("no-hover");
-        buttonFirst.classList.remove("no-hover")
+        buttonFirst.classList.remove("no-hover");
       }
     };
 
