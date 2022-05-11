@@ -129,7 +129,6 @@
 
   // _____________________________________CREATE FIRST & LAST
   const createStylePaginationButtonsFirstAndLast = () => {
-    console.log("createStyle");
     const buttonFirst = document.getElementById("first").firstElementChild;
     const buttonLast = document.getElementById("last").lastChild;
     const divWithPaginationButtons = document.getElementById("for-buttons");
@@ -141,8 +140,6 @@
         buttonFirst.classList.add("no-hover");
       }
       if (arrPuginationButtons[0].classList.contains("active-pagination")) {
-        console.log("кнопка еще один");
-
         buttonFirst.classList.add("no-hover");
       }
     };
@@ -156,11 +153,9 @@
           arrPuginationButtons.length - 1
         ].classList.contains("active-pagination")
       ) {
-        console.log("условие последнего эллемента");
         buttonLast.classList.add("no-hover");
       }
     };
-    console.log(arrPuginationButtons[arrPuginationButtons.length - 1]);
     styleForFirstButton();
     styleForLastButton();
   };
@@ -176,7 +171,7 @@
       buttonNumber++;
 
       const createPagButton = function () {
-        const button = document.createElement("div");
+        const button = document.createElement("li");
         button.innerHTML = buttonNumber;
         buttonNumber === 1
           ? button.classList.add("pagination-button", "active-pagination")
@@ -359,12 +354,7 @@
   };
   // __________________________________STYLE--FIRST--LAST_______________________________________________________________
   const removeActiveStyleFromFirstAndLastButtons = () => {
-    console.log("remove style");
     const firstAndLastButtons = document.querySelectorAll("#first, #last");
-    console.log(
-      "🚀 ~ file: index.js ~ line 364 ~ removeActiveStyleFromFirstAndLastButtons ~ firstAndLastButtons",
-      firstAndLastButtons
-    );
     firstAndLastButtons.forEach((div) => {
       div.firstElementChild.classList.remove("active-pagination");
       div.firstElementChild.classList.remove("no-hover");
