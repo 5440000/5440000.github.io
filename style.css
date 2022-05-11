@@ -138,6 +138,8 @@ header {
 .pag-buttons {
   margin-top: 63px;
   margin-bottom: 120px;
+  display: flex;
+  justify-content: center;
 }
 .description__article-title {
   text-align: left;
@@ -220,7 +222,7 @@ a:hover {
   opacity: 0.4;
 }
 
-.pag-buttons div:hover:not(.no-hover) {
+.pag-buttons li:hover:not(.no-hover) {
   opacity: 1;
 }
 
