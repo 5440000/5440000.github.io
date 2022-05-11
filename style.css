@@ -45,10 +45,6 @@ html {
   transform: scale(0.9);
 }
 
-.padding-15 {
-  padding: 20px;
-}
-
 .container-svg {
   display: flex;
   justify-content: flex-end;
@@ -266,9 +262,16 @@ a:hover {
   padding: 0;
 }
 
+.pag-buttons{
+  padding-left: 0;
+}
 .nav-active {
   border-bottom: 3px solid #000000;
   font-weight: bold;
+}
+
+.face {
+  transform: scale(0.7);
 }
 
 .navbar-nav a {
@@ -297,6 +300,10 @@ a:visited {
   border: none;
   outline: none;
   width: 100%;
+}
+
+li {
+  list-style-type: none;
 }
 
 .padding-20 {
@@ -448,6 +455,7 @@ img:hover {
 .footer__links {
   flex-wrap: nowrap;
 }
+
 .footer__privacy,
 .face,
 .link {
