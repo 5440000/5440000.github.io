@@ -23,11 +23,11 @@
           />
       </div>
       <div class="col-xl-9 col-lg-8 col-md-7 col-sm description flex-column justify-content-center">
-          <h2 class="col no-padding description__article-title">${articlePreview.articleTitle}</h2>
-          <div class="col no-padding description__text">${articlePreview.text}
+          <h2 class=" description__article-title">${articlePreview.articleTitle}</h2>
+          <div class=" description__text">${articlePreview.text}
           </div>
-          <div class="col no-padding description__writer-name">${articlePreview.writerName}</div>
-          <div class="col no-padding description__company">${articlePreview.company}</div>
+          <div class=" description__writer-name">${articlePreview.writerName}</div>
+          <div class=" description__company">${articlePreview.company}</div>
       </div>`
     );
     CONTENT.append(div);
@@ -41,6 +41,129 @@
     setTimeout(() => firstItems.map(createItem), 1000);
     setTimeout(() => createPagination(DATA), 1000);
   };
+
+  const createFirstAndLast = (array) => {
+    const divForFirstButton = document.getElementById("first");
+    const divForLastButton = document.getElementById("last");
+    const firstButton = document.createElement("div");
+    const lastButton = document.createElement("div");
+
+    const refreshActiveStatus = (e) => {
+      const buttonFirst = document.getElementById("first").firstElementChild;
+      const buttonLast = document.getElementById("last").lastChild;
+  
+      const divWithPaginationButtons = document.getElementById("pag-buttons");
+      const allActiveButton = [
+        ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
+      ];
+      const divWithPaginationNumbers = document.getElementById("for-buttons");
+      const allPaginationNumbers =
+        divWithPaginationNumbers.querySelectorAll(".pagination-button");
+      allActiveButton.forEach((element) => {
+        element.classList.remove("active-pagination");
+      });
+      if (e.innerHTML === "&lt; First") {
+        allPaginationNumbers[0].classList.add("active-pagination");
+        e.classList.add("no-hover");
+        buttonLast.classList.remove("no-hover")
+
+      }
+      if (e.innerHTML === "Last &gt;") {
+        allPaginationNumbers[allPaginationNumbers.length - 1].classList.add(
+          "active-pagination"
+        );
+        e.classList.add("no-hover");
+        buttonFirst.classList.remove("no-hover")
+      }
+    };
+
+    const createItemsForButtonFirst = function (event) {
+      // event.target.classList.add("no-hover")
+      const paginationButtons = document.getElementById("for-buttons");
+      const arrayButtons =
+        paginationButtons.querySelectorAll(".pagination-button");
+      if (
+        arrayButtons.length === 1 ||
+        arrayButtons[0].classList.contains("active-pagination")
+      ) {
+      } else {
+        CONTENT.innerHTML = "";
+        array.filter((e, index) => index < ITEMS_ON_PAGE).map(createItem);
+        refreshActiveStatus(event.target);
+      }
+    };
+
+    const createItemsForButtonLast = function (event) {
+      const paginationButtons = document.getElementById("for-buttons");
+      const arrayButtons =
+        paginationButtons.querySelectorAll(".pagination-button");
+      if (
+        arrayButtons.length === 1 ||
+        arrayButtons[arrayButtons.length - 1].classList.contains(
+          "active-pagination"
+        )
+      ) {
+      } else {
+        CONTENT.innerHTML = "";
+        array
+          .filter(
+            (e, index) =>
+              index >= Math.floor(array.length / ITEMS_ON_PAGE) * ITEMS_ON_PAGE
+          )
+          .map(createItem);
+        refreshActiveStatus(event.target);
+      }
+    };
+
+    divForFirstButton.innerHTML = " ";
+    divForFirstButton.append(firstButton);
+    firstButton.classList.add("pagination-button", "no-padding");
+    firstButton.textContent = "< First";
+    firstButton.addEventListener("click", createItemsForButtonFirst);
+    divForLastButton.innerHTML = " ";
+    divForLastButton.append(lastButton);
+    lastButton.classList.add("pagination-button", "no-padding");
+    lastButton.textContent = "Last >";
+    lastButton.addEventListener("click", createItemsForButtonLast);
+  };
+
+  // _____________________________________CREATE FIRST & LAST
+  const createStylePaginationButtonsFirstAndLast = () => {
+    console.log("createStyle");
+    const buttonFirst = document.getElementById("first").firstElementChild;
+    const buttonLast = document.getElementById("last").lastChild;
+    const divWithPaginationButtons = document.getElementById("for-buttons");
+    const arrPuginationButtons =
+      divWithPaginationButtons.querySelectorAll(".pagination-button");
+
+    const styleForFirstButton = () => {
+      if (arrPuginationButtons.length === 1) {
+        buttonFirst.classList.add("no-hover");
+      }
+      if (arrPuginationButtons[0].classList.contains("active-pagination")) {
+        console.log("кнопка еще один");
+
+        buttonFirst.classList.add("no-hover");
+      }
+    };
+
+    const styleForLastButton = () => {
+      if (arrPuginationButtons.length === 1) {
+        buttonLast.classList.add("no-hover");
+      }
+      if (
+        arrPuginationButtons[
+          arrPuginationButtons.length - 1
+        ].classList.contains("active-pagination")
+      ) {
+        console.log("условие последнего эллемента");
+        buttonLast.classList.add("no-hover");
+      }
+    };
+    console.log(arrPuginationButtons[arrPuginationButtons.length - 1]);
+    styleForFirstButton();
+    styleForLastButton();
+  };
   // ___________________________________PAGINATION_______________________________________________________________________
 
   const createPagination = (array) => {
@@ -52,7 +175,7 @@
     while (buttonNumber < howMatchButtonsForItemsNeed) {
       buttonNumber++;
 
-      const createPagButtons = function () {
+      const createPagButton = function () {
         const button = document.createElement("div");
         button.innerHTML = buttonNumber;
         buttonNumber === 1
@@ -60,15 +183,17 @@
           : button.classList.add("pagination-button");
         buttonsWrap.append(button);
 
-        const showItems = function (e) {
+        const showItems = function (event) {
           removeActiveStyleFromFirstAndLastButtons();
-          const buttons = document.querySelectorAll(".pagination-button");
-          buttons.forEach((e) => {
-            e.classList.remove("active-pagination");
+          const divButtons = document.getElementById("for-buttons");
+          const buttons = divButtons.querySelectorAll(".pagination-button");
+          buttons.forEach((button) => {
+            button.classList.remove("active-pagination");
           });
-          e.target.classList.add("active-pagination");
+          event.target.classList.add("active-pagination");
+          createStylePaginationButtonsFirstAndLast();
           CONTENT.innerHTML = "";
-          const firstIndex = e.target.innerHTML;
+          const firstIndex = event.target.innerHTML;
           const items = array.filter(
             (e, index) =>
               index >= firstIndex * ITEMS_ON_PAGE - 5 &&
@@ -79,127 +204,11 @@
 
         button.addEventListener("click", showItems);
       };
-      createPagButtons();
+      createPagButton();
     }
-    // _____________________________________CREATE FIRST & LAST
-
-    const createFirstAndLast = (array) => {
-      const divForFirstButton = document.getElementById("first");
-      const divForLastButton = document.getElementById("last");
-      const firstButton = document.createElement("div");
-      const lastButton = document.createElement("div");
-
-      const refreshActiveStatus = (e) => {
-        const divWithPaginationButtons = document.getElementById("pag-buttons");
-        const allActiveButton = [
-          ...divWithPaginationButtons.querySelectorAll(".active-pagination"),
-        ];
-        allActiveButton.forEach((element) => {
-          element.classList.remove("active-pagination");
-        });
-        e.classList.add("active-pagination");
-      };
-
-      const createItemsForButtonFirst = function (event) {
-        const paginationButtons = document.getElementById("for-buttons");
-        const arrayButtons =
-          paginationButtons.querySelectorAll(".pagination-button");
-        if (
-          arrayButtons.length === 1 ||
-          arrayButtons[0].classList.contains("active-pagination")
-        ) {
-        } else {
-          const a = event.target;
-          CONTENT.innerHTML = "";
-          array.filter((e, index) => index < ITEMS_ON_PAGE).map(createItem);
-          refreshActiveStatus(a);
-        }
-      };
-
-      const createItemsForButtonLast = function (event) {
-        const paginationButtons = document.getElementById("for-buttons");
-        const arrayButtons =
-          paginationButtons.querySelectorAll(".pagination-button");
-
-        if (
-          arrayButtons.length === 1 ||
-          arrayButtons[arrayButtons.length - 1].classList.contains(
-            "active-pagination"
-          )
-        ) {
-        } else {
-          const a = event.target;
-          CONTENT.innerHTML = "";
-          array
-            .filter(
-              (e, index) =>
-                index >=
-                Math.floor(array.length / ITEMS_ON_PAGE) * ITEMS_ON_PAGE
-            )
-            .map(createItem);
-          refreshActiveStatus(a);
-        }
-      };
-
-      divForFirstButton.innerHTML = " ";
-      divForFirstButton.append(firstButton);
-      firstButton.classList.add("pagination-button", "no-padding");
-      firstButton.textContent = "< First";
-      firstButton.addEventListener("click", createItemsForButtonFirst);
-      divForLastButton.innerHTML = " ";
-      divForLastButton.append(lastButton);
-      lastButton.classList.add("pagination-button", "no-padding");
-      lastButton.textContent = "Last >";
-      lastButton.addEventListener("click", createItemsForButtonLast);
-    };
-
-    // ___________________________________________________________________________________________________________-
-    const stopHoverOnPaginationButtonsFirstAndLast = () => {
-      const buttonFirst = document.getElementById("first").firstElementChild;
-      const buttonLast = document.getElementById("last").lastChild;
-      const divWithPaginationButtons = document.getElementById("for-buttons");
-      const arrPuginationButtons =
-        divWithPaginationButtons.querySelectorAll(".pagination-button");
-
-      const createStopHoverStyleForFirstButton = (e) => {
-        buttonFirst.classList.remove("no-hover");
-
-        if (arrPuginationButtons.length === 1) {
-          buttonFirst.classList.add("no-hover");
-        }
-        if (arrPuginationButtons[0].classList.contains("active-pagination")) {
-          buttonFirst.classList.add("no-hover");
-        }
-        e.preventDefault();
-      };
-
-      const createStopHoverStyleForLastButton = (e) => {
-        buttonLast.classList.remove("no-hover");
-
-        if (arrPuginationButtons.length === 1) {
-          buttonLast.classList.add("no-hover");
-        }
-        if (
-          arrPuginationButtons[
-            arrPuginationButtons.length - 1
-          ].classList.contains("active-pagination")
-        ) {
-          buttonLast.classList.add("no-hover");
-        }
-      };
-
-      buttonFirst.addEventListener(
-        "mouseover",
-        createStopHoverStyleForFirstButton
-      );
-      buttonLast.addEventListener(
-        "mouseover",
-        createStopHoverStyleForLastButton
-      );
-    };
-
     createFirstAndLast(array);
-    stopHoverOnPaginationButtonsFirstAndLast();
+    removeActiveStyleFromFirstAndLastButtons();
+    createStylePaginationButtonsFirstAndLast();
   };
   // ___________________________________FILTER--BUTTONS________________________________________________________________________
 
@@ -255,6 +264,7 @@
       createPagination(filteredItemForRender);
       if (filteredItemForRender.length > 0) {
         removeActiveStyleFromFirstAndLastButtons();
+        createStylePaginationButtonsFirstAndLast();
       }
       if (filteredItemForRender.length === 0) {
         const divsForFirstAndLast = document.querySelectorAll("#first, #last");
@@ -269,6 +279,8 @@
       cards.forEach(function getMatch(info) {
         if ((input.value == null, input.value == "")) {
           createPagination(FILTERED_ITEMS);
+          removeActiveStyleFromFirstAndLastButtons();
+          createStylePaginationButtonsFirstAndLast();
         } else {
           return;
         }
@@ -347,21 +359,26 @@
   };
   // __________________________________STYLE--FIRST--LAST_______________________________________________________________
   const removeActiveStyleFromFirstAndLastButtons = () => {
+    console.log("remove style");
     const firstAndLastButtons = document.querySelectorAll("#first, #last");
+    console.log(
+      "🚀 ~ file: index.js ~ line 364 ~ removeActiveStyleFromFirstAndLastButtons ~ firstAndLastButtons",
+      firstAndLastButtons
+    );
     firstAndLastButtons.forEach((div) => {
-      div.firstElementChild.classList.remove(".active-pagination");
+      div.firstElementChild.classList.remove("active-pagination");
+      div.firstElementChild.classList.remove("no-hover");
     });
   };
-  const createPushStateParams = (event) => {
-    event.preventDefault();
-    if (btn.id !== "allArticle") {
-      history.pushState({ id: btn.id }, "", `?year=${btn.id}`);
-    } else {
-      history.pushState({ id: btn.id }, "", "?year=all");
-    }
-  };
-  const _UrlParametres = (btn, createPushStateParams) =>
-    btn.addEventListener("click", createPushStateParams);
+  const _UrlParametres = (btn) =>
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
+      if (btn.id !== "allArticle") {
+        history.pushState({ id: btn.id }, "", `?year=${btn.id}`);
+      } else {
+        history.pushState({ id: btn.id }, "", "?year=all");
+      }
+    });
 
   const createFilterUrlParams = () => {
     const allAncors = document.querySelectorAll(".year");
