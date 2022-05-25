@@ -4,6 +4,8 @@
   const CONTENT = document.querySelector("#content");
   let DATA = [];
   let FILTERED_ITEMS = [];
+  // ___________________________________NO-RESULT_SEARCH______________________________
+
   // ___________________________________CREATE--ITEM________________________________________________________________________
 
   const createItem = (articlePreview) => {
@@ -45,6 +47,7 @@
   const createFirstAndLast = (array) => {
     const divForFirstButton = document.getElementById("first");
     const divForLastButton = document.getElementById("last");
+
     const firstButton = document.createElement("li");
     const lastButton = document.createElement("li");
 
@@ -138,8 +141,11 @@
       if (arrPuginationButtons.length === 1) {
         buttonFirst.classList.add("no-hover");
       }
-      if (arrPuginationButtons[0].classList.contains("active-pagination")) {
-        buttonFirst.classList.add("no-hover");
+
+      if (arrPuginationButtons[0] != undefined) {
+        if (arrPuginationButtons[0].classList.contains("active-pagination")) {
+          buttonFirst.classList.add("no-hover");
+        }
       }
     };
 
@@ -147,12 +153,14 @@
       if (arrPuginationButtons.length === 1) {
         buttonLast.classList.add("no-hover");
       }
-      if (
-        arrPuginationButtons[
-          arrPuginationButtons.length - 1
-        ].classList.contains("active-pagination")
-      ) {
-        buttonLast.classList.add("no-hover");
+      if (arrPuginationButtons[arrPuginationButtons.length - 1] != undefined) {
+        if (
+          arrPuginationButtons[
+            arrPuginationButtons.length - 1
+          ].classList.contains("active-pagination")
+        ) {
+          buttonLast.classList.add("no-hover");
+        }
       }
     };
     styleForFirstButton();
@@ -160,16 +168,18 @@
   };
   // ___________________________________PAGINATION_______________________________________________________________________
 
-  const createPagination = (array) => {
+  const createPagination = () => {
     const buttonsWrap = document.getElementById("for-buttons");
     buttonsWrap.innerHTML = "";
-    const howMatchButtonsForItemsNeed = Math.ceil(array.length / ITEMS_ON_PAGE);
+    const howMatchButtonsForItemsNeed = Math.ceil(
+      FILTERED_ITEMS.length / ITEMS_ON_PAGE
+    );
     let buttonNumber = 0;
 
-    while (buttonNumber < howMatchButtonsForItemsNeed) {
-      buttonNumber++;
-
-      const createPagButton = function () {
+    if (howMatchButtonsForItemsNeed === 1) {
+    } else {
+      while (buttonNumber < howMatchButtonsForItemsNeed) {
+        buttonNumber++;
         const button = document.createElement("li");
         button.innerHTML = buttonNumber;
         buttonNumber === 1
@@ -188,7 +198,7 @@
           createStylePaginationButtonsFirstAndLast();
           CONTENT.innerHTML = "";
           const firstIndex = event.target.innerHTML;
-          const items = array.filter(
+          const items = FILTERED_ITEMS.filter(
             (e, index) =>
               index >= firstIndex * ITEMS_ON_PAGE - 5 &&
               index <= firstIndex * ITEMS_ON_PAGE - 1
@@ -197,97 +207,79 @@
         };
 
         button.addEventListener("click", showItems);
-      };
-      createPagButton();
+      }
     }
-    createFirstAndLast(array);
+
+    createFirstAndLast(FILTERED_ITEMS);
     removeActiveStyleFromFirstAndLastButtons();
     createStylePaginationButtonsFirstAndLast();
   };
-  // ___________________________________FILTER--BUTTONS________________________________________________________________________
-
+  // ___________________________________FILTER & SEARCH & PAGINATION
   const createFilterButtons = (filterButton) => {
-    const input = document.getElementById("mySearch");
-    const filterButtons = document.querySelectorAll(".year");
+    const inputSearch = document.getElementById("mySearch");
+    const filterButtons = document.querySelectorAll("input");
+    const inputValuesForRender = { keyword: " ", year: "all-year" };
+    const searchButton = document.querySelector(".search__icon");
+
+    function getFilterValue() {
+      inputValuesForRender.year = this.value;
+      renderFilteredContent();
+      createPagination();
+    }
+    function getSearchValue() {
+      if (inputValuesForRender.keyword != this.value) {
+        inputValuesForRender.keyword = this.value;
+        renderFilteredContent();
+        createPagination();
+      }
+    }
+
+    function renderFilteredContent() {
+      CONTENT.innerHTML = " ";
+      if (inputValuesForRender.year == "all-year") {
+        FILTERED_ITEMS = DATA.filter(
+          (element) =>
+            element.articleTitle.includes(inputValuesForRender.keyword) ||
+            element.text.includes(inputValuesForRender.keyword)
+        );
+      } else {
+        FILTERED_ITEMS = DATA.filter(
+          (element) =>
+            element.year == inputValuesForRender.year &&
+            (element.articleTitle.includes(inputValuesForRender.keyword) ||
+              element.text.includes(inputValuesForRender.keyword))
+        );
+      }
+
+      if (FILTERED_ITEMS.length === 0) {
+        CONTENT.innerHTML = "";
+        CONTENT.insertAdjacentHTML(
+          "afterbegin",
+          `<h3 class='no-found'> :(   No result found for "${inputValuesForRender.keyword}". Please try another way </h3>`
+        );
+      }
+      FILTERED_ITEMS.filter((e, index) => index < ITEMS_ON_PAGE).map(
+        createItem
+      );
+    }
 
     filterButtons.forEach((filterButton) => {
-      if (CONTENT == null || CONTENT == "") {
+      if (filterButton.type === "radio") {
+        filterButton.addEventListener("change", getFilterValue);
       } else {
-        filterButton.addEventListener("click", (e) => {
-          input.value = "";
-          e.preventDefault();
-          filterButtons.forEach((button) => {
-            button.classList.remove("active-article");
-          });
-          filterButton.classList.add("active-article");
-          CONTENT.innerHTML = "";
-          FILTERED_ITEMS = DATA.filter(
-            (el) =>
-              filterButton.id === "allArticle" ||
-              el.year === Number(filterButton.id)
-          );
-          FILTERED_ITEMS.filter((e, index) => index < ITEMS_ON_PAGE).map(
-            createItem
-          );
-          createPagination(FILTERED_ITEMS);
+        inputSearch.addEventListener("change", getSearchValue);
+        inputSearch.addEventListener("keyup", function (event) {
+          if (event.code === "Enter") {
+            const getSearchValueBindCreateFilterButtonContext =
+              getSearchValue.bind(this);
+            getSearchValueBindCreateFilterButtonContext();
+          }
         });
       }
     });
   };
 
-  // ____________________________________SEARCH_______________________________________________________________________
-
-  const createSearch = () => {
-    function submit(e) {
-      e.preventDefault();
-    }
-    function filter(e) {
-      const input = document.getElementById("mySearch");
-      let filteredItemForRender = [];
-      const inputValue = input.value.toUpperCase();
-      FILTERED_ITEMS.forEach((item) => {
-        let article = item.articleTitle.toUpperCase();
-        if (article.includes(inputValue)) {
-          filteredItemForRender.push(item);
-        }
-      });
-      CONTENT.innerHTML = "";
-      filteredItemForRender
-        .filter((e, index) => index < ITEMS_ON_PAGE)
-        .map(createItem);
-      createPagination(filteredItemForRender);
-      if (filteredItemForRender.length > 0) {
-        removeActiveStyleFromFirstAndLastButtons();
-        createStylePaginationButtonsFirstAndLast();
-      }
-      if (filteredItemForRender.length === 0) {
-        const divsForFirstAndLast = document.querySelectorAll("#first, #last");
-        divsForFirstAndLast.forEach((div) => {
-          div.innerHTML = "";
-        });
-      }
-    }
-    function autoReset() {
-      const input = document.getElementById("mySearch");
-      const cards = document.querySelectorAll(".item");
-      cards.forEach(function getMatch(info) {
-        if ((input.value == null, input.value == "")) {
-          createPagination(FILTERED_ITEMS);
-          removeActiveStyleFromFirstAndLastButtons();
-          createStylePaginationButtonsFirstAndLast();
-        } else {
-          return;
-        }
-      });
-    }
-    const form = document.querySelector(".search");
-    form.addEventListener("keyup", (e) => {
-      e.preventDefault();
-      filter(e);
-    });
-    form.addEventListener("keyup", autoReset);
-    form.addEventListener("submit", submit);
-  };
+  // };
   // ___________________________________FOCUS--ON--SEARCH____________________________________________________________________
   const createFocusOnSearchInput = () => {
     const input = document.getElementById("mySearch");
@@ -361,7 +353,7 @@
   };
   const _UrlParametres = (btn) =>
     btn.addEventListener("click", (event) => {
-      event.preventDefault();
+      // event.preventDefault();
       if (btn.id !== "allArticle") {
         history.pushState({ id: btn.id }, "", `?year=${btn.id}`);
       } else {
@@ -414,7 +406,6 @@
   loadingContent();
   createFilterButtons();
   createFilterUrlParams();
-  createSearch();
   createFocusOnSearchInput();
   createBurgerMenu();
   createDropdown();

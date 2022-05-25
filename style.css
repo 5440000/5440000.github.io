@@ -71,10 +71,6 @@ header {
   z-index: 1;
 }
 
-.h-154 {
-  height: 154px;
-}
-
 .main-head {
   padding-top: 168px;
 }
@@ -84,6 +80,11 @@ header {
   font-size: 40px;
   letter-spacing: 0;
   color: #000000;
+}
+
+.no-found {
+  text-align: center;
+  
 }
 
 .black {
@@ -264,7 +265,7 @@ a:hover {
   padding: 0;
 }
 
-.pag-buttons{
+.pag-buttons {
   padding-left: 0;
 }
 .nav-active {
@@ -319,6 +320,10 @@ li {
   top: 37.5%;
 }
 
+.search__icon:hover {
+  transform: scale(0.9);
+}
+
 .years-container {
   align-items: baseline;
   display: flex;
@@ -334,6 +339,29 @@ li {
   color: #000000;
   opacity: 0.6;
 }
+
+/* year filters  */
+.overlay-listyear label {
+  cursor: pointer;
+}
+
+/* Checked */
+.overlay-listyear input[type="radio"]:checked + label {
+  text-decoration: underline;
+  color: #020202;
+}
+
+/* Hover */
+.overlay-listyear label:hover {
+  color: #020202;
+  text-decoration: underline;
+}
+/* disable radio style */
+.overlay-listyear input[type="radio"] {
+  display: none;
+}
+
+/* year filters  */
 
 .all-article {
   white-space: nowrap;
