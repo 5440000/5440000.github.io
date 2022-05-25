@@ -171,6 +171,15 @@
   const createPagination = () => {
     const buttonsWrap = document.getElementById("for-buttons");
     buttonsWrap.innerHTML = "";
+
+    function deleteFirstAndLast() {
+      const divForFirstButton = document.getElementById("first");
+      const divForLastButton = document.getElementById("last");
+      divForFirstButton.innerHTML = "";
+      divForLastButton.innerHTML = "";
+    }
+    deleteFirstAndLast();
+
     const howMatchButtonsForItemsNeed = Math.ceil(
       FILTERED_ITEMS.length / ITEMS_ON_PAGE
     );
@@ -210,9 +219,11 @@
       }
     }
 
-    createFirstAndLast(FILTERED_ITEMS);
-    removeActiveStyleFromFirstAndLastButtons();
-    createStylePaginationButtonsFirstAndLast();
+    if (FILTERED_ITEMS.length > 5) {
+      createFirstAndLast(FILTERED_ITEMS);
+      removeActiveStyleFromFirstAndLastButtons();
+      createStylePaginationButtonsFirstAndLast();
+    }
   };
   // ___________________________________FILTER & SEARCH & PAGINATION
   const createFilterButtons = (filterButton) => {
