@@ -4,8 +4,6 @@
   const CONTENT = document.querySelector("#content");
   let DATA = [];
   let FILTERED_ITEMS = [];
-  // ___________________________________NO-RESULT_SEARCH______________________________
-
   // ___________________________________CREATE--ITEM________________________________________________________________________
 
   const createItem = (articlePreview) => {
@@ -44,6 +42,7 @@
     setTimeout(() => createPagination(DATA), 1000);
   };
 
+  // ___________________________________FIRST LAST________________________________________________________________________
   const createFirstAndLast = (array) => {
     const divForFirstButton = document.getElementById("first");
     const divForLastButton = document.getElementById("last");
@@ -167,6 +166,7 @@
     styleForLastButton();
   };
   // ___________________________________PAGINATION_______________________________________________________________________
+  // fitstIndex, lastIndex. activeIndex, pageCount);
 
   const createPagination = () => {
     const buttonsWrap = document.getElementById("for-buttons");
@@ -190,7 +190,7 @@
       while (buttonNumber < howMatchButtonsForItemsNeed) {
         buttonNumber++;
         const button = document.createElement("li");
-        button.innerHTML = buttonNumber;
+        button.insertAdjacentHTML("afterbegin", `<a>${buttonNumber}</a>`);
         buttonNumber === 1
           ? button.classList.add("pagination-button", "active-pagination")
           : button.classList.add("pagination-button");
@@ -205,6 +205,7 @@
           });
           event.target.classList.add("active-pagination");
           createStylePaginationButtonsFirstAndLast();
+
           CONTENT.innerHTML = "";
           const firstIndex = event.target.innerHTML;
           const items = FILTERED_ITEMS.filter(
@@ -225,12 +226,13 @@
       createStylePaginationButtonsFirstAndLast();
     }
   };
-  // ___________________________________FILTER & SEARCH & PAGINATION
+  // ___________________________________FILTER & SEARCH
   const createFilterButtons = (filterButton) => {
     const inputSearch = document.getElementById("mySearch");
     const filterButtons = document.querySelectorAll("input");
     const inputValuesForRender = { keyword: " ", year: "all-year" };
     const searchButton = document.querySelector(".search__icon");
+
 
     function getFilterValue() {
       inputValuesForRender.year = this.value;
@@ -266,7 +268,7 @@
         CONTENT.innerHTML = "";
         CONTENT.insertAdjacentHTML(
           "afterbegin",
-          `<h3 class='no-found'> :(   No result found for "${inputValuesForRender.keyword}". Please try another way </h3>`
+          `<h3 class='no-found'> :(   No result found for "${inputValuesForRender.keyword}". Please try another way. </h3>`
         );
       }
       FILTERED_ITEMS.filter((e, index) => index < ITEMS_ON_PAGE).map(
@@ -326,7 +328,9 @@
   const createDropdown = () => {
     const listOfYears = document.querySelector(".overlay-listyear");
     const dropButton = document.getElementById("filter");
-    const arrYears = listOfYears.querySelectorAll(".year");
+    dropButton.innerHTML = "Filter: allArticle";
+    const arrYears = listOfYears.querySelectorAll('[data-id="filter"]');
+    console.log(arrYears);
     const createDropdownStyle = () => {
       if (listOfYears.classList.contains("show")) {
         listOfYears.classList.remove("show");
@@ -335,7 +339,7 @@
         arrYears.forEach((element) => {
           element.addEventListener("click", () => {
             listOfYears.classList.remove("show");
-            dropButton.innerHTML = `Filter: ${element.innerHTML}`;
+            dropButton.innerHTML = `Filter: ${element.id}`;
           });
         });
       }
