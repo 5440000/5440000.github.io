@@ -23,11 +23,11 @@
           />
       </div>
       <div class="col-xl-9 col-lg-8 col-md-7 col-sm description flex-column justify-content-center">
-          <h2 class=" description__article-title">${articlePreview.articleTitle}</h2>
-          <div class=" description__text">${articlePreview.text}
-          </div>
-          <div class=" description__writer-name">${articlePreview.writerName}</div>
-          <div class=" description__company">${articlePreview.company}</div>
+          <h2 href="${articlePreview.url}" class=" description__article-title">${articlePreview.articleTitle}</h2>
+          <a href="${articlePreview.url}" class=" description__text">${articlePreview.text}
+          </a>
+          <a href="${articlePreview.url}" class=" description__writer-name">${articlePreview.writerName}</a>
+          <a href="${articlePreview.url}" class=" description__company">${articlePreview.company}</a>
       </div>`
     );
     CONTENT.append(div);
@@ -167,27 +167,43 @@
   };
   // ___________________________________PAGINATION_______________________________________________________________________
   // fitstIndex, lastIndex. activeIndex, pageCount);
+  function deleteFirstAndLastButtons() {
+    const divForFirstButton = document.getElementById("first");
+    const divForLastButton = document.getElementById("last");
+    divForFirstButton.innerHTML = "";
+    divForLastButton.innerHTML = "";
+  }
+
+  const showArticles = function (event) {
+    removeActiveStyleFromFirstAndLastButtons();
+    const divButtons = document.getElementById("for-buttons");
+    const buttons = divButtons.querySelectorAll(".pagination-button");
+    buttons.forEach((button) => {
+      button.classList.remove("active-pagination");
+    });
+    event.target.classList.add("active-pagination");
+    createStylePaginationButtonsFirstAndLast();
+
+    CONTENT.innerHTML = "";
+    const firstIndex = event.target.innerHTML;
+    const items = FILTERED_ITEMS.filter(
+      (e, index) =>
+        index >= firstIndex * ITEMS_ON_PAGE - 5 &&
+        index <= firstIndex * ITEMS_ON_PAGE - 1
+    );
+    items.map(createItem);
+  };
 
   const createPagination = () => {
     const buttonsWrap = document.getElementById("for-buttons");
     buttonsWrap.innerHTML = "";
 
-    function deleteFirstAndLast() {
-      const divForFirstButton = document.getElementById("first");
-      const divForLastButton = document.getElementById("last");
-      divForFirstButton.innerHTML = "";
-      divForLastButton.innerHTML = "";
-    }
-    deleteFirstAndLast();
+    deleteFirstAndLastButtons();
 
-    const howMatchButtonsForItemsNeed = Math.ceil(
-      FILTERED_ITEMS.length / ITEMS_ON_PAGE
-    );
+    const countOfButtons = Math.ceil(FILTERED_ITEMS.length / ITEMS_ON_PAGE);
     let buttonNumber = 0;
-
-    if (howMatchButtonsForItemsNeed === 1) {
-    } else {
-      while (buttonNumber < howMatchButtonsForItemsNeed) {
+    if (countOfButtons !== 1) {
+      while (buttonNumber < countOfButtons) {
         buttonNumber++;
         const button = document.createElement("li");
         button.insertAdjacentHTML("afterbegin", `<a>${buttonNumber}</a>`);
@@ -195,28 +211,7 @@
           ? button.classList.add("pagination-button", "active-pagination")
           : button.classList.add("pagination-button");
         buttonsWrap.append(button);
-
-        const showItems = function (event) {
-          removeActiveStyleFromFirstAndLastButtons();
-          const divButtons = document.getElementById("for-buttons");
-          const buttons = divButtons.querySelectorAll(".pagination-button");
-          buttons.forEach((button) => {
-            button.classList.remove("active-pagination");
-          });
-          event.target.classList.add("active-pagination");
-          createStylePaginationButtonsFirstAndLast();
-
-          CONTENT.innerHTML = "";
-          const firstIndex = event.target.innerHTML;
-          const items = FILTERED_ITEMS.filter(
-            (e, index) =>
-              index >= firstIndex * ITEMS_ON_PAGE - 5 &&
-              index <= firstIndex * ITEMS_ON_PAGE - 1
-          );
-          items.map(createItem);
-        };
-
-        button.addEventListener("click", showItems);
+        button.addEventListener("click", showArticles);
       }
     }
 
@@ -232,7 +227,6 @@
     const filterButtons = document.querySelectorAll("input");
     const inputValuesForRender = { keyword: " ", year: "all-year" };
     const searchButton = document.querySelector(".search__icon");
-
 
     function getFilterValue() {
       inputValuesForRender.year = this.value;
