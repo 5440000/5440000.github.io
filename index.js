@@ -221,7 +221,7 @@
       createStylePaginationButtonsFirstAndLast();
     }
   };
-  // ___________________________________FILTER & SEARCH
+  // ___________________________________FILTER & SEARCH & QUERY STRING
   const createFilterButtons = (filterButton) => {
     const inputSearch = document.getElementById("mySearch");
     const filterButtons = document.querySelectorAll("input");
@@ -233,7 +233,11 @@
       renderFilteredContent();
       createPagination();
     }
-    function getSearchValue() {
+    function getSearchValue() {          history.pushState(
+            { id: searchForm.value },
+            "",
+            `?keyword=${searchForm.value}`
+          )
       if (inputValuesForRender.keyword != this.value) {
         inputValuesForRender.keyword = this.value;
         renderFilteredContent();
