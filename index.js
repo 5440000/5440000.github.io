@@ -4,6 +4,11 @@
   const CONTENT = document.querySelector("#content");
   let DATA = [];
   let FILTERED_ITEMS = [];
+  const inputValuesForRender = {
+    year: "all-year",
+    keyword: "",
+    pageindex: "1",
+  };
   // ___________________________________CREATE--ITEM________________________________________________________________________
 
   const createItem = (articlePreview) => {
@@ -38,11 +43,14 @@
     DATA = await json.json();
     FILTERED_ITEMS = DATA;
     const firstItems = DATA.filter((e, index) => index < ITEMS_ON_PAGE);
+    if (history.state === null) {
+      setTimeout(() => createUrlParametersSearch(), 1000);
+    }else{
     setTimeout(() => firstItems.map(createItem), 1000);
-    setTimeout(() => createPagination(DATA), 1000);
+    setTimeout(() => createPagination(DATA), 1000);}
   };
 
-  // ___________________________________FIRST LAST________________________________________________________________________
+  // ___________________________________FIRST--LAST--BUTTONS________________________________________________________________________
   const createFirstAndLast = (array) => {
     const divForFirstButton = document.getElementById("first");
     const divForLastButton = document.getElementById("last");
@@ -80,6 +88,9 @@
 
     const createItemsForButtonFirst = function (event) {
       // event.target.classList.add("no-hover")
+      inputValuesForRender.pageindex = "1";
+      createUrlParametersSearch();
+
       const paginationButtons = document.getElementById("for-buttons");
       const arrayButtons =
         paginationButtons.querySelectorAll(".pagination-button");
@@ -98,6 +109,10 @@
       const paginationButtons = document.getElementById("for-buttons");
       const arrayButtons =
         paginationButtons.querySelectorAll(".pagination-button");
+      inputValuesForRender.pageindex = `${
+        arrayButtons[arrayButtons.length - 1].firstChild.innerHTML
+      }`;
+      createUrlParametersSearch();
       if (
         arrayButtons.length === 1 ||
         arrayButtons[arrayButtons.length - 1].classList.contains(
@@ -128,7 +143,7 @@
     lastButton.addEventListener("click", createItemsForButtonLast);
   };
 
-  // _____________________________________CREATE FIRST & LAST
+  // _____________________________________STYLE FIRST & LAST
   const createStylePaginationButtonsFirstAndLast = () => {
     const buttonFirst = document.getElementById("first").firstElementChild;
     const buttonLast = document.getElementById("last").lastChild;
@@ -165,8 +180,9 @@
     styleForFirstButton();
     styleForLastButton();
   };
+
   // ___________________________________PAGINATION_______________________________________________________________________
-  // fitstIndex, lastIndex. activeIndex, pageCount);
+
   function deleteFirstAndLastButtons() {
     const divForFirstButton = document.getElementById("first");
     const divForLastButton = document.getElementById("last");
@@ -178,12 +194,12 @@
     removeActiveStyleFromFirstAndLastButtons();
     const divButtons = document.getElementById("for-buttons");
     const buttons = divButtons.querySelectorAll(".pagination-button");
+    inputValuesForRender.pageindex = event.target.innerHTML;
+
     buttons.forEach((button) => {
       button.classList.remove("active-pagination");
     });
-    event.target.classList.add("active-pagination");
-    createStylePaginationButtonsFirstAndLast();
-
+    event.target.parentElement.classList.add("active-pagination");
     CONTENT.innerHTML = "";
     const firstIndex = event.target.innerHTML;
     const items = FILTERED_ITEMS.filter(
@@ -192,16 +208,23 @@
         index <= firstIndex * ITEMS_ON_PAGE - 1
     );
     items.map(createItem);
+    createUrlParametersSearch();
+    createStylePaginationButtonsFirstAndLast();
   };
 
   const createPagination = () => {
     const buttonsWrap = document.getElementById("for-buttons");
-    buttonsWrap.innerHTML = "";
-
-    deleteFirstAndLastButtons();
-
     const countOfButtons = Math.ceil(FILTERED_ITEMS.length / ITEMS_ON_PAGE);
     let buttonNumber = 0;
+    inputValuesForRender.pageindex = "1";
+
+    if (countOfButtons === 1) {
+      inputValuesForRender.pageindex = "";
+      createUrlParametersSearch();
+    }
+
+    buttonsWrap.innerHTML = "";
+    deleteFirstAndLastButtons();
     if (countOfButtons !== 1) {
       while (buttonNumber < countOfButtons) {
         buttonNumber++;
@@ -221,57 +244,87 @@
       createStylePaginationButtonsFirstAndLast();
     }
   };
-  // ___________________________________FILTER & SEARCH & QUERY STRING
-  const createFilterButtons = (filterButton) => {
+  // _________________###__________________FILTER & SEARCH & QUERY STRING
+
+  const createUrlParametersSearch = () => {
+    if (history.state === null) {
+      const href = new URL(window.location.href);
+      inputValuesForRender.year = href.searchParams.get("year");
+      inputValuesForRender.keyword = href.searchParams.get("keyword");
+      inputValuesForRender.pageindex = href.searchParams.get("pageindex");
+console.log(inputValuesForRender.pageindex);
+      history.replaceState(
+        inputValuesForRender,
+        "",
+        `?year=${inputValuesForRender.year}&keyword=${inputValuesForRender.keyword}&pageindex=${inputValuesForRender.pageindex}`
+      );
+      
+        renderFilteredContent()
+          createPagination()
+          createActivePaginationButton();
+ 
+      //________________________ createActiveFilterButton
+      const filterButtons = document.querySelectorAll("input");
+      filterButtons.forEach((element) => {
+        element.checked = false;
+        if (
+          element.nextElementSibling.innerHTML === href.searchParams.get("year")
+        ) {
+          element.checked = true;
+        }
+      });
+      //________________________ createActivePaginationButton
+      function createActivePaginationButton() {
+        console.log(href.searchParams.get("pageindex"));
+        const buttonsWrap = document.getElementById("for-buttons");
+        const arrPagButtons =
+          buttonsWrap.querySelectorAll(".pagination-button");
+
+        if (inputValuesForRender.pageindex !== "") {
+          arrPagButtons.forEach((element) => {
+            element.classList.remove("active-pagination");
+            if (
+              href.searchParams.get("pageindex") === element.firstChild.innerHTML
+              ) {
+              console.log(inputValuesForRender.pageindex);
+              console.log(element.firstChild.innerHTML);
+              element.classList.add("active-pagination");
+            }
+          });
+        }
+      }
+
+      const inputField = document.getElementById("mySearch")
+      inputField.value = inputValuesForRender.keyword
+    } else {
+      history.replaceState(
+        inputValuesForRender,
+        "",
+        `?year=${inputValuesForRender.year}&keyword=${inputValuesForRender.keyword}&pageindex=${inputValuesForRender.pageindex}`
+      );
+    }
+  };
+
+
+  const createFilterButtons = () => {
     const inputSearch = document.getElementById("mySearch");
     const filterButtons = document.querySelectorAll("input");
-    const inputValuesForRender = { keyword: " ", year: "all-year" };
-    const searchButton = document.querySelector(".search__icon");
+    // const searchButton = document.querySelector(".search__icon");
 
     function getFilterValue() {
       inputValuesForRender.year = this.value;
+
       renderFilteredContent();
       createPagination();
+      createUrlParametersSearch();
     }
-    function getSearchValue() {          history.pushState(
-            { id: searchForm.value },
-            "",
-            `?keyword=${searchForm.value}`
-          )
+    function getSearchValue() {
       if (inputValuesForRender.keyword != this.value) {
         inputValuesForRender.keyword = this.value;
-        renderFilteredContent();
         createPagination();
+        renderFilteredContent();
+        createUrlParametersSearch();
       }
-    }
-
-    function renderFilteredContent() {
-      CONTENT.innerHTML = " ";
-      if (inputValuesForRender.year == "all-year") {
-        FILTERED_ITEMS = DATA.filter(
-          (element) =>
-            element.articleTitle.includes(inputValuesForRender.keyword) ||
-            element.text.includes(inputValuesForRender.keyword)
-        );
-      } else {
-        FILTERED_ITEMS = DATA.filter(
-          (element) =>
-            element.year == inputValuesForRender.year &&
-            (element.articleTitle.includes(inputValuesForRender.keyword) ||
-              element.text.includes(inputValuesForRender.keyword))
-        );
-      }
-
-      if (FILTERED_ITEMS.length === 0) {
-        CONTENT.innerHTML = "";
-        CONTENT.insertAdjacentHTML(
-          "afterbegin",
-          `<h3 class='no-found'> :(   No result found for "${inputValuesForRender.keyword}". Please try another way. </h3>`
-        );
-      }
-      FILTERED_ITEMS.filter((e, index) => index < ITEMS_ON_PAGE).map(
-        createItem
-      );
     }
 
     filterButtons.forEach((filterButton) => {
@@ -281,6 +334,7 @@
         inputSearch.addEventListener("change", getSearchValue);
         inputSearch.addEventListener("keyup", function (event) {
           if (event.code === "Enter") {
+            inputValuesForRender.pageindex = "1";
             const getSearchValueBindCreateFilterButtonContext =
               getSearchValue.bind(this);
             getSearchValueBindCreateFilterButtonContext();
@@ -290,7 +344,37 @@
     });
   };
 
-  // };
+  function renderFilteredContent() {
+    CONTENT.innerHTML = "";
+    if (inputValuesForRender.year == "all-year") {
+      FILTERED_ITEMS = DATA.filter(
+        (element) =>
+          element.articleTitle.includes(inputValuesForRender.keyword) ||
+          element.text.includes(inputValuesForRender.keyword)
+      );
+    } else {
+      FILTERED_ITEMS = DATA.filter(
+        (element) =>
+          element.year == inputValuesForRender.year &&
+          (element.articleTitle.includes(inputValuesForRender.keyword) ||
+            element.text.includes(inputValuesForRender.keyword))
+      );
+    }
+
+    if (FILTERED_ITEMS.length === 0) {
+      console.log("here");
+      inputValuesForRender.pageindex = "";
+      console.log(inputValuesForRender.pageindex);
+      // createUrlParametersSearch();
+      CONTENT.innerHTML = "";
+      CONTENT.insertAdjacentHTML(
+        "afterbegin",
+        `<h3 class='no-found'> :(   No result found for "${inputValuesForRender.keyword}". Please try another way. </h3>`
+      );
+    }
+    FILTERED_ITEMS.filter((e, index) => index < ITEMS_ON_PAGE).map(createItem);
+  }
+
   // ___________________________________FOCUS--ON--SEARCH____________________________________________________________________
   const createFocusOnSearchInput = () => {
     const input = document.getElementById("mySearch");
@@ -328,7 +412,6 @@
     const dropButton = document.getElementById("filter");
     dropButton.innerHTML = "Filter: allArticle";
     const arrYears = listOfYears.querySelectorAll('[data-id="filter"]');
-    console.log(arrYears);
     const createDropdownStyle = () => {
       if (listOfYears.classList.contains("show")) {
         listOfYears.classList.remove("show");
@@ -356,7 +439,7 @@
       });
     });
   };
-  // __________________________________STYLE--FIRST--LAST_______________________________________________________________
+  // __________________________________FIRST--LAST--BUTTONS__STYLE_______________________________________________________________
   const removeActiveStyleFromFirstAndLastButtons = () => {
     const firstAndLastButtons = document.querySelectorAll("#first, #last");
     firstAndLastButtons.forEach((div) => {
@@ -364,61 +447,13 @@
       div.firstElementChild.classList.remove("no-hover");
     });
   };
-  const _UrlParametres = (btn) =>
-    btn.addEventListener("click", (event) => {
-      // event.preventDefault();
-      if (btn.id !== "allArticle") {
-        history.pushState({ id: btn.id }, "", `?year=${btn.id}`);
-      } else {
-        history.pushState({ id: btn.id }, "", "?year=all");
-      }
-    });
 
-  const createFilterUrlParams = () => {
-    const allAncors = document.querySelectorAll(".year");
-    allAncors.forEach((element) => {
-      const ancorFilterYear = document.getElementById(`${element.id}`);
-      _UrlParametres(ancorFilterYear);
-    });
-  };
-  // __________________________________URL--SEARCH--PARAMS_________________________________________________________________________
-  const createUrlParametersSearch = () => {
-    const divWithYears = document.querySelector(".overlay-listyear");
-    const searchForm = document.getElementById("mySearch");
-    const createPushStateParams = (event) => {
-      if (event.key === "Enter") {
-        const activYear = divWithYears.querySelector(".active-article");
-        event.preventDefault();
-        if (location.href.includes("All")) {
-          history.pushState(
-            { id: searchForm.value },
-            "",
-            `?keyword=${searchForm.value}`
-          );
-        }
-        if (location.href.includes("year")) {
-          history.pushState(
-            { id: searchForm.value },
-            "",
-            `?keyword=${searchForm.value}&year=${activYear.innerHTML}`
-          );
-        } else {
-          history.pushState(
-            { id: searchForm.value },
-            "",
-            `?keyword=${searchForm.value}`
-          );
-        }
-      }
-    };
+  window.addEventListener("popstate", function (e) {
+    alert("123");
+  });
 
-    searchForm.addEventListener("keydown", createPushStateParams);
-  };
-
-  createUrlParametersSearch();
   loadingContent();
   createFilterButtons();
-  createFilterUrlParams();
   createFocusOnSearchInput();
   createBurgerMenu();
   createDropdown();

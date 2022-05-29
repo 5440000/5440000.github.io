@@ -90,7 +90,7 @@
           </div>
           <div class="row justify-content-center padding-20">
             <div class="search-wrapper col-lg-6 col-md-7 col-sm-8 col-12">
-              <form class="search justify-content-between">
+              <div id="form" class="search justify-content-between">
                 <input
                   id="mySearch"
                   class="my-search"
@@ -98,7 +98,7 @@
                   type="text"
                 />
                 <img class="search__icon" src="./img/search-solid.svg" alt="" />
-              </form>
+              </div>
             </div>
           </div>
           <div class="row justify-content-center">
@@ -106,14 +106,14 @@
               <div class="">
                 <div class="filter-menu">
                   <div id="filter" class="filter">Filter</div>
-                  <select style="display: none;" name="all-year" id="cars">
+                  <!-- <select style="display: none;" name="all-year" id="cars">
                     <option value="2022">2022</option>
                     <option value="2021">2021</option>
                     <option value="2020">2020</option>
                     <option value="2019">2019</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
-                  </select>
+                  </select>-->
                   <div class="overlay-listyear">
                     <div
                       class="list-of-years row years-container years-mobile-menu"
@@ -127,6 +127,7 @@
                           id="allArticle"
                           value="all-year"
                           checked
+                          form="form"
                         />
                         <label for="allArticle">All articles</label>
                       </div>
@@ -138,8 +139,9 @@
                           id="2022"
                           name="year"
                           value="2022"
+                          form="form"
                         />
-                        <label for="2022"> 2022</label>
+                        <label for="2022">2022</label>
                       </div>
                       <div class="">
                         <input
@@ -149,9 +151,9 @@
                           id="2021"
                           name="year"
                           value="2021"
-                          
+                          form="form"
                         />
-                        <label for="2021"> 2021</label>
+                        <label for="2021">2021</label>
                       </div>
                       <div class="">
                         <input
@@ -161,8 +163,9 @@
                           id="2020"
                           name="year"
                           value="2020"
+                          form="form"
                         />
-                        <label for="2020"> 2020</label>
+                        <label for="2020">2020</label>
                       </div>
                       <div class="">
                         <input
@@ -172,8 +175,9 @@
                           id="2019"
                           name="year"
                           value="2019"
+                          form="form"
                         />
-                        <label for="2019"> 2019</label>
+                        <label for="2019">2019</label>
                       </div>
                       <div class="">
                         <input
@@ -183,8 +187,9 @@
                           id="2018"
                           name="year"
                           value="2018"
+                          form="form"
                         />
-                        <label for="2018"> 2018</label>
+                        <label for="2018">2018</label>
                       </div>
                       <div class="">
                         <input
@@ -194,6 +199,7 @@
                           id="2017"
                           name="year"
                           value="2017"
+                          form="form"
                         />
                         <label for="2017"> 2017</label>
                       </div>
