@@ -4,6 +4,11 @@
   const CONTENT = document.querySelector("#content");
   let DATA = [];
   let FILTERED_ITEMS = [];
+  const inputValuesForRender = {
+    year: "all-year",
+    keyword: "",
+    pageindex: "1",
+  };
   // ___________________________________CREATE--ITEM________________________________________________________________________
 
   const createItem = (articlePreview) => {
@@ -38,8 +43,11 @@
     DATA = await json.json();
     FILTERED_ITEMS = DATA;
     const firstItems = DATA.filter((e, index) => index < ITEMS_ON_PAGE);
+    if (history.state === null) {
+      setTimeout(() => createUrlParametersSearch(), 1000);
+    }else{
     setTimeout(() => firstItems.map(createItem), 1000);
-    setTimeout(() => createPagination(DATA), 1000);
+    setTimeout(() => createPagination(DATA), 1000);}
   };
 
   // ___________________________________FIRST--LAST--BUTTONS________________________________________________________________________
@@ -104,7 +112,6 @@
       inputValuesForRender.pageindex = `${
         arrayButtons[arrayButtons.length - 1].firstChild.innerHTML
       }`;
-      console.log(arrayButtons[arrayButtons.length - 1].firstChild.innerHTML);
       createUrlParametersSearch();
       if (
         arrayButtons.length === 1 ||
@@ -175,7 +182,6 @@
   };
 
   // ___________________________________PAGINATION_______________________________________________________________________
-  // fitstIndex, lastIndex. activeIndex, pageCount);
 
   function deleteFirstAndLastButtons() {
     const divForFirstButton = document.getElementById("first");
@@ -210,11 +216,11 @@
     const buttonsWrap = document.getElementById("for-buttons");
     const countOfButtons = Math.ceil(FILTERED_ITEMS.length / ITEMS_ON_PAGE);
     let buttonNumber = 0;
-    
+    inputValuesForRender.pageindex = "1";
+
     if (countOfButtons === 1) {
-      console.log("da");
       inputValuesForRender.pageindex = "";
-      createUrlParametersSearch()
+      createUrlParametersSearch();
     }
 
     buttonsWrap.innerHTML = "";
@@ -238,32 +244,69 @@
       createStylePaginationButtonsFirstAndLast();
     }
   };
-  // ___________________________________FILTER & SEARCH & QUERY STRING
+  // _________________###__________________FILTER & SEARCH & QUERY STRING
 
   const createUrlParametersSearch = () => {
     if (history.state === null) {
+      const href = new URL(window.location.href);
+      inputValuesForRender.year = href.searchParams.get("year");
+      inputValuesForRender.keyword = href.searchParams.get("keyword");
+      inputValuesForRender.pageindex = href.searchParams.get("pageindex");
+console.log(inputValuesForRender.pageindex);
       history.replaceState(
         inputValuesForRender,
         "",
         `?year=${inputValuesForRender.year}&keyword=${inputValuesForRender.keyword}&pageindex=${inputValuesForRender.pageindex}`
       );
+      
+        renderFilteredContent()
+          createPagination()
+          createActivePaginationButton();
+ 
+      //________________________ createActiveFilterButton
+      const filterButtons = document.querySelectorAll("input");
+      filterButtons.forEach((element) => {
+        element.checked = false;
+        if (
+          element.nextElementSibling.innerHTML === href.searchParams.get("year")
+        ) {
+          element.checked = true;
+        }
+      });
+      //________________________ createActivePaginationButton
+      function createActivePaginationButton() {
+        console.log(href.searchParams.get("pageindex"));
+        const buttonsWrap = document.getElementById("for-buttons");
+        const arrPagButtons =
+          buttonsWrap.querySelectorAll(".pagination-button");
+
+        if (inputValuesForRender.pageindex !== "") {
+          arrPagButtons.forEach((element) => {
+            element.classList.remove("active-pagination");
+            if (
+              href.searchParams.get("pageindex") === element.firstChild.innerHTML
+              ) {
+              console.log(inputValuesForRender.pageindex);
+              console.log(element.firstChild.innerHTML);
+              element.classList.add("active-pagination");
+            }
+          });
+        }
+      }
+
+      const inputField = document.getElementById("mySearch")
+      inputField.value = inputValuesForRender.keyword
     } else {
-      history.pushState(
+      history.replaceState(
         inputValuesForRender,
         "",
         `?year=${inputValuesForRender.year}&keyword=${inputValuesForRender.keyword}&pageindex=${inputValuesForRender.pageindex}`
       );
     }
   };
-  const inputValuesForRender = {
-    year: "all-year",
-    keyword: "",
-    pageindex: "1",
-  };
 
- 
 
-  const createFilterButtons = (filterButton) => {
+  const createFilterButtons = () => {
     const inputSearch = document.getElementById("mySearch");
     const filterButtons = document.querySelectorAll("input");
     // const searchButton = document.querySelector(".search__icon");
@@ -278,8 +321,8 @@
     function getSearchValue() {
       if (inputValuesForRender.keyword != this.value) {
         inputValuesForRender.keyword = this.value;
-        renderFilteredContent();
         createPagination();
+        renderFilteredContent();
         createUrlParametersSearch();
       }
     }
@@ -302,7 +345,7 @@
   };
 
   function renderFilteredContent() {
-    CONTENT.innerHTML = " ";
+    CONTENT.innerHTML = "";
     if (inputValuesForRender.year == "all-year") {
       FILTERED_ITEMS = DATA.filter(
         (element) =>
@@ -319,8 +362,10 @@
     }
 
     if (FILTERED_ITEMS.length === 0) {
+      console.log("here");
       inputValuesForRender.pageindex = "";
-      createUrlParametersSearch();
+      console.log(inputValuesForRender.pageindex);
+      // createUrlParametersSearch();
       CONTENT.innerHTML = "";
       CONTENT.insertAdjacentHTML(
         "afterbegin",
@@ -403,19 +448,11 @@
     });
   };
 
-
-
-  addEventListener("popstate",function(e){
-    console.log(history.state.year)
-    DATA.filter();
-
-    
-
-},false);
-
+  window.addEventListener("popstate", function (e) {
+    alert("123");
+  });
 
   loadingContent();
-  createUrlParametersSearch();
   createFilterButtons();
   createFocusOnSearchInput();
   createBurgerMenu();
