@@ -43,11 +43,10 @@
     DATA = await json.json();
     FILTERED_ITEMS = DATA;
     const firstItems = DATA.filter((e, index) => index < ITEMS_ON_PAGE);
-    if (history.state === null) {
-      setTimeout(() => createUrlParametersSearch(), 1000);
-    }else{
-    setTimeout(() => firstItems.map(createItem), 1000);
-    setTimeout(() => createPagination(DATA), 1000);}
+
+    setTimeout(() => createUrlParametersSearch(), 1000);
+    // setTimeout(() => firstItems.map(createItem), 1000);
+    // setTimeout(() => createPagination(DATA), 1000)
   };
 
   // ___________________________________FIRST--LAST--BUTTONS________________________________________________________________________
@@ -245,58 +244,70 @@
     }
   };
   // _________________###__________________FILTER & SEARCH & QUERY STRING
+  const forPastInNewTab = (href) => {
+    inputValuesForRender.year = href.searchParams.get("year");
+    inputValuesForRender.keyword = href.searchParams.get("keyword");
+    inputValuesForRender.pageindex = href.searchParams.get("pageindex");
+    history.replaceState(
+      inputValuesForRender,
+      "",
+      `?year=${inputValuesForRender.year}&keyword=${inputValuesForRender.keyword}&pageindex=${inputValuesForRender.pageindex}`
+    );
 
+    renderFilteredContent();
+    createPagination();
+    createActivePaginationButton();
+
+    //________________________ createActiveFilterButton
+    const filterButtons = document.querySelectorAll("input");
+    filterButtons.forEach((element) => {
+      element.checked = false;
+      if (
+        element.nextElementSibling.innerHTML === href.searchParams.get("year")
+      ) {
+        element.checked = true;
+      }
+    });
+    //________________________ createActivePaginationButton
+    function createActivePaginationButton() {
+      const buttonsWrap = document.getElementById("for-buttons");
+      const arrPagButtons = buttonsWrap.querySelectorAll(".pagination-button");
+
+      if (inputValuesForRender.pageindex !== "") {
+        arrPagButtons.forEach((element) => {
+          element.classList.remove("active-pagination");
+          if (
+            href.searchParams.get("pageindex") === element.firstChild.innerHTML
+          ) {
+            element.classList.add("active-pagination");
+          }
+        });
+      }
+    }
+
+    const inputField = document.getElementById("mySearch");
+    inputField.value = inputValuesForRender.keyword;
+  };
   const createUrlParametersSearch = () => {
-    if (history.state === null) {
-      const href = new URL(window.location.href);
-      inputValuesForRender.year = href.searchParams.get("year");
-      inputValuesForRender.keyword = href.searchParams.get("keyword");
-      inputValuesForRender.pageindex = href.searchParams.get("pageindex");
-console.log(inputValuesForRender.pageindex);
+    const href = new URL(window.location.href);
+    href.searchParams.has("year");
+
+    if (history.state === null && href.searchParams.has("year")) {
+      console.log("1");
+      forPastInNewTab(href);
+    }
+    if (history.state === null && !href.searchParams.has("year")) {
       history.replaceState(
         inputValuesForRender,
         "",
         `?year=${inputValuesForRender.year}&keyword=${inputValuesForRender.keyword}&pageindex=${inputValuesForRender.pageindex}`
       );
-      
-        renderFilteredContent()
-          createPagination()
-          createActivePaginationButton();
- 
-      //________________________ createActiveFilterButton
-      const filterButtons = document.querySelectorAll("input");
-      filterButtons.forEach((element) => {
-        element.checked = false;
-        if (
-          element.nextElementSibling.innerHTML === href.searchParams.get("year")
-        ) {
-          element.checked = true;
-        }
-      });
-      //________________________ createActivePaginationButton
-      function createActivePaginationButton() {
-        console.log(href.searchParams.get("pageindex"));
-        const buttonsWrap = document.getElementById("for-buttons");
-        const arrPagButtons =
-          buttonsWrap.querySelectorAll(".pagination-button");
+      renderFilteredContent();
+      createPagination();
+      createActivePaginationButton();
+    }
 
-        if (inputValuesForRender.pageindex !== "") {
-          arrPagButtons.forEach((element) => {
-            element.classList.remove("active-pagination");
-            if (
-              href.searchParams.get("pageindex") === element.firstChild.innerHTML
-              ) {
-              console.log(inputValuesForRender.pageindex);
-              console.log(element.firstChild.innerHTML);
-              element.classList.add("active-pagination");
-            }
-          });
-        }
-      }
-
-      const inputField = document.getElementById("mySearch")
-      inputField.value = inputValuesForRender.keyword
-    } else {
+    if (history.state !== null) {
       history.replaceState(
         inputValuesForRender,
         "",
@@ -304,7 +315,6 @@ console.log(inputValuesForRender.pageindex);
       );
     }
   };
-
 
   const createFilterButtons = () => {
     const inputSearch = document.getElementById("mySearch");
@@ -321,8 +331,8 @@ console.log(inputValuesForRender.pageindex);
     function getSearchValue() {
       if (inputValuesForRender.keyword != this.value) {
         inputValuesForRender.keyword = this.value;
-        createPagination();
         renderFilteredContent();
+        createPagination();
         createUrlParametersSearch();
       }
     }
